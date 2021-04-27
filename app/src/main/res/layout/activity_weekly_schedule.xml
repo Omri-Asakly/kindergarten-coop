@@ -61,11 +61,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginBottom="8dp"
         android:text="Weekly Schedule"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         app:layout_constraintBottom_toTopOf="@+id/calendarView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.307"
         app:layout_constraintStart_toEndOf="@+id/btnNav2"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -138,18 +140,6 @@
         app:layout_constraintTop_toBottomOf="@+id/imageButton"
         app:srcCompat="@android:drawable/ic_menu_info_details" />
 
-    <ImageView
-        android:id="@+id/btnNav2"
-        android:layout_width="43dp"
-        android:layout_height="41dp"
-        android:layout_marginTop="8dp"
-        android:background="#00FF0000"
-        app:layout_constraintBottom_toTopOf="@+id/calendarView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@android:drawable/ic_menu_sort_by_size" />
-
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/Navigation"
         android:layout_width="241dp"
@@ -161,11 +151,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
-        tools:visibility="visible">
+        tools:visibility="gone">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
             <ImageView
                 android:id="@+id/btnHideNav"
@@ -184,7 +174,11 @@
                 android:layout_height="58dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="16dp"
+                android:fontFamily="casual"
                 android:text="Home"
+                android:textColor="#009688"
+                android:textStyle="bold"
+                app:backgroundTint="#00009688"
                 app:layout_constraintBottom_toTopOf="@+id/navBtnFullSchedule"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -196,7 +190,11 @@
                 android:layout_height="58dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="16dp"
+                android:fontFamily="casual"
                 android:text="Weekly Schedule"
+                android:textColor="#009688"
+                android:textStyle="bold"
+                app:backgroundTint="#00009688"
                 app:layout_constraintBottom_toTopOf="@+id/navBtnAccount"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
@@ -209,7 +207,11 @@
                 android:layout_height="58dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="455dp"
+                android:fontFamily="casual"
                 android:text="Settings"
+                android:textColor="#009688"
+                android:textStyle="bold"
+                app:backgroundTint="#00009688"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -237,5 +239,17 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.navigation.NavigationView>
+
+    <ImageView
+        android:id="@+id/btnNav2"
+        android:layout_width="43dp"
+        android:layout_height="45dp"
+        android:layout_marginBottom="8dp"
+        android:src="@android:drawable/ic_menu_sort_by_size"
+        app:layout_constraintBottom_toTopOf="@+id/calendarView"
+        app:layout_constraintEnd_toStartOf="@+id/txtTitle"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

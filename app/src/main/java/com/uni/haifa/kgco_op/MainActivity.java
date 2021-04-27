@@ -15,18 +15,21 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Button loginBtn= this.<Button>findViewById(R.id.loginBtn);
-        EditText editTextEmail=findViewById(R.id.editTextEmail);
-        String email=editTextEmail.getText().toString();
-        EditText editTextPassword=findViewById(R.id.editTextPassword);
-        String password=editTextPassword.getText().toString();
         loginBtn.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
-                if (email == "admin" && password == "admin"){
+                EditText editTextEmail=(EditText)findViewById(R.id.editTextEmail);
+                String email=editTextEmail.getText().toString();
+                EditText editTextPassword=(EditText)findViewById(R.id.editTextPassword);
+                String password=editTextPassword.getText().toString();
+                if ((email.equals("admin")) && (password.equals("admin"))){
+                    Toast.makeText(getApplicationContext(),"Hello Admin",Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(MainActivity.this, MainPage.class);
                     startActivity(intent);
                 }
                 else{
-                    Toast.makeText(getApplicationContext(),"Hello",Toast.LENGTH_SHORT).show();
+     //              Toast.makeText(getApplicationContext(),"Hello",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),password ,Toast.LENGTH_SHORT).show();
+
                     Intent intent = new Intent(MainActivity.this, MainPage.class);
                     startActivity(intent);
                 }

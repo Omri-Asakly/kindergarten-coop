@@ -2,8 +2,10 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/conLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFFF"
     tools:context=".MainPage">
 
     <EditText
@@ -15,6 +17,7 @@
         android:layout_marginRight="16dp"
         android:layout_marginBottom="8dp"
         android:ems="10"
+        android:gravity="center"
         android:inputType="textPersonName"
         android:text="Name"
         app:layout_constraintBottom_toTopOf="@+id/btnFullSchedule"
@@ -43,14 +46,12 @@
 
     <TextView
         android:id="@+id/tomorrowTxt"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="136dp"
-        android:layout_marginRight="136dp"
         android:layout_marginBottom="8dp"
+        android:background="#EFEFEF"
+        android:gravity="center"
         android:text="Tomorrow's View"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         app:layout_constraintBottom_toTopOf="@+id/morningTxt2"
@@ -67,6 +68,7 @@
         android:layout_marginRight="16dp"
         android:layout_marginBottom="8dp"
         android:ems="10"
+        android:gravity="center"
         android:inputType="textPersonName"
         android:text="Name"
         app:layout_constraintBottom_toTopOf="@+id/editTextTextPersonName5"
@@ -115,14 +117,12 @@
 
     <TextView
         android:id="@+id/todayTxt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
+        android:layout_width="0dp"
+        android:layout_height="46dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="199dp"
-        android:layout_marginRight="199dp"
         android:layout_marginBottom="8dp"
+        android:background="#EFEFEF"
+        android:gravity="center"
         android:text="Today's View"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         app:layout_constraintBottom_toTopOf="@+id/etMorningPerson"
@@ -139,6 +139,7 @@
         android:layout_marginRight="16dp"
         android:layout_marginBottom="8dp"
         android:ems="10"
+        android:gravity="center"
         android:inputType="textPersonName"
         android:text="Name"
         app:layout_constraintBottom_toTopOf="@+id/editTextTextPersonName2"
@@ -155,6 +156,7 @@
         android:layout_marginRight="16dp"
         android:layout_marginBottom="8dp"
         android:ems="10"
+        android:gravity="center"
         android:inputType="textPersonName"
         android:text="Name"
         app:layout_constraintBottom_toTopOf="@+id/divider2"
@@ -231,27 +233,28 @@
 
     <ImageView
         android:id="@+id/btnNav"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/titleTxt2"
-        app:layout_constraintEnd_toStartOf="@+id/titleTxt2"
+        android:layout_width="43dp"
+        android:layout_height="45dp"
+        android:layout_marginBottom="8dp"
+        android:src="@android:drawable/ic_menu_sort_by_size"
+        app:layout_constraintBottom_toTopOf="@+id/calendarView"
+        app:layout_constraintEnd_toStartOf="@+id/txtTitle"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@android:drawable/ic_menu_sort_by_size" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/Navigation"
         android:layout_width="241dp"
-        android:layout_height="785dp"
+        android:layout_height="731dp"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/titleTxt2"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintVertical_bias="0.0"
+        tools:visibility="visible">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -274,7 +277,11 @@
                 android:layout_height="58dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="16dp"
+                android:fontFamily="casual"
                 android:text="Home"
+                android:textColor="#009688"
+                android:textStyle="bold"
+                app:backgroundTint="#00009688"
                 app:layout_constraintBottom_toTopOf="@+id/navBtnFullSchedule"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -286,7 +293,11 @@
                 android:layout_height="58dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="16dp"
+                android:fontFamily="casual"
                 android:text="Weekly Schedule"
+                android:textColor="#009688"
+                android:textStyle="bold"
+                app:backgroundTint="#00FFFFFF"
                 app:layout_constraintBottom_toTopOf="@+id/navBtnAccount"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
@@ -299,7 +310,11 @@
                 android:layout_height="58dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="455dp"
+                android:fontFamily="casual"
                 android:text="Settings"
+                android:textColor="#009688"
+                android:textStyle="bold"
+                app:backgroundTint="#00FFFFFF"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -324,6 +339,19 @@
                 app:layout_constraintHorizontal_bias="0.578"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/btnDarkMode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="96dp"
+                android:layout_marginLeft="96dp"
+                android:layout_marginBottom="41dp"
+                app:layout_constraintBottom_toTopOf="@+id/navBtnHome"
+                app:layout_constraintEnd_toStartOf="@+id/btnHideNav"
+                app:layout_constraintStart_toEndOf="@+id/txtMenu"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="?android:attr/listChoiceIndicatorSingle" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.navigation.NavigationView>
