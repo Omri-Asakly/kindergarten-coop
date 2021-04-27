@@ -38,25 +38,7 @@ public class MainPage extends AppCompatActivity {
                 nav.setVisibility(View.VISIBLE);
             }
         });
-        ImageView btnDarkMode= findViewById(R.id.btnDarkMode);
-        btnDarkMode.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                if(flag[0] == 0) {
-                    NavigationView nav = findViewById(R.id.Navigation);
-                    nav.setBackgroundColor(GRAY);
-                    ConstraintLayout main = findViewById(R.id.conLayout);
-                    main.setBackgroundColor(GRAY);
-                    flag[0] = 1;
-                }else {
-                    NavigationView nav = findViewById(R.id.Navigation);
-                    nav.setBackgroundColor(WHITE);
-                    ConstraintLayout main = findViewById(R.id.conLayout);
-                    main.setBackgroundColor(WHITE);
-                    flag[0] = 0;
-                }
-            }
-        });
+
         ImageView btnHideNav= findViewById(R.id.btnHideNav);
         btnHideNav.setOnClickListener(new View.OnClickListener(){
             @Override

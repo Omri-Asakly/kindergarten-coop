@@ -11,7 +11,7 @@ import android.widget.ImageView;
 
 import com.google.android.material.navigation.NavigationView;
 
-public class weeklySchedule extends Activity {
+public class weeklySchedule extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

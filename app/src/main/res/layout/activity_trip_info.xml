@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/mainBackground"
     tools:context=".tripInfo">
 
     <CheckBox
@@ -18,6 +19,7 @@
         android:layout_marginBottom="32dp"
         android:text="Child"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textColor="@color/mainText"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -36,6 +38,7 @@
         android:layout_marginBottom="16dp"
         android:text="Child"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textColor="@color/mainText"
         app:layout_constraintBottom_toTopOf="@+id/child2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -53,6 +56,7 @@
         android:gravity="center"
         android:text="Trip Details"
         android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+        android:textColor="@color/mainText"
         app:layout_constraintBottom_toTopOf="@+id/child1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -106,7 +110,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
-        tools:visibility="gone">
+        tools:visibility="visible">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -116,7 +120,7 @@
                 android:id="@+id/btnHideNav"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="#009688"
+                android:background="@color/colorPrimary"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -131,7 +135,7 @@
                 android:layout_marginBottom="16dp"
                 android:fontFamily="casual"
                 android:text="Home"
-                android:textColor="#009688"
+                android:textColor="@color/mainText"
                 android:textStyle="bold"
                 app:backgroundTint="#00009688"
                 app:layout_constraintBottom_toTopOf="@+id/navBtnFullSchedule"
@@ -147,7 +151,7 @@
                 android:layout_marginBottom="16dp"
                 android:fontFamily="casual"
                 android:text="Weekly Schedule"
-                android:textColor="#009688"
+                android:textColor="@color/mainText"
                 android:textStyle="bold"
                 app:backgroundTint="#00FFFFFF"
                 app:layout_constraintBottom_toTopOf="@+id/navBtnAccount"
@@ -161,10 +165,10 @@
                 android:layout_width="237dp"
                 android:layout_height="58dp"
                 android:layout_marginTop="16dp"
-                android:layout_marginBottom="455dp"
+                android:layout_marginBottom="400dp"
                 android:fontFamily="casual"
                 android:text="Settings"
-                android:textColor="#009688"
+                android:textColor="@color/mainText"
                 android:textStyle="bold"
                 app:backgroundTint="#00FFFFFF"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -185,25 +189,12 @@
                 android:fontFamily="casual"
                 android:text="Menu"
                 android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-                android:textColor="#009688"
+                android:textColor="@color/colorPrimary"
                 app:layout_constraintBottom_toTopOf="@+id/navBtnHome"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.578"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
-
-            <ImageView
-                android:id="@+id/btnDarkMode"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="96dp"
-                android:layout_marginLeft="96dp"
-                android:layout_marginBottom="41dp"
-                app:layout_constraintBottom_toTopOf="@+id/navBtnHome"
-                app:layout_constraintEnd_toStartOf="@+id/btnHideNav"
-                app:layout_constraintStart_toEndOf="@+id/txtMenu"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="?android:attr/listChoiceIndicatorSingle" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.navigation.NavigationView>
