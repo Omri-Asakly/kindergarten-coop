@@ -6,41 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".tripInfo">
 
-    <ImageView
-        android:id="@+id/imageView5"
-        android:layout_width="51dp"
-        android:layout_height="51dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/child3"
-        app:srcCompat="@drawable/ic_waze"
-        tools:layout_editor_absoluteY="584dp" />
-
-    <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="51dp"
-        android:layout_height="51dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/child4"
-        app:srcCompat="@drawable/ic_waze"
-        tools:layout_editor_absoluteY="664dp" />
-
-    <CheckBox
-        android:id="@+id/child3"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="74dp"
-        android:layout_marginRight="74dp"
-        android:layout_marginBottom="16dp"
-        android:text="Child"
-        app:layout_constraintBottom_toTopOf="@+id/child4"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/child2" />
-
     <CheckBox
         android:id="@+id/child2"
         android:layout_width="0dp"
@@ -50,30 +15,14 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="74dp"
         android:layout_marginRight="74dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="32dp"
         android:text="Child"
-        app:layout_constraintBottom_toTopOf="@+id/child3"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/child1" />
-
-    <CheckBox
-        android:id="@+id/child4"
-        android:layout_width="0dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="74dp"
-        android:layout_marginRight="74dp"
-        android:layout_marginBottom="16dp"
-        android:text="Child"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/child3" />
 
     <CheckBox
         android:id="@+id/child1"
@@ -81,11 +30,12 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="74dp"
         android:layout_marginRight="74dp"
         android:layout_marginBottom="16dp"
         android:text="Child"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
         app:layout_constraintBottom_toTopOf="@+id/child2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -97,7 +47,6 @@
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginBottom="32dp"
@@ -112,19 +61,151 @@
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="51dp"
-        android:layout_height="51dp"
-        android:layout_marginTop="45dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="8dp"
+        android:contentDescription="@string/app_name"
+        app:layout_constraintBottom_toTopOf="@+id/imageView2"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.636"
         app:layout_constraintStart_toEndOf="@+id/child1"
         app:layout_constraintTop_toBottomOf="@+id/txtTripTitle"
         app:srcCompat="@drawable/ic_waze" />
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/imageView2"
         android:layout_width="51dp"
-        android:layout_height="51dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/child2"
-        app:srcCompat="@drawable/ic_waze"
-        tools:layout_editor_absoluteY="507dp" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:srcCompat="@drawable/ic_waze" />
+
+    <ImageView
+        android:id="@+id/btnNav"
+        android:layout_width="43dp"
+        android:layout_height="45dp"
+        android:layout_marginBottom="8dp"
+        android:src="@android:drawable/ic_menu_sort_by_size"
+        app:layout_constraintBottom_toTopOf="@+id/calendarView"
+        app:layout_constraintEnd_toStartOf="@+id/txtTitle"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/Navigation"
+        android:layout_width="241dp"
+        android:layout_height="731dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/titleTxt2"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        tools:visibility="gone">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/btnHideNav"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#009688"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/abc_vector_test" />
+
+            <Button
+                android:id="@+id/navBtnHome"
+                android:layout_width="237dp"
+                android:layout_height="58dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                android:fontFamily="casual"
+                android:text="Home"
+                android:textColor="#009688"
+                android:textStyle="bold"
+                app:backgroundTint="#00009688"
+                app:layout_constraintBottom_toTopOf="@+id/navBtnFullSchedule"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtMenu" />
+
+            <Button
+                android:id="@+id/navBtnFullSchedule"
+                android:layout_width="237dp"
+                android:layout_height="58dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                android:fontFamily="casual"
+                android:text="Weekly Schedule"
+                android:textColor="#009688"
+                android:textStyle="bold"
+                app:backgroundTint="#00FFFFFF"
+                app:layout_constraintBottom_toTopOf="@+id/navBtnAccount"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/navBtnHome" />
+
+            <Button
+                android:id="@+id/navBtnAccount"
+                android:layout_width="237dp"
+                android:layout_height="58dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="455dp"
+                android:fontFamily="casual"
+                android:text="Settings"
+                android:textColor="#009688"
+                android:textStyle="bold"
+                app:backgroundTint="#00FFFFFF"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/navBtnFullSchedule" />
+
+            <TextView
+                android:id="@+id/txtMenu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="168dp"
+                android:layout_marginRight="168dp"
+                android:layout_marginBottom="16dp"
+                android:fontFamily="casual"
+                android:text="Menu"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                android:textColor="#009688"
+                app:layout_constraintBottom_toTopOf="@+id/navBtnHome"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.578"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/btnDarkMode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="96dp"
+                android:layout_marginLeft="96dp"
+                android:layout_marginBottom="41dp"
+                app:layout_constraintBottom_toTopOf="@+id/navBtnHome"
+                app:layout_constraintEnd_toStartOf="@+id/btnHideNav"
+                app:layout_constraintStart_toEndOf="@+id/txtMenu"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="?android:attr/listChoiceIndicatorSingle" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.navigation.NavigationView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

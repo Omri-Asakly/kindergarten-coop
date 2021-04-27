@@ -49,6 +49,14 @@ public class weeklySchedule extends Activity {
                 nav.setVisibility(View.INVISIBLE);
             }
         });
+        ImageView btnInfo= findViewById(R.id.info);
+        btnInfo.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(weeklySchedule.this, tripInfo.class);
+                startActivity(intent);
+            }
+        });
 
     }
 }

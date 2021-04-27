@@ -8,7 +8,10 @@ import android.app.Activity;
 import android.view.View.OnClickListener;
 import android.widget.Toast;
 
-public class MainActivity extends Activity {
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
+
+public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +38,13 @@ public class MainActivity extends Activity {
                 }
             }
 
+        });
+        Button darkMode= findViewById(R.id.btnDM);
+        darkMode.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+            }
         });
     }
 
