@@ -1,0 +1,12 @@
+{
+    "parents": [
+        {
+          "id": 1,
+          "userName": "JackDaRipper",
+          "email": "jack@gmail.com",
+          "password": "jackdarippaa",
+          "licenseDate": "18/5/2025",
+        }
+    ]
+
+}

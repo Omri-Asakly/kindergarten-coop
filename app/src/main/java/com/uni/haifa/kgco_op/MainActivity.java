@@ -3,10 +3,9 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
-import android.app.Activity;
-import android.view.View.OnClickListener;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button btnDM= findViewById(R.id.btnDM);
+        Button btnDM = findViewById(R.id.btnDM);
 
         final SharedPreferences appSettingPrefs= getSharedPreferences("AppSettingPrefs",  0);
         final SharedPreferences.Editor sharedPrefsEdit = appSettingPrefs.edit();

@@ -1,2 +1,3 @@
+include ':json-simple-2.3.0'
 include ':app'
 rootProject.name = "KG Co-op"
