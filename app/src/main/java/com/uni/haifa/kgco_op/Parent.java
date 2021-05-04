@@ -16,4 +16,16 @@ public class Parent {
         this.password = password;
         this.licenseDate = licenseDate;
     }
+
+
+    @Override
+    public String toString() {
+        return "Parent{" +
+                "id=" + id +
+                ", userName='" + userName + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", licenseDate=" + licenseDate +
+                '}';
+    }
 }

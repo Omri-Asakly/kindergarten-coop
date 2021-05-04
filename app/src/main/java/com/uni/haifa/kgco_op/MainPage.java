@@ -1,32 +1,20 @@
 package com.uni.haifa.kgco_op;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
-
-import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.graphics.Color;
-import android.hardware.camera2.params.BlackLevelPattern;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.navigation.NavigationView;
-
-import static android.graphics.Color.BLACK;
-import static android.graphics.Color.BLUE;
-import static android.graphics.Color.GRAY;
-import static android.graphics.Color.WHITE;
-import static com.uni.haifa.kgco_op.R.color.*;
-import static com.uni.haifa.kgco_op.R.id.btnNav;
 
 public class MainPage extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         final int[] flag = {0};
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_page);
@@ -71,5 +59,16 @@ public class MainPage extends AppCompatActivity {
                 startActivity(intent2);
             }
         });
+
+        Button addUser = findViewById(R.id.userBtn);
+        addUser.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent intent2=new Intent(MainPage.this, AddUser.class);
+                startActivity(intent2);
+            }
+        });
     }
+
+
 }
