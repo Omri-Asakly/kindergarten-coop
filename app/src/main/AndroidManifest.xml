@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.KGCoop">
-        <activity android:name=".AddUser"></activity>
+        <activity android:name=".AddChildrenToNewParent"></activity>
+        <activity android:name=".AddUser" />
         <activity android:name=".tripInfo" />
         <activity android:name=".weeklySchedule" />
         <activity android:name=".MainPage" />
