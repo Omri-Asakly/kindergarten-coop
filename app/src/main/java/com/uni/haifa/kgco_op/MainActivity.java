@@ -21,34 +21,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Button btnDM = findViewById(R.id.btnDM);
         DataBaseManager.getInstance().openDataBase(this);
         final SharedPreferences appSettingPrefs = getSharedPreferences("AppSettingPrefs", 0);
         final SharedPreferences.Editor sharedPrefsEdit = appSettingPrefs.edit();
-        final Boolean isNightModeOn = appSettingPrefs.getBoolean("NightMode", false);
-        if (isNightModeOn) {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-            btnDM.setText("Disable Dark Mode");
-        } else {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-            btnDM.setText("Enable Dark Mode");
-        }
-        btnDM.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (isNightModeOn) {
-                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-                    sharedPrefsEdit.putBoolean("NightMode", false);
-                    sharedPrefsEdit.apply();
-                    btnDM.setText("Enable Dark Mode");
-                } else {
-                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-                    sharedPrefsEdit.putBoolean("NightMode", true);
-                    sharedPrefsEdit.apply();
-                    btnDM.setText("Disable Dark Mode");
-                }
-            }
-        });
+
         Button loginBtn = this.<Button>findViewById(R.id.loginBtn);
         loginBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {

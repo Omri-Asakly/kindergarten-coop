@@ -1,8 +1,10 @@
 package com.uni.haifa.kgco_op;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -28,6 +30,15 @@ public class UserList extends AppCompatActivity {
 
         listAdapter = new UserListAdapter(this, dataList);
         userListView.setAdapter(listAdapter);
+
+        ImageView btnBack = findViewById(R.id.btnBack);
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(UserList.this, MainPage.class);
+                startActivity(intent);
+            }
+        });
 
         userListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

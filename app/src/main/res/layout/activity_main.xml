@@ -54,15 +54,19 @@
     <EditText
         android:id="@+id/editTextEmail"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="60dp"
         android:layout_marginStart="32dp"
         android:layout_marginLeft="32dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="32dp"
         android:layout_marginRight="32dp"
         android:layout_marginBottom="16dp"
-        android:background="@color/mainBackground"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        android:background="@drawable/custom_input"
         android:ems="10"
+        android:drawableStart="@drawable/custom_email_icon"
+        android:drawablePadding="12dp"
         android:hint="Email"
         android:inputType="textEmailAddress"
         android:textColor="@color/mainText"
@@ -70,20 +74,25 @@
         app:layout_constraintBottom_toTopOf="@+id/editTextPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/titleTxt" />
+        app:layout_constraintTop_toBottomOf="@+id/titleTxt"
+        android:drawableLeft="@drawable/ic_email" />
 
     <EditText
         android:id="@+id/editTextPassword"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="60dp"
         android:layout_marginStart="32dp"
         android:layout_marginLeft="32dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="32dp"
         android:layout_marginRight="32dp"
         android:layout_marginBottom="64dp"
-        android:background="@color/mainBackground"
+        android:background="@drawable/custom_input"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
         android:ems="10"
+        android:drawableStart="@drawable/custom_lock_icon"
+        android:drawablePadding="12dp"
         android:hint="Password"
         android:inputType="textPassword"
         android:textColor="@color/mainText"
@@ -92,16 +101,7 @@
         app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextEmail"
-        app:layout_constraintVertical_bias="0.238" />
-
-    <Button
-        android:id="@+id/btnDM"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Dark mode"
-        app:layout_constraintBottom_toTopOf="@+id/titleTxt"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintVertical_bias="0.238"
+        android:drawableLeft="@drawable/ic_outline_lock_24" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

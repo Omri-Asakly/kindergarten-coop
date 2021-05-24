@@ -125,7 +125,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginBottom="32dp"
-        android:background="@color/colorPrimary"
+        android:background="@color/colorAccent"
         android:hapticFeedbackEnabled="true"
         android:tint="#FFFFFF"
         app:layout_constraintBottom_toTopOf="@+id/imageButton2"
@@ -144,7 +144,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginBottom="32dp"
-        android:background="@color/colorPrimary"
+        android:background="@color/colorAccent"
         android:tint="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -173,7 +173,7 @@
                 android:id="@+id/btnHideNav"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@color/colorPrimary"
+                android:background="@color/colorAccent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -182,11 +182,13 @@
 
             <Button
                 android:id="@+id/navBtnHome"
+                style="?android:attr/borderlessButtonStyle"
                 android:layout_width="237dp"
                 android:layout_height="58dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="16dp"
                 android:fontFamily="casual"
+                android:gravity="start"
                 android:text="Home"
                 android:textColor="@color/mainText"
                 android:textStyle="bold"
@@ -198,11 +200,13 @@
 
             <Button
                 android:id="@+id/navBtnFullSchedule"
+                style="?android:attr/borderlessButtonStyle"
                 android:layout_width="237dp"
                 android:layout_height="58dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="16dp"
                 android:fontFamily="casual"
+                android:gravity="start"
                 android:text="Weekly Schedule"
                 android:textColor="@color/mainText"
                 android:textStyle="bold"
@@ -215,11 +219,13 @@
 
             <Button
                 android:id="@+id/navBtnAccount"
+                style="?android:attr/borderlessButtonStyle"
                 android:layout_width="237dp"
                 android:layout_height="58dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="400dp"
                 android:fontFamily="casual"
+                android:gravity="start"
                 android:text="Settings"
                 android:textColor="@color/mainText"
                 android:textStyle="bold"
@@ -242,7 +248,7 @@
                 android:fontFamily="casual"
                 android:text="Menu"
                 android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-                android:textColor="@color/colorPrimary"
+                android:textColor="@color/colorAccent"
                 app:layout_constraintBottom_toTopOf="@+id/navBtnHome"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.578"
@@ -257,11 +263,12 @@
         android:layout_width="43dp"
         android:layout_height="45dp"
         android:layout_marginBottom="8dp"
-        android:src="@android:drawable/ic_menu_sort_by_size"
         app:layout_constraintBottom_toTopOf="@+id/calendarView"
         app:layout_constraintEnd_toStartOf="@+id/txtTitle"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_menu"
+        tools:ignore="VectorDrawableCompat" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

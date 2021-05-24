@@ -4,10 +4,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.List;
@@ -44,6 +46,15 @@ public class AddChildrenToNewParent extends AppCompatActivity {
         } catch(NullPointerException e){
             e.getStackTrace();
         }
+
+        ImageView btnBack = findViewById(R.id.btnBack);
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AddChildrenToNewParent.this, AddUser.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void collectNames(int value){
