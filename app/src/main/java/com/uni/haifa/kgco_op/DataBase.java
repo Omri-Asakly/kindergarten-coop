@@ -10,6 +10,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class DataBase extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;
@@ -31,6 +32,16 @@ public class DataBase extends SQLiteOpenHelper {
     private static final String CHILD_COLUMN_PARENT_ID = "parentID";
     private static final String CHILD_COLUMN_NAME = "name";
     private static final String[] TABLE_CHILD_COLUMNS = {CHILD_COLUMN_ID, CHILD_COLUMN_PARENT_ID, CHILD_COLUMN_NAME};
+
+
+    //schedule table
+    private static final String TABLE_SCHEDULE_NAME = "schedule";
+    private static final String SCHEDULE_COLUMN_ID = "id";
+    private static final String SCHEDULE_COLUMN_MORNING = "morning";
+    private static final String SCHEDULE_COLUMN_EVENING = "evening";
+    private static final String SCHEDULE_COLUMN_DATE = "date";
+    private static final String[] TABLE_SCHEDULE_COLUMNS = {SCHEDULE_COLUMN_ID, SCHEDULE_COLUMN_MORNING, SCHEDULE_COLUMN_EVENING, SCHEDULE_COLUMN_DATE};
+
 
     private SQLiteDatabase db = null;
 
@@ -54,6 +65,13 @@ public class DataBase extends SQLiteOpenHelper {
                     + CHILD_COLUMN_PARENT_ID + " INTEGER,"
                     + CHILD_COLUMN_NAME + " TEXT)";
             db.execSQL(CREATE_CHILD_TABLE);
+
+            String CREATE_SCHEDULE_TABLE = "create table if not exists " + TABLE_SCHEDULE_NAME + " ( "
+                    + SCHEDULE_COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                    + SCHEDULE_COLUMN_MORNING + " TEXT, "
+                    + SCHEDULE_COLUMN_EVENING + " TEXT, "
+                    + SCHEDULE_COLUMN_DATE + " DATE)";
+            db.execSQL(CREATE_SCHEDULE_TABLE);
         } catch (Throwable t) {
             t.printStackTrace();
         }
@@ -63,8 +81,9 @@ public class DataBase extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         try {
             // drop item table if already exists
-            //db.execSQL("DROP TABLE IF EXISTS parent");
-            //db.execSQL("DROP TABLE IF EXISTS child");
+            db.execSQL("DROP TABLE IF EXISTS parents");
+            db.execSQL("DROP TABLE IF EXISTS children");
+            db.execSQL("DROP TABLE IF EXISTS schedule");
         } catch (Throwable t) {
             t.printStackTrace();
         }
@@ -98,6 +117,18 @@ public class DataBase extends SQLiteOpenHelper {
         }
     }
 
+    public void createSchedule(Schedule s){
+        try{
+            ContentValues values = new ContentValues();
+            values.put(SCHEDULE_COLUMN_MORNING, s.getMorning());
+            values.put(SCHEDULE_COLUMN_EVENING, s.getEvening());
+            values.put(SCHEDULE_COLUMN_DATE, s.getDate().toString());
+            db.insert(TABLE_SCHEDULE_NAME, null, values);
+        } catch (Throwable t){
+            t.printStackTrace();
+        }
+    }
+
     public Parent readParents(int id) {
         Parent parent = null;
         Cursor cursor = null;
@@ -125,6 +156,34 @@ public class DataBase extends SQLiteOpenHelper {
             }
         }
         return parent;
+    }
+
+    public Schedule readSchedules(int id){
+        Schedule schedule = null;
+        Cursor cursor = null;
+        try {
+            cursor = db
+                    .query(TABLE_SCHEDULE_NAME, // a. table
+                            TABLE_SCHEDULE_COLUMNS, SCHEDULE_COLUMN_ID + " = ?",
+                            new String[]{String.valueOf(id)}, null, null,
+                            null, null);
+            if (cursor != null)
+                cursor.moveToFirst();
+            schedule = new Schedule();
+            schedule.setId(cursor.getInt(0));
+            schedule.setMorning(cursor.getString(1));
+            schedule.setEvening(cursor.getString(2));
+            SimpleDateFormat originalFormat = new SimpleDateFormat("ddMMyyyy");
+            Date date = originalFormat.parse(cursor.getString(3));
+            schedule.setDate(date);
+        } catch (Throwable t) {
+            t.printStackTrace();
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
+        }
+        return schedule;
     }
 
     public Child readChildren(int id){
@@ -175,6 +234,28 @@ public class DataBase extends SQLiteOpenHelper {
         return result;
     }
 
+    public List<Schedule> getAllSchedules() {
+        List<Schedule> result = new ArrayList<Schedule>();
+        Cursor cursor = null;
+        try {
+            cursor = db.query(TABLE_SCHEDULE_NAME, TABLE_SCHEDULE_COLUMNS, null, null,
+                    null, null, null);
+            cursor.moveToFirst();
+            while (!cursor.isAfterLast()) {
+                Schedule item = cursorToSchedule(cursor);
+                result.add(item);
+                cursor.moveToNext();
+            }
+        } catch (Throwable t) {
+            t.printStackTrace();
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
+        }
+        return result;
+    }
+
     public List<Child> getAllChildren() {
         List<Child> result = new ArrayList<Child>();
         Cursor cursor = null;
@@ -214,6 +295,22 @@ public class DataBase extends SQLiteOpenHelper {
         return result;
     }
 
+    private Schedule cursorToSchedule(Cursor cursor) {
+        Schedule result = new Schedule();
+        try {
+            result.setId(cursor.getInt(0));
+            result.setMorning(cursor.getString(1));
+            result.setEvening(cursor.getString(2));
+            SimpleDateFormat originalFormat = new SimpleDateFormat("EE MMM dd HH:mm:ss z yyyy",
+                    Locale.ENGLISH);
+            Date date = originalFormat.parse(cursor.getString(3));
+            result.setDate(date);
+        } catch (Throwable t) {
+            t.printStackTrace();
+        }
+        return result;
+    }
+
     private Child cursorToChild(Cursor cursor) {
         Child result = new Child();
         try {
@@ -244,6 +341,23 @@ public class DataBase extends SQLiteOpenHelper {
         return count;
     }
 
+    public int updateSchedule(Schedule schedule) {
+        int count = 0;
+        try {
+            ContentValues values = new ContentValues();
+            values.put(SCHEDULE_COLUMN_MORNING, schedule.getMorning());
+            values.put(SCHEDULE_COLUMN_EVENING, schedule.getEvening());
+            //time converted to INTEGER
+            values.put(SCHEDULE_COLUMN_DATE, schedule.getDate().getTime());
+            // update
+            count = db.update(TABLE_SCHEDULE_NAME, values, SCHEDULE_COLUMN_ID + " = ?",
+                    new String[]{String.valueOf(schedule.getId())});
+        } catch (Throwable t) {
+            t.printStackTrace();
+        }
+        return count;
+    }
+
     public int updateChild(Child child) {
         int count = 0;
         try {
@@ -263,6 +377,15 @@ public class DataBase extends SQLiteOpenHelper {
         try {
             db.delete(TABLE_PARENT_NAME, PARENT_COLUMN_ID + " = ?",
                     new String[]{String.valueOf(parent.getId())});
+        } catch (Throwable t) {
+            t.printStackTrace();
+        }
+    }
+
+    public void deleteSchedule(Schedule schedule) {
+        try {
+            db.delete(TABLE_SCHEDULE_NAME, SCHEDULE_COLUMN_ID + " = ?",
+                    new String[]{String.valueOf(schedule.getId())});
         } catch (Throwable t) {
             t.printStackTrace();
         }
@@ -310,6 +433,32 @@ public class DataBase extends SQLiteOpenHelper {
         } finally {
             if (cursor != null) {
                 // make sure to close the cursor
+                cursor.close();
+            }
+        }
+        return result;
+    }
+
+    public List<Schedule> getAllSchedules(Schedule folder) {
+        List<Schedule> result = new ArrayList<Schedule>();
+        Cursor cursor = null;
+        try {
+            int folderId = folder.getId();
+            cursor = db.query(TABLE_SCHEDULE_NAME, TABLE_SCHEDULE_COLUMNS, SCHEDULE_COLUMN_ID + " = ?",
+                    new String[]{String.valueOf(folderId)}, null, null,
+                    null, null);
+            if (cursor != null && cursor.getCount() > 0) {
+                cursor.moveToFirst();
+                while (!cursor.isAfterLast()) {
+                    Schedule item = cursorToSchedule(cursor);
+                    result.add(item);
+                    cursor.moveToNext();
+                }
+            }
+        } catch (Throwable t) {
+            t.printStackTrace();
+        } finally {
+            if (cursor != null) {
                 cursor.close();
             }
         }

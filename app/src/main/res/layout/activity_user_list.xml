@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/mainBackground"
     tools:context=".UserList">
 
     <LinearLayout
@@ -38,7 +39,9 @@
         <ListView
             android:id="@+id/userListView"
             android:layout_width="fill_parent"
-            android:layout_height="387dp" >
+            android:layout_height="387dp"
+            android:textColor="@color/textAlt">
+
 
         </ListView>
 
@@ -55,7 +58,8 @@
         <ListView
             android:id="@+id/parentInfo"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:textColor="@color/textAlt"/>
 
     </LinearLayout>
 

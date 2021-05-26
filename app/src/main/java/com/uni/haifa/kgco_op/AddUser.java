@@ -51,11 +51,11 @@ public class AddUser extends AppCompatActivity {
                     } catch (ParseException e) {
                         e.printStackTrace();
                     }
-                    Parent parent = new Parent(parents.size() + 1, name.getText().toString(), email.getText().toString(), password.getText().toString(), dateF);
+                    Parent parent = new Parent(name.getText().toString(), email.getText().toString(), password.getText().toString(), dateF);
                     DataBaseManager.getInstance().createParent(parent);
-                    System.out.println(parent.toString());
+                    parents = DataBaseManager.getInstance().getAllParents();
                     Intent intent = new Intent(AddUser.this, AddChildrenToNewParent.class);
-                    intent.putExtra("userID", parent.getId());
+                    intent.putExtra("userID", parents.get(parents.size()-1).getId());
                     startActivity(intent);
 
                 }

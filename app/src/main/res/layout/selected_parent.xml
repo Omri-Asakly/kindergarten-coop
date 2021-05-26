@@ -13,5 +13,5 @@
         android:layout_marginLeft="10dp"
         android:layout_marginTop="5dp"
         android:padding="2dp"
-        android:textColor="#ffffff"></TextView>
+       ></TextView>
     </LinearLayout>

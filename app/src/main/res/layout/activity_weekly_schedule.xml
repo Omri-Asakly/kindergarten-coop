@@ -271,4 +271,17 @@
         app:srcCompat="@drawable/ic_menu"
         tools:ignore="VectorDrawableCompat" />
 
+    <Button
+        android:id="@+id/addToScheduleBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="13dp"
+        android:layout_marginBottom="9dp"
+        app:backgroundTint="@color/colorAccent"
+        android:text="Add Shift"
+        app:layout_constraintBottom_toTopOf="@+id/editTextTextPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/calendarView" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

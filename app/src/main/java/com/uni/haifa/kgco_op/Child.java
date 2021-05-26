@@ -15,6 +15,11 @@ public class Child {
 
     }
 
+    public Child(int parentId, String name) {
+        this.parentId = parentId;
+        this.name = name;
+    }
+
     public int getId() {
         return id;
     }

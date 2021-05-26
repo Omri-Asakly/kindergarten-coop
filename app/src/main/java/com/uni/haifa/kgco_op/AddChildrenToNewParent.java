@@ -9,7 +9,6 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.List;
@@ -58,17 +57,13 @@ public class AddChildrenToNewParent extends AppCompatActivity {
     }
 
     private void collectNames(int value){
-        int count = 1;
         String input = textInputLayout.getEditText().getText().toString();
-        input.replaceAll("\\s+","");
+        input = input.replaceAll("\\s","");
         String[] names = input.split(",");
         for(String s : names){
-            Child child = new Child(children.size()+count, value, s);
-            count++;
+            Child child = new Child(value, s);
             DataBaseManager.getInstance().createChild(child);
         }
-        for(Child c : DataBaseManager.getInstance().getAllChildren())
-            System.out.println(c.toString());
     }
 
 }
