@@ -43,12 +43,13 @@ public class MainPage extends AppCompatActivity {
         List<Schedule> scheduleList = DataBaseManager.getInstance().getAllSchedules();
         Date today = new Date();
         for(Schedule s : scheduleList){
+            System.out.println(s);
             if(s.compare(today)){
                 todayMorningTxt.setText(s.getMorning());
                 todayEveningTXt.setText(s.getEvening());
                 break;
             }
-        }
+       }
         Date tomorrow = Schedule.getTomorrow();
         for(Schedule s : scheduleList){
             if(s.compare(tomorrow)){

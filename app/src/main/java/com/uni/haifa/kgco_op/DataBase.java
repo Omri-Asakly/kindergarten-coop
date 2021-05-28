@@ -39,8 +39,10 @@ public class DataBase extends SQLiteOpenHelper {
     private static final String SCHEDULE_COLUMN_ID = "id";
     private static final String SCHEDULE_COLUMN_MORNING = "morning";
     private static final String SCHEDULE_COLUMN_EVENING = "evening";
+    private static final String SCHEDULE_COLUMN_KIDS_MORNING = "kidsMorning";
+    private static final String SCHEDULE_COLUMN_KIDS_EVENING = "kidsEvening";
     private static final String SCHEDULE_COLUMN_DATE = "date";
-    private static final String[] TABLE_SCHEDULE_COLUMNS = {SCHEDULE_COLUMN_ID, SCHEDULE_COLUMN_MORNING, SCHEDULE_COLUMN_EVENING, SCHEDULE_COLUMN_DATE};
+    private static final String[] TABLE_SCHEDULE_COLUMNS = {SCHEDULE_COLUMN_ID, SCHEDULE_COLUMN_MORNING, SCHEDULE_COLUMN_EVENING, SCHEDULE_COLUMN_DATE, SCHEDULE_COLUMN_KIDS_MORNING, SCHEDULE_COLUMN_KIDS_EVENING};
 
 
     private SQLiteDatabase db = null;
@@ -70,7 +72,9 @@ public class DataBase extends SQLiteOpenHelper {
                     + SCHEDULE_COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                     + SCHEDULE_COLUMN_MORNING + " TEXT, "
                     + SCHEDULE_COLUMN_EVENING + " TEXT, "
-                    + SCHEDULE_COLUMN_DATE + " DATE)";
+                    + SCHEDULE_COLUMN_DATE + " Date, "
+                    + SCHEDULE_COLUMN_KIDS_MORNING + " TEXT, "
+                    + SCHEDULE_COLUMN_KIDS_EVENING + " TEXT)";
             db.execSQL(CREATE_SCHEDULE_TABLE);
         } catch (Throwable t) {
             t.printStackTrace();
@@ -123,6 +127,8 @@ public class DataBase extends SQLiteOpenHelper {
             values.put(SCHEDULE_COLUMN_MORNING, s.getMorning());
             values.put(SCHEDULE_COLUMN_EVENING, s.getEvening());
             values.put(SCHEDULE_COLUMN_DATE, s.getDate().toString());
+            values.put(SCHEDULE_COLUMN_KIDS_MORNING, s.getMorningKidsString());
+            values.put(SCHEDULE_COLUMN_KIDS_EVENING, s.getEveningKidsString());
             db.insert(TABLE_SCHEDULE_NAME, null, values);
         } catch (Throwable t){
             t.printStackTrace();
@@ -176,6 +182,8 @@ public class DataBase extends SQLiteOpenHelper {
             SimpleDateFormat originalFormat = new SimpleDateFormat("ddMMyyyy");
             Date date = originalFormat.parse(cursor.getString(3));
             schedule.setDate(date);
+            schedule.setMorning(cursor.getString(4));
+            schedule.setEvening(cursor.getString(5));
         } catch (Throwable t) {
             t.printStackTrace();
         } finally {
@@ -271,7 +279,6 @@ public class DataBase extends SQLiteOpenHelper {
         } catch (Throwable t) {
             t.printStackTrace();
         } finally {
-            // make sure to close the cursor
             if (cursor != null) {
                 cursor.close();
             }
@@ -305,6 +312,8 @@ public class DataBase extends SQLiteOpenHelper {
                     Locale.ENGLISH);
             Date date = originalFormat.parse(cursor.getString(3));
             result.setDate(date);
+            result.setMorningKids(cursor.getString(4));
+            result.setEveningKids(cursor.getString(5));
         } catch (Throwable t) {
             t.printStackTrace();
         }
@@ -349,6 +358,8 @@ public class DataBase extends SQLiteOpenHelper {
             values.put(SCHEDULE_COLUMN_EVENING, schedule.getEvening());
             //time converted to INTEGER
             values.put(SCHEDULE_COLUMN_DATE, schedule.getDate().getTime());
+            values.put(SCHEDULE_COLUMN_KIDS_MORNING, schedule.getMorningKidsString());
+            values.put(SCHEDULE_COLUMN_KIDS_EVENING, schedule.getEveningKidsString());
             // update
             count = db.update(TABLE_SCHEDULE_NAME, values, SCHEDULE_COLUMN_ID + " = ?",
                     new String[]{String.valueOf(schedule.getId())});
@@ -416,9 +427,9 @@ public class DataBase extends SQLiteOpenHelper {
         List<Parent> result = new ArrayList<Parent>();
         Cursor cursor = null;
         try {
-            int floderId = folder.getId();
+            int folderId = folder.getId();
             cursor = db.query(TABLE_PARENT_NAME, TABLE_PARENT_COLUMNS, PARENT_COLUMN_ID + " = ?",
-                    new String[]{String.valueOf(floderId)}, null, null,
+                    new String[]{String.valueOf(folderId)}, null, null,
                     null, null);
             if (cursor != null && cursor.getCount() > 0) {
                 cursor.moveToFirst();
@@ -432,7 +443,6 @@ public class DataBase extends SQLiteOpenHelper {
             t.printStackTrace();
         } finally {
             if (cursor != null) {
-                // make sure to close the cursor
                 cursor.close();
             }
         }

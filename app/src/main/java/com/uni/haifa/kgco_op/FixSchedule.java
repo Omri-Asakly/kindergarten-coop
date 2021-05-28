@@ -15,9 +15,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -50,7 +48,7 @@ public class FixSchedule extends AppCompatActivity {
 
         String value = b.getString("date");
         TextView dateTxt = findViewById(R.id.dateTxt);
-        dateTxt.setText(value);
+        dateTxt.setText("Drivers for date " + value);
         parents = DataBaseManager.getInstance().getAllParents();
         autoFill();
         morningImg.setOnClickListener(new View.OnClickListener() {
@@ -73,33 +71,11 @@ public class FixSchedule extends AppCompatActivity {
         addScheduleBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Schedule schedule = null;
-                try {
-                    schedule = new Schedule(morningTxt.getText().toString(), eveningTxt.getText().toString(), value);
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
-                List<Schedule> schedules = DataBaseManager.getInstance().getAllSchedules();
-                Date date = null;
-                try {
-                    date = Schedule.stringToDate(value);
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
-                boolean flag = true;
-                for(Schedule s : schedules){
-                    if(s.compare(date)){
-                        flag = false;
-                        break;
-                    }
-                }
-                if(flag) {
-                    DataBaseManager.getInstance().createSchedule(schedule);
-                    Intent intent = new Intent(FixSchedule.this, weeklySchedule.class);
-                    startActivity(intent);
-                }
-                else{
-                }
+                Intent intent = new Intent(FixSchedule.this, AddChildrenToTrip.class);
+                intent.putExtra("morning", morningTxt.getText().toString());
+                intent.putExtra("evening", eveningTxt.getText().toString());
+                intent.putExtra("date", value);
+                startActivity(intent);
             }
         });
 
@@ -107,7 +83,7 @@ public class FixSchedule extends AppCompatActivity {
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(FixSchedule.this, Schedule.class);
+                Intent intent = new Intent(FixSchedule.this, weeklySchedule.class);
                 startActivity(intent);
             }
         });

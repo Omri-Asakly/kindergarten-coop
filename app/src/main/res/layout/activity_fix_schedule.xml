@@ -84,7 +84,7 @@
                 android:layout_marginLeft="-215dp"
                 android:layout_marginTop="12dp"
                 android:layout_marginRight="50dp"
-                app:srcCompat="@drawable/cusom_search_icon" />
+                app:srcCompat="@drawable/custom_search_icon" />
         </LinearLayout>
 
         <LinearLayout
@@ -119,7 +119,7 @@
                 android:layout_marginLeft="-215dp"
                 android:layout_marginTop="12dp"
                 android:visibility="visible"
-                app:srcCompat="@drawable/cusom_search_icon" />
+                app:srcCompat="@drawable/custom_search_icon" />
         </LinearLayout>
 
 

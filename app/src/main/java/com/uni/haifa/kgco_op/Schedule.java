@@ -10,6 +10,8 @@ public class Schedule {
     String morning;
     String evening;
     Date date;
+    String[] morningKids;
+    String[] eveningKids;
 
     public Schedule(String morning, String evening, Date date) {
         this.morning = morning;
@@ -22,10 +24,12 @@ public class Schedule {
     }
 
 
-    public Schedule(String morning, String evening, String date) throws ParseException {
+    public Schedule(String morning, String evening, String date, String morningKids, String eveningKids) throws ParseException {
         this.date = stringToDate(date);
         this.morning = morning;
         this.evening = evening;
+        this.morningKids = stringToArray(morningKids);
+        this.eveningKids = stringToArray(eveningKids);
     }
 
     public int getId() {
@@ -60,6 +64,38 @@ public class Schedule {
         this.date = date;
     }
 
+    public String[] getMorningKids() {
+        return morningKids;
+    }
+
+    public String getMorningKidsString() {
+        String str = "";
+        for(String s : morningKids){
+            str += s +", ";
+        }
+        return str;
+    }
+
+    public String getEveningKidsString() {
+        String str = "";
+        for(String s : eveningKids){
+            str += s +", ";
+        }
+        return str;
+    }
+
+    public void setMorningKids(String morningKids) {
+        this.morningKids = stringToArray(morningKids);
+    }
+
+    public String[] getEveningKids() {
+        return eveningKids;
+    }
+
+    public void setEveningKids(String eveningKids) {
+        this.eveningKids = stringToArray(eveningKids);
+    }
+
     @Override
     public String toString() {
         return "Schedule{" +
@@ -78,7 +114,6 @@ public class Schedule {
     }
 
     public static Date stringToDate(String str) throws ParseException {
-        System.out.println(str);
         Date date = new SimpleDateFormat("dd/MM/yyyy").parse(str);
         return date;
     }
@@ -89,5 +124,11 @@ public class Schedule {
         calendar.add(Calendar.DAY_OF_YEAR, 1);
         Date tomorrow = calendar.getTime();
         return tomorrow;
+    }
+
+    private String[] stringToArray(String str){
+        str = str.replaceAll("\\s", "");
+        String[] array = str.split(",");
+        return array;
     }
 }

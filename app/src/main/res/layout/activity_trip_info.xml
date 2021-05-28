@@ -30,9 +30,27 @@
         android:textColor="@color/mainText"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/child1" />
+        app:layout_constraintTop_toBottomOf="@+id/child1"
+        app:layout_constraintVertical_bias="0.098" />
+
+    <CheckBox
+        android:id="@+id/child3"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginEnd="74dp"
+        android:layout_marginRight="74dp"
+        android:layout_marginBottom="16dp"
+        android:text="Child"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textColor="@color/mainText"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <CheckBox
         android:id="@+id/child1"
@@ -40,17 +58,15 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="32dp"
         android:layout_marginEnd="74dp"
         android:layout_marginRight="74dp"
-        android:layout_marginBottom="16dp"
         android:text="Child"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
         android:textColor="@color/mainText"
-        app:layout_constraintBottom_toTopOf="@+id/child2"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtTripTitle" />
+        tools:layout_editor_absoluteY="536dp" />
 
     <TextView
         android:id="@+id/txtTripTitle"
@@ -74,15 +90,19 @@
         android:id="@+id/imageView"
         android:layout_width="51dp"
         android:layout_height="48dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginBottom="8dp"
         android:contentDescription="@string/app_name"
-        app:layout_constraintBottom_toTopOf="@+id/imageView2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.636"
-        app:layout_constraintStart_toEndOf="@+id/child1"
-        app:layout_constraintTop_toBottomOf="@+id/txtTripTitle"
-        app:srcCompat="@drawable/ic_waze" />
+        app:srcCompat="@drawable/ic_waze"
+        tools:layout_editor_absoluteX="352dp"
+        tools:layout_editor_absoluteY="528dp" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="51dp"
+        android:layout_height="48dp"
+        android:contentDescription="@string/app_name"
+        app:srcCompat="@drawable/ic_waze"
+        tools:layout_editor_absoluteX="352dp"
+        tools:layout_editor_absoluteY="528dp" />
 
     <ImageView
         android:id="@+id/imageView2"
@@ -91,9 +111,21 @@
         android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.636"
         app:layout_constraintStart_toEndOf="@+id/child2"
         app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintVertical_bias="0.212"
         app:srcCompat="@drawable/ic_waze" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="51dp"
+        android:layout_height="48dp"
+        android:layout_marginBottom="16dp"
+        android:contentDescription="@string/app_name"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:srcCompat="@drawable/ic_waze"
+        tools:layout_editor_absoluteX="355dp" />
 
     <ImageView
         android:id="@+id/btnBack"

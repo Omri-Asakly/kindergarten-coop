@@ -22,7 +22,7 @@
         android:text="Name"
         android:textColor="@color/mainText"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/imageButton2"
+        app:layout_constraintEnd_toStartOf="@+id/infoEvening"
         app:layout_constraintStart_toEndOf="@+id/txtEvening"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
 
@@ -111,12 +111,12 @@
         android:text="Name"
         android:textColor="@color/mainText"
         app:layout_constraintBottom_toTopOf="@+id/editTextTextPersonName3"
-        app:layout_constraintEnd_toStartOf="@+id/info"
+        app:layout_constraintEnd_toStartOf="@+id/infoMorning"
         app:layout_constraintStart_toEndOf="@+id/txtMorning"
         app:layout_constraintTop_toBottomOf="@+id/calendarView" />
 
     <ImageButton
-        android:id="@+id/info"
+        android:id="@+id/infoMorning"
         android:layout_width="43dp"
         android:layout_height="43dp"
         android:layout_marginStart="8dp"
@@ -128,14 +128,14 @@
         android:background="@color/colorAccent"
         android:hapticFeedbackEnabled="true"
         android:tint="#FFFFFF"
-        app:layout_constraintBottom_toTopOf="@+id/imageButton2"
+        app:layout_constraintBottom_toTopOf="@+id/infoEvening"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/editTextTextPersonName"
         app:layout_constraintTop_toBottomOf="@+id/calendarView"
         app:srcCompat="@android:drawable/ic_menu_info_details" />
 
     <ImageButton
-        android:id="@+id/imageButton2"
+        android:id="@+id/infoEvening"
         android:layout_width="43dp"
         android:layout_height="43dp"
         android:layout_marginStart="8dp"
@@ -149,7 +149,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/editTextTextPersonName3"
-        app:layout_constraintTop_toBottomOf="@+id/info"
+        app:layout_constraintTop_toBottomOf="@+id/infoMorning"
         app:srcCompat="@android:drawable/ic_menu_info_details" />
 
     <com.google.android.material.navigation.NavigationView

@@ -68,11 +68,13 @@ public class weeklySchedule extends AppCompatActivity {
                 nav.setVisibility(View.INVISIBLE);
             }
         });
-        ImageView btnInfo = findViewById(R.id.info);
+        ImageView btnInfo = findViewById(R.id.infoMorning);
         btnInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(weeklySchedule.this, tripInfo.class);
+                intent.putExtra("date", castDate);
+                intent.putExtra("time", "morning");
                 startActivity(intent);
             }
         });
