@@ -7,133 +7,162 @@
     android:background="@color/mainBackground"
     tools:context=".tripInfo">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="369dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="400dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/txtTripTitle"
+                    android:layout_width="364dp"
+                    android:layout_height="175dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginBottom="32dp"
+                    android:gravity="center"
+                    android:text="Trip Details"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+                    android:textColor="@color/colorPrimary" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="422dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="86dp">
+
+                    <CheckBox
+                        android:id="@+id/child1"
+                        android:layout_width="320dp"
+                        android:layout_height="60dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="0dp"
+                        android:layout_marginRight="74dp"
+                        android:layout_marginBottom="16dp"
+                        android:text="Child"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                        android:textColor="@color/mainText"
+                        tools:ignore="MissingConstraints" />
+
+                    <ImageView
+                        android:id="@+id/imageView2"
+                        android:layout_width="50dp"
+                        android:layout_height="60dp"
+                        android:layout_marginStart="0dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
+                        app:srcCompat="@drawable/ic_waze"
+                        tools:ignore="VectorDrawableCompat" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <CheckBox
+                        android:id="@+id/child2"
+                        android:layout_width="320dp"
+                        android:layout_height="60dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="0dp"
+                        android:layout_marginRight="74dp"
+                        android:layout_marginBottom="16dp"
+                        android:text="Child"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                        android:textColor="@color/mainText" />
+
+                    <ImageView
+                        android:id="@+id/imageView3"
+                        android:layout_width="50dp"
+                        android:layout_height="60dp"
+                        android:layout_marginStart="0dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:contentDescription="@string/app_name"
+                        app:srcCompat="@drawable/ic_waze"
+                        tools:ignore="MissingConstraints,VectorDrawableCompat" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <CheckBox
+                        android:id="@+id/child3"
+                        android:layout_width="320dp"
+                        android:layout_height="60dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="0dp"
+                        android:layout_marginRight="74dp"
+                        android:layout_marginBottom="16dp"
+                        android:text="Child"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                        android:textColor="@color/mainText" />
+
+                    <ImageView
+                        android:id="@+id/imageView4"
+                        android:layout_width="50dp"
+                        android:layout_height="60dp"
+                        android:layout_marginStart="0dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:contentDescription="@string/app_name"
+                        app:srcCompat="@drawable/ic_waze"
+                        tools:ignore="MissingConstraints,VectorDrawableCompat" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
     <TextView
         android:id="@+id/text_view_result"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="20sp"
         android:textColor="@android:color/black"
+        android:textSize="20sp"
         tools:ignore="MissingConstraints" />
-
-    <CheckBox
-        android:id="@+id/child2"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="74dp"
-        android:layout_marginRight="74dp"
-        android:layout_marginBottom="32dp"
-        android:text="Child"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-        android:textColor="@color/mainText"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/child1"
-        app:layout_constraintVertical_bias="0.098" />
-
-    <CheckBox
-        android:id="@+id/child3"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginEnd="74dp"
-        android:layout_marginRight="74dp"
-        android:layout_marginBottom="16dp"
-        android:text="Child"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-        android:textColor="@color/mainText"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <CheckBox
-        android:id="@+id/child1"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginEnd="74dp"
-        android:layout_marginRight="74dp"
-        android:text="Child"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-        android:textColor="@color/mainText"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="536dp" />
-
-    <TextView
-        android:id="@+id/txtTripTitle"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="32dp"
-        android:gravity="center"
-        android:text="Trip Details"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display2"
-        android:textColor="@color/mainText"
-        app:layout_constraintBottom_toTopOf="@+id/child1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="51dp"
-        android:layout_height="48dp"
-        android:contentDescription="@string/app_name"
-        app:srcCompat="@drawable/ic_waze"
-        tools:layout_editor_absoluteX="352dp"
-        tools:layout_editor_absoluteY="528dp" />
-
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="51dp"
-        android:layout_height="48dp"
-        android:contentDescription="@string/app_name"
-        app:srcCompat="@drawable/ic_waze"
-        tools:layout_editor_absoluteX="352dp"
-        tools:layout_editor_absoluteY="528dp" />
-
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="51dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.636"
-        app:layout_constraintStart_toEndOf="@+id/child2"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
-        app:layout_constraintVertical_bias="0.212"
-        app:srcCompat="@drawable/ic_waze" />
-
-    <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="51dp"
-        android:layout_height="48dp"
-        android:layout_marginBottom="16dp"
-        android:contentDescription="@string/app_name"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:srcCompat="@drawable/ic_waze"
-        tools:layout_editor_absoluteX="355dp" />
 
     <ImageView
         android:id="@+id/btnBack"
         android:layout_width="43dp"
         android:layout_height="45dp"
         android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/calendarView"
-        app:layout_constraintEnd_toStartOf="@+id/txtTitle"
+
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
