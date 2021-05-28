@@ -11,6 +11,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -71,11 +72,14 @@ public class FixSchedule extends AppCompatActivity {
         addScheduleBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(FixSchedule.this, AddChildrenToTrip.class);
-                intent.putExtra("morning", morningTxt.getText().toString());
-                intent.putExtra("evening", eveningTxt.getText().toString());
-                intent.putExtra("date", value);
-                startActivity(intent);
+                boolean flag  = (isUser(parents, morningTxt.getText().toString()) && isUser(parents, eveningTxt.getText().toString()));
+                if(flag){
+                    Intent intent = new Intent(FixSchedule.this, AddChildrenToTrip.class);
+                    intent.putExtra("morning", morningTxt.getText().toString());
+                    intent.putExtra("evening", eveningTxt.getText().toString());
+                    intent.putExtra("date", value);
+                    startActivity(intent);
+                }
             }
         });
 
@@ -139,6 +143,15 @@ public class FixSchedule extends AppCompatActivity {
         dialogBuilder.setView(parentPopupView);
         dialog = dialogBuilder.create();
         dialog.show();;
+    }
+
+    private boolean isUser(List<Parent> list, String parent){
+        for(Parent p : list){
+            if(p.getUserName().equals(parent))
+                return true;
+        }
+        Toast.makeText(this, parent + " doesn't exist", Toast.LENGTH_LONG);
+        return false;
     }
 
 }

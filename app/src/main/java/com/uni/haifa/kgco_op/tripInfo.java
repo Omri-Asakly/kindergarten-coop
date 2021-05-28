@@ -46,13 +46,11 @@ public class tripInfo extends AppCompatActivity {
             child1.setText(schedule.getMorningKids()[0]);
             child2.setText(schedule.getMorningKids()[1]);
             child3.setText(schedule.getMorningKids()[2]);
-
         }
         if(value.equals("evening")) {
             child1.setText(schedule.getEveningKids()[0]);
             child2.setText(schedule.getEveningKids()[1]);
             child3.setText(schedule.getEveningKids()[2]);
-
         }
 
 
@@ -62,9 +60,6 @@ public class tripInfo extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(tripInfo.this, weeklySchedule.class);
                 startActivity(intent);
-
-
-
             }
         });
 

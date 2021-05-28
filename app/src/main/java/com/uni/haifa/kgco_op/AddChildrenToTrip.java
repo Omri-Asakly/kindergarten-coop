@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -145,17 +146,28 @@ public class AddChildrenToTrip extends AppCompatActivity {
             public void onClick(View v) {
                 String morning = "";
                 String evening = "";
+                boolean flag  = (isUser(children, firstTxtM.getText().toString())
+                 && isUser(children, secondTxtM.getText().toString())
+                 && isUser(children, thirdTxtM.getText().toString())
+                 && isUser(children, firstTxtE.getText().toString())
+                 && isUser(children, secondTxtE.getText().toString())
+                 && isUser(children, thirdTxtE.getText().toString()));
 
-                morning = firstTxtM.getText().toString() + ", " + secondTxtM.getText().toString() + ", " + thirdTxtM.getText().toString();
-                evening = firstTxtE.getText().toString() + ", " + secondTxtE.getText().toString() + ", " + thirdTxtE.getText().toString();
-                try {
-                    Schedule schedule = new Schedule(b.getString("morning"), b.getString("evening"), value, morning, evening);
-                    DataBaseManager.getInstance().createSchedule(schedule);
-                } catch (ParseException e) {
-                    e.printStackTrace();
+                if(flag){
+                    morning = firstTxtM.getText().toString() + ", " + secondTxtM.getText().toString() + ", " + thirdTxtM.getText().toString();
+                    evening = firstTxtE.getText().toString() + ", " + secondTxtE.getText().toString() + ", " + thirdTxtE.getText().toString();
+                    try {
+                        Schedule schedule = new Schedule(b.getString("morning"), b.getString("evening"), value, morning, evening);
+                        DataBaseManager.getInstance().createSchedule(schedule);
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+
+                    Intent intent = new Intent(AddChildrenToTrip.this, weeklySchedule.class);
+                    startActivity(intent);
+                } else{
+                    
                 }
-                Intent intent = new Intent(AddChildrenToTrip.this, weeklySchedule.class);
-                startActivity(intent);
             }
         });
     }
@@ -208,5 +220,14 @@ public class AddChildrenToTrip extends AppCompatActivity {
             namesMap.put(c.getId(), c.getName());
             names.add(c.getName());
         }
+    }
+
+    private boolean isUser(List<Child> list, String child){
+        for(Child c : list){
+            if(c.getName().equals(child))
+                return true;
+        }
+        Toast.makeText(this, child + " doesn't exist", Toast.LENGTH_LONG);
+        return false;
     }
 }

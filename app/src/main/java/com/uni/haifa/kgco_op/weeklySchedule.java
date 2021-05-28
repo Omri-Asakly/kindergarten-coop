@@ -78,6 +78,17 @@ public class weeklySchedule extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        ImageView infoEvening = findViewById(R.id.infoMorning);
+        infoEvening.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(weeklySchedule.this, tripInfo.class);
+                intent.putExtra("date", castDate);
+                intent.putExtra("time", "evening");
+                startActivity(intent);
+            }
+        });
         CalendarView calendarView = findViewById(R.id.calendarView);
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
