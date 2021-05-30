@@ -22,12 +22,16 @@ public class Delete extends AppCompatActivity {
 
     private ImageButton firstImgM;
     private AutoCompleteTextView userDelete;
+    private ImageButton childImgM;
+    private AutoCompleteTextView childDelete;
     private AlertDialog.Builder dialogBuilder;
     private AlertDialog dialog;
     private ListView listView;
     private UserListAdapter listAdapter;
+    private ChildrenAdapter childrenAdapter;
     private TextView selected;
     private Parent selectedParent;
+    private Child selectedChild;
     private Button selectBtn;
     private boolean selectedImg;
     private HashMap<Integer, String> namesMap;
@@ -41,7 +45,9 @@ public class Delete extends AppCompatActivity {
         setContentView(R.layout.activity_delete);
 
         userDelete = (AutoCompleteTextView) findViewById(R.id.userDelete);
+        childDelete = (AutoCompleteTextView) findViewById(R.id.childDelete);
         firstImgM = findViewById(R.id.firstImgM);
+        childImgM = findViewById(R.id.childImgM);
 
         Button del=findViewById(R.id.deleteUserBtn);
         del.setOnClickListener(new View.OnClickListener(){
@@ -52,10 +58,26 @@ public class Delete extends AppCompatActivity {
 
             }
         });
+        Button delChild=findViewById(R.id.deleteChildBtn);
+        delChild.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                DataBaseManager.getInstance().deleteChild(selectedChild);
+                Toast.makeText(Delete.this,"Child Deleted" ,Toast.LENGTH_LONG).show();
+
+            }
+        });
         firstImgM.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 selectedImg = true;
+                selectParentDialog();
+            }
+        });
+        childImgM.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                selectedImg = false;
                 selectParentDialog();
             }
         });
@@ -76,7 +98,18 @@ public class Delete extends AppCompatActivity {
                 selected.setText(selectedParent.getUserName());
             }
         });
-
+    if(!selectedImg) {
+        List<Child> children = DataBaseManager.getInstance().getAllChildren();
+        childrenAdapter = new ChildrenAdapter(this, children);
+        listView.setAdapter(childrenAdapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> child, View v, int position, long id) {
+                selectedChild = childrenAdapter.getItem(position);
+                selected.setText(selectedChild.getName());
+            }
+        });
+    }
         selectBtn = (Button) parentPopupView.findViewById(R.id.confirmBtn);
         selectBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,7 +117,7 @@ public class Delete extends AppCompatActivity {
                 if(selectedImg){
                     userDelete.setText(selectedParent.getUserName());
                 } else{
-                    //scheduleDelete.setText(selectedParent.getUserName());
+                    childDelete.setText(selectedChild.getName());
                 }
                 dialog.hide();
             }
