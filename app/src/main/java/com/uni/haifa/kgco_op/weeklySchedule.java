@@ -79,7 +79,7 @@ public class weeklySchedule extends AppCompatActivity {
             }
         });
 
-        ImageView infoEvening = findViewById(R.id.infoMorning);
+        ImageView infoEvening = findViewById(R.id.infoEvening);
         infoEvening.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

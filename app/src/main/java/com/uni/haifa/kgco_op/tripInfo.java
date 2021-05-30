@@ -42,15 +42,19 @@ public class tripInfo extends AppCompatActivity {
                 break;
             }
         }
-        if(value.equals("morning")) {
-            child1.setText(schedule.getMorningKids()[0]);
-            child2.setText(schedule.getMorningKids()[1]);
-            child3.setText(schedule.getMorningKids()[2]);
-        }
-        if(value.equals("evening")) {
-            child1.setText(schedule.getEveningKids()[0]);
-            child2.setText(schedule.getEveningKids()[1]);
-            child3.setText(schedule.getEveningKids()[2]);
+        try {
+            if (value.equals("morning")) {
+                child1.setText(schedule.getMorningKids()[0]);
+                child2.setText(schedule.getMorningKids()[1]);
+                child3.setText(schedule.getMorningKids()[2]);
+            }
+            else if (value.equals("evening")) {
+                child1.setText(schedule.getEveningKids()[0]);
+                child2.setText(schedule.getEveningKids()[1]);
+                child3.setText(schedule.getEveningKids()[2]);
+            }
+        } catch (NullPointerException e) {
+            e.printStackTrace();
         }
 
 
