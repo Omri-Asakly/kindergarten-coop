@@ -21,14 +21,15 @@
             android:layout_marginRight="340dp"
             app:srcCompat="@drawable/ic_back"
             tools:ignore="VectorDrawableCompat" />
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="184dp"
+            android:layout_height="121dp"
             android:orientation="horizontal">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="123dp"
                 android:orientation="horizontal">
 
                 <TextView
@@ -43,7 +44,7 @@
                     android:layout_marginBottom="596dp"
                     android:fontFamily="sans-serif-medium"
                     android:gravity="center"
-                    android:text="Fix Schedule"
+                    android:text="Fix Shifts"
                     android:textColor="@color/colorPrimary"
                     android:textSize="30sp" />
             </LinearLayout>
@@ -52,7 +53,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="184dp"
+            android:layout_height="125dp"
             android:orientation="horizontal">
 
             <AutoCompleteTextView
@@ -65,11 +66,11 @@
                 android:layout_marginEnd="182dp"
                 android:layout_marginRight="182dp"
                 android:layout_marginBottom="264dp"
-                android:paddingStart="12dp"
-                android:paddingEnd="12dp"
-                android:background="@drawable/custom_input"
+                android:background="@drawable/custom_input_trip"
                 android:hint="Morning"
                 android:inputType="textAutoCorrect"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/dateTxt" />
@@ -77,19 +78,19 @@
             <ImageButton
                 android:id="@+id/morningImg"
                 android:layout_width="40dp"
-                android:layout_height="60dp"
-                android:radius="10dp"
+                android:layout_height="70dp"
                 android:layout_alignParentLeft="true"
-                android:layout_marginStart="-220dp"
-                android:layout_marginLeft="-215dp"
-                android:layout_marginTop="12dp"
+                android:layout_marginStart="-219dp"
+                android:layout_marginLeft="-214dp"
+                android:layout_marginTop="7dp"
                 android:layout_marginRight="50dp"
+                android:radius="10dp"
                 app:srcCompat="@drawable/custom_search_icon" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="184dp"
+            android:layout_height="125dp"
             android:orientation="horizontal">
 
             <AutoCompleteTextView
@@ -101,10 +102,10 @@
                 android:layout_marginTop="12dp"
                 android:layout_marginEnd="182dp"
                 android:layout_marginRight="182dp"
+                android:background="@drawable/custom_input_trip"
+                android:hint="Evening"
                 android:paddingStart="12dp"
                 android:paddingEnd="12dp"
-                android:background="@drawable/custom_input"
-                android:hint="Evening"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -113,32 +114,56 @@
             <ImageButton
                 android:id="@+id/eveningImg"
                 android:layout_width="40dp"
-                android:layout_height="60dp"
+                android:layout_height="70dp"
                 android:layout_alignParentLeft="true"
-                android:layout_marginStart="-220dp"
-                android:layout_marginLeft="-215dp"
-                android:layout_marginTop="12dp"
+                android:layout_marginStart="-219dp"
+                android:layout_marginLeft="-214dp"
+                android:layout_marginTop="7dp"
                 android:visibility="visible"
                 app:srcCompat="@drawable/custom_search_icon" />
         </LinearLayout>
 
 
-        <Button
-            android:id="@+id/addScheduleBtn"
-            android:layout_width="110dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="147dp"
-            android:layout_marginLeft="147dp"
-            android:layout_marginEnd="182dp"
-            android:layout_marginRight="182dp"
-            android:text="Add "
-            app:backgroundTint="@color/colorPrimary"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.967"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.683" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/addScheduleBtn"
+                android:layout_width="110dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="147dp"
+                android:layout_marginLeft="147dp"
+                android:layout_marginEnd="182dp"
+                android:layout_marginRight="182dp"
+                android:text="Add "
+                app:backgroundTint="@color/colorPrimary"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.967"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.683" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="169dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical"></LinearLayout>
+
+            <LinearLayout
+                android:layout_width="300dp"
+                android:layout_height="300dp"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/ic_clock"
+                android:orientation="vertical"></LinearLayout>
+        </LinearLayout>
 
 
     </LinearLayout>
