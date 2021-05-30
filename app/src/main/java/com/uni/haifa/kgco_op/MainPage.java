@@ -140,6 +140,14 @@ public class MainPage extends AppCompatActivity {
                 startActivity(intent2);
             }
         });
+        Button edit = findViewById(R.id.editBtn);
+        edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent2 = new Intent(MainPage.this, EditParent.class);
+                startActivity(intent2);
+            }
+        });
         Button userList = findViewById(R.id.userListBtn);
         userList.setOnClickListener(new View.OnClickListener() {
             @Override
