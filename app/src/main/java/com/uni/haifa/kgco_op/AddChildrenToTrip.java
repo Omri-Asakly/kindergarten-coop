@@ -65,7 +65,7 @@ public class AddChildrenToTrip extends AppCompatActivity {
 
         addScheduleBtn = findViewById(R.id.addScheduleBtn);
         firstImgM = findViewById(R.id.firstImgM);
-        secondImgM = findViewById(R.id.secondImgM);
+        secondImgM = findViewById(R.id.firstImgM);
         thirdImgM = findViewById(R.id.thirdImgM);
 
         firstTxtE = (AutoCompleteTextView) findViewById(R.id.firstTxtE);

@@ -132,6 +132,14 @@ public class MainPage extends AppCompatActivity {
                 startActivity(intent2);
             }
         });
+        Button delete = findViewById(R.id.deleteBtn);
+        delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent2 = new Intent(MainPage.this, Delete.class);
+                startActivity(intent2);
+            }
+        });
         Button userList = findViewById(R.id.userListBtn);
         userList.setOnClickListener(new View.OnClickListener() {
             @Override

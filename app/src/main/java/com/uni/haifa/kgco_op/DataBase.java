@@ -110,18 +110,6 @@ public class DataBase extends SQLiteOpenHelper {
         }
     }
 
-//    public void deleteParent(String parentID){
-//        int count=0; int i=0;
-//        for (String pID : TABLE_PARENT_COLUMNS) {
-//             if(parentID.isEqual(pID)){
-//                 i=count;
-//             }
-//             count++;
-//        }
-//
-//
-//    }
-
     public void createChild(Child c) {
         try {
             ContentValues values = new ContentValues();
