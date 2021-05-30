@@ -4,12 +4,14 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -48,6 +50,16 @@ public class Delete extends AppCompatActivity {
         childDelete = (AutoCompleteTextView) findViewById(R.id.childDelete);
         firstImgM = findViewById(R.id.firstImgM);
         childImgM = findViewById(R.id.childImgM);
+
+        ImageView back=findViewById(R.id.backBtnDel);
+        back.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+               Intent intent=new Intent(Delete.this,MainPage.class);
+               startActivity(intent);
+
+            }
+        });
 
         Button del=findViewById(R.id.deleteUserBtn);
         del.setOnClickListener(new View.OnClickListener(){

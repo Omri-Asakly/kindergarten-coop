@@ -273,88 +273,191 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <Button
-                android:id="@+id/btnDM"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginStart="165dp"
-                android:layout_marginLeft="165dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginRight="8dp"
-                android:layout_marginBottom="80dp"
-                android:background="@drawable/ic_night"
-                app:backgroundTint="@color/colorAccent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/deleteBtn" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-            <ImageView
-                android:id="@+id/btnHideNav"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@color/colorAccent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/abc_vector_test" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="135dp"
+                    android:orientation="vertical">
 
-            <Button
-                android:id="@+id/navBtnHome"
-                style="?android:attr/borderlessButtonStyle"
-                android:layout_width="237dp"
-                android:layout_height="58dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="16dp"
-                android:fontFamily="casual"
-                android:gravity="start"
-                android:text="Home"
-                android:textColor="@color/mainText"
-                android:textStyle="bold"
-                app:backgroundTint="#00009688"
-                app:layout_constraintBottom_toTopOf="@+id/navBtnFullSchedule"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txtMenu" />
+                    <ImageView
+                        android:id="@+id/btnHideNav"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/colorAccent"
+                        app:srcCompat="@drawable/abc_vector_test" />
 
-            <Button
-                android:id="@+id/navBtnFullSchedule"
-                style="?android:attr/borderlessButtonStyle"
-                android:layout_width="237dp"
-                android:layout_height="58dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="16dp"
-                android:fontFamily="casual"
-                android:gravity="start"
-                android:text="Weekly Schedule"
-                android:textColor="@color/mainText"
-                android:textStyle="bold"
-                app:backgroundTint="#00FFFFFF"
-                app:layout_constraintBottom_toTopOf="@+id/navBtnAccount"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/navBtnHome" />
+                </LinearLayout>
 
-            <Button
-                android:id="@+id/navBtnAccount"
-                style="?android:attr/borderlessButtonStyle"
-                android:layout_width="237dp"
-                android:layout_height="58dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="400dp"
-                android:fontFamily="casual"
-                android:gravity="start"
-                android:text="Settings"
-                android:textColor="@color/mainText"
-                android:textStyle="bold"
-                app:backgroundTint="#00FFFFFF"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/navBtnFullSchedule" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/navBtnHome"
+                            style="?android:attr/borderlessButtonStyle"
+                            android:layout_width="237dp"
+                            android:layout_height="60dp"
+                            android:layout_marginTop="0dp"
+                            android:layout_marginBottom="0dp"
+                            android:fontFamily="casual"
+                            android:gravity="start"
+                            android:text="Home"
+                            android:textColor="@color/mainText"
+                            android:textStyle="bold"
+                            app:backgroundTint="#00009688" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/navBtnFullSchedule"
+                            style="?android:attr/borderlessButtonStyle"
+                            android:layout_width="237dp"
+                            android:layout_height="60dp"
+                            android:layout_marginTop="0dp"
+                            android:layout_marginBottom="0dp"
+                            android:fontFamily="casual"
+                            android:gravity="start"
+                            android:text="Weekly Schedule"
+                            android:textColor="@color/mainText"
+                            android:textStyle="bold"
+                            app:backgroundTint="#00FFFFFF" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/userBtn"
+                            style="?android:attr/borderlessButtonStyle"
+                            android:layout_width="237dp"
+                            android:layout_height="60dp"
+                            android:fontFamily="casual"
+                            android:gravity="start"
+                            android:text="Add User"
+                            android:textColor="@color/mainText"
+                            android:textStyle="bold"
+                            app:backgroundTint="#00FFFFFF" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/userListBtn"
+                            style="?android:attr/borderlessButtonStyle"
+                            android:layout_width="237dp"
+                            android:layout_height="60dp"
+                            android:fontFamily="casual"
+                            android:gravity="start"
+                            android:text="View Users"
+                            android:textColor="@color/mainText"
+                            android:textStyle="bold"
+                            app:backgroundTint="#00FFFFFF" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/deleteBtn"
+                            style="?android:attr/borderlessButtonStyle"
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp"
+                            android:layout_marginTop="0dp"
+                            android:layout_marginBottom="0dp"
+                            android:fontFamily="casual"
+                            android:gravity="start"
+                            android:text="Remove Data"
+                            android:textColor="@color/mainText"
+                            android:textStyle="bold"
+                            app:backgroundTint="#00FFFFFF" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/editBtn"
+                            style="?android:attr/borderlessButtonStyle"
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp"
+                            android:layout_marginStart="4dp"
+                            android:layout_marginLeft="4dp"
+                            android:layout_marginEnd="81dp"
+                            android:layout_marginRight="81dp"
+                            android:layout_marginBottom="0dp"
+                            android:fontFamily="casual"
+                            android:gravity="start"
+                            android:text="Edit Data"
+                            android:textColor="@color/mainText"
+                            android:textStyle="bold"
+                            app:backgroundTint="#00FFFFFF" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/navBtnAccount"
+                            style="?android:attr/borderlessButtonStyle"
+                            android:layout_width="match_parent"
+                            android:layout_height="58dp"
+                            android:layout_marginTop="0dp"
+                            android:layout_marginBottom="0dp"
+                            android:fontFamily="casual"
+                            android:gravity="start"
+                            android:text="Settings"
+                            android:textColor="@color/mainText"
+                            android:textStyle="bold"
+                            app:backgroundTint="#00FFFFFF" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/btnDM"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_marginStart="200dp"
+                            android:layout_marginLeft="165dp"
+                            android:layout_marginEnd="4dp"
+                            android:layout_marginRight="4dp"
+                            android:layout_marginBottom="0dp"
+                            android:layout_marginTop="20dp"
+                            android:background="@drawable/ic_night"
+                            app:backgroundTint="@color/colorAccent" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/txtMenu"
@@ -375,80 +478,6 @@
                 app:layout_constraintHorizontal_bias="0.578"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
-
-            <Button
-                android:id="@+id/userBtn"
-                style="?android:attr/borderlessButtonStyle"
-                android:layout_width="237dp"
-                android:layout_height="58dp"
-                android:fontFamily="casual"
-                android:gravity="start"
-                android:text="Add User"
-                android:textColor="@color/mainText"
-                android:textStyle="bold"
-                app:backgroundTint="#00FFFFFF"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.563" />
-
-            <Button
-                android:id="@+id/userListBtn"
-                style="?android:attr/borderlessButtonStyle"
-                android:layout_width="237dp"
-                android:layout_height="58dp"
-                android:fontFamily="casual"
-                android:gravity="start"
-                android:text="View Users"
-                android:textColor="@color/mainText"
-                android:textStyle="bold"
-                app:backgroundTint="#00FFFFFF"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.698" />
-
-            <Button
-                android:id="@+id/deleteBtn"
-                style="?android:attr/borderlessButtonStyle"
-                android:layout_width="237dp"
-                android:layout_height="58dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="128dp"
-                android:fontFamily="casual"
-                android:gravity="start"
-                android:text="Remove Data"
-                android:textColor="@color/mainText"
-                android:textStyle="bold"
-                app:backgroundTint="#00FFFFFF"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/userListBtn"
-                app:layout_constraintVertical_bias="1.0" />
-
-            <Button
-                android:id="@+id/editBtn"
-                style="?android:attr/borderlessButtonStyle"
-                android:layout_width="118dp"
-                android:layout_height="58dp"
-                android:layout_marginStart="4dp"
-                android:layout_marginLeft="4dp"
-                android:layout_marginEnd="81dp"
-                android:layout_marginRight="81dp"
-                android:layout_marginBottom="70dp"
-                android:fontFamily="casual"
-                android:gravity="start"
-                android:text="Edit Data"
-                android:textColor="@color/mainText"
-                android:textStyle="bold"
-                app:backgroundTint="#00FFFFFF"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/btnDM"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/deleteBtn" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.navigation.NavigationView>
