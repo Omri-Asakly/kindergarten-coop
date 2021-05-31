@@ -214,13 +214,14 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
-                <Button
+                <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/deleteUser"
                     android:layout_width="160dp"
                     android:layout_height="60dp"
+                    android:background="@drawable/custom_button_danger"
                     android:layout_marginLeft="20dp"
                     android:text="Delete"
-                    app:backgroundTint="#E91E63" />
+                    android:textColor="#FFFF" />
             </LinearLayout>
 
             <LinearLayout
@@ -228,14 +229,15 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
-                <Button
+                <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/updateUser"
                     android:layout_width="160dp"
                     android:layout_height="60dp"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
                     android:text="Update"
-                    app:backgroundTint="#009688" />
+                    android:background="@drawable/custom_button"
+                    android:textColor="#FFFF" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

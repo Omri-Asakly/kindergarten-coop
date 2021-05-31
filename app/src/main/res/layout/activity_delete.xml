@@ -96,10 +96,12 @@
             </LinearLayout>
 
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/deleteUserBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="#FFFF"
+                android:background="@drawable/custom_button_danger"
                 android:layout_marginLeft="150dp"
                 android:text="Delete" />
 
@@ -156,12 +158,14 @@
             </LinearLayout>
 
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/deleteChildBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="#FFFF"
                 android:layout_marginLeft="150dp"
-                android:text="Delete" />
+                android:background="@drawable/custom_button_danger"
+                android:text="Remove" />
         </LinearLayout>
 
     </LinearLayout>

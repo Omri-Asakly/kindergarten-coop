@@ -105,16 +105,16 @@
             android:layout_height="83dp"
             android:orientation="horizontal">
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/loginBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginLeft="160dp"
-                android:background="#BB86FC"
+                android:background="@drawable/custom_button"
+                android:textColor="#FFFFFF"
                 android:gravity="center"
-                android:text="Login"
-                app:backgroundTint="@color/colorPrimary" />
+                android:text="Login" />
         </LinearLayout>
 
         <LinearLayout
