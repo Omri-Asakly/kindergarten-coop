@@ -8,6 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -80,6 +81,14 @@ public class AddChildrenToTrip extends AppCompatActivity {
         children = DataBaseManager.getInstance().getAllChildren();
         autoFill();
 
+        ImageView btnBack=findViewById(R.id.btnBack);
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(AddChildrenToTrip.this,FixSchedule.class);
+                startActivity(intent);
+            }
+        });
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_dropdown_item_1line, names.toArray(new String[names.size()]));

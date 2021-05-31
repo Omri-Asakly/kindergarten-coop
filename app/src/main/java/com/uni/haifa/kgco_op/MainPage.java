@@ -11,12 +11,14 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 public class MainPage extends AppCompatActivity {
     TextView todayMorningTxt;
@@ -154,6 +156,14 @@ public class MainPage extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(MainPage.this, UserList.class);
                 startActivity(intent);
+            }
+        });
+        Button settings = findViewById(R.id.navBtnSettings);
+        settings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent2 = new Intent(MainPage.this, Settings.class);
+                startActivity(intent2);
             }
         });
     }

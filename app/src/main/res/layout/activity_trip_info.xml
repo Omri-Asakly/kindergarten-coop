@@ -240,14 +240,14 @@
                 android:textColor="@color/mainText"
                 android:textStyle="bold"
                 app:backgroundTint="#00FFFFFF"
-                app:layout_constraintBottom_toTopOf="@+id/navBtnAccount"
+                app:layout_constraintBottom_toTopOf="@+id/navBtnSettings"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/navBtnHome" />
 
             <Button
-                android:id="@+id/navBtnAccount"
+                android:id="@+id/navBtnSettings"
                 style="?android:attr/borderlessButtonStyle"
                 android:layout_width="237dp"
                 android:layout_height="58dp"

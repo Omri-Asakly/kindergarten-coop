@@ -422,7 +422,7 @@
                         android:orientation="horizontal">
 
                         <Button
-                            android:id="@+id/navBtnAccount"
+                            android:id="@+id/navBtnSettings"
                             style="?android:attr/borderlessButtonStyle"
                             android:layout_width="match_parent"
                             android:layout_height="58dp"
@@ -447,10 +447,10 @@
                             android:layout_height="30dp"
                             android:layout_marginStart="200dp"
                             android:layout_marginLeft="165dp"
+                            android:layout_marginTop="20dp"
                             android:layout_marginEnd="4dp"
                             android:layout_marginRight="4dp"
                             android:layout_marginBottom="0dp"
-                            android:layout_marginTop="20dp"
                             android:background="@drawable/ic_night"
                             app:backgroundTint="@color/colorAccent" />
                     </LinearLayout>
