@@ -1,8 +1,5 @@
 package com.uni.haifa.kgco_op;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,7 +13,9 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.ArrayList;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+
 import java.util.HashMap;
 import java.util.List;
 
@@ -51,32 +50,36 @@ public class Delete extends AppCompatActivity {
         firstImgM = findViewById(R.id.firstImgM);
         childImgM = findViewById(R.id.childImgM);
 
-        ImageView back=findViewById(R.id.backBtnDel);
-        back.setOnClickListener(new View.OnClickListener(){
+        ImageView back = findViewById(R.id.backBtnDel);
+        back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               Intent intent=new Intent(Delete.this,MainPage.class);
-               startActivity(intent);
+                Intent intent = new Intent(Delete.this, MainPage.class);
+                startActivity(intent);
 
             }
         });
 
-        Button del=findViewById(R.id.deleteUserBtn);
-        del.setOnClickListener(new View.OnClickListener(){
+        Button del = findViewById(R.id.deleteUserBtn);
+        del.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                for(Child c : DataBaseManager.getInstance().getAllChildren()){
+                    if(c.getParentId() == selectedParent.getId())
+                        DataBaseManager.getInstance().deleteChild(c);
+                }
                 DataBaseManager.getInstance().deleteParent(selectedParent);
-                Toast.makeText(Delete.this,"User Deleted" ,Toast.LENGTH_LONG).show();
-
+                userDelete.setText("");
+                Toast.makeText(Delete.this, "User Deleted", Toast.LENGTH_LONG).show();
             }
         });
-        Button delChild=findViewById(R.id.deleteChildBtn);
-        delChild.setOnClickListener(new View.OnClickListener(){
+        Button delChild = findViewById(R.id.deleteChildBtn);
+        delChild.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 DataBaseManager.getInstance().deleteChild(selectedChild);
-                Toast.makeText(Delete.this,"Child Deleted" ,Toast.LENGTH_LONG).show();
-
+                Toast.makeText(Delete.this, "Child Deleted", Toast.LENGTH_LONG).show();
+                childDelete.setText("");
             }
         });
         firstImgM.setOnClickListener(new View.OnClickListener() {
@@ -95,7 +98,7 @@ public class Delete extends AppCompatActivity {
         });
     }
 
-    private void selectParentDialog(){
+    private void selectParentDialog() {
         dialogBuilder = new AlertDialog.Builder(this);
         final View parentPopupView = getLayoutInflater().inflate(R.layout.popup, null);
         listView = (ListView) parentPopupView.findViewById(R.id.parentsView);
@@ -110,25 +113,25 @@ public class Delete extends AppCompatActivity {
                 selected.setText(selectedParent.getUserName());
             }
         });
-    if(!selectedImg) {
-        List<Child> children = DataBaseManager.getInstance().getAllChildren();
-        childrenAdapter = new ChildrenAdapter(this, children);
-        listView.setAdapter(childrenAdapter);
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> child, View v, int position, long id) {
-                selectedChild = childrenAdapter.getItem(position);
-                selected.setText(selectedChild.getName());
-            }
-        });
-    }
+        if (!selectedImg) {
+            List<Child> children = DataBaseManager.getInstance().getAllChildren();
+            childrenAdapter = new ChildrenAdapter(this, children);
+            listView.setAdapter(childrenAdapter);
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> child, View v, int position, long id) {
+                    selectedChild = childrenAdapter.getItem(position);
+                    selected.setText(selectedChild.getName());
+                }
+            });
+        }
         selectBtn = (Button) parentPopupView.findViewById(R.id.confirmBtn);
         selectBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(selectedImg){
+                if (selectedImg) {
                     userDelete.setText(selectedParent.getUserName());
-                } else{
+                } else {
                     childDelete.setText(selectedChild.getName());
                 }
                 dialog.hide();
@@ -136,12 +139,12 @@ public class Delete extends AppCompatActivity {
         });
         dialogBuilder.setView(parentPopupView);
         dialog = dialogBuilder.create();
-        dialog.show();;
+        dialog.show();
     }
 
-    private boolean isUser(List<Parent> list, String parent){
-        for(Parent p : list){
-            if(p.getUserName().equals(parent))
+    private boolean isUser(List<Parent> list, String parent) {
+        for (Parent p : list) {
+            if (p.getUserName().equals(parent))
                 return true;
         }
         Toast.makeText(this, parent + " doesn't exist", Toast.LENGTH_LONG);
