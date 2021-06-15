@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "874256687584",
+    "project_id": "kindergarten-coop-e0c99",
+    "storage_bucket": "kindergarten-coop-e0c99.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:874256687584:android:d8fe3a061b5736d8fccb85",
+        "android_client_info": {
+          "package_name": "com.uni.haifa.kgco_op"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "874256687584-j5s15k1sk8bpjj6ftu2jcl0sjpbu6ifc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.uni.haifa.kgco_op",
+            "certificate_hash": "3b2bf8167e4eb962954dda4e53aba331cad3b53d"
+          }
+        },
+        {
+          "client_id": "874256687584-fjg44m2sk5ad3j5iaqvf4cnvhog0edgb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCjpbYZplOKSAG-8OtQijHtMUQ0lxAYXHg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "874256687584-fjg44m2sk5ad3j5iaqvf4cnvhog0edgb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

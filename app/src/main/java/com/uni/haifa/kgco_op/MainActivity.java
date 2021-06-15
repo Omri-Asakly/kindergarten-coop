@@ -10,11 +10,15 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-    List<Parent> parents;
-    boolean flag = true;
+    private List<Parent> parents;
+    private FirebaseAuth mAuth;
+    private boolean flag = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         parents = DataBaseManager.getInstance().getAllParents();
         final SharedPreferences appSettingPrefs = getSharedPreferences("AppSettingPrefs", 0);
         final SharedPreferences.Editor sharedPrefsEdit = appSettingPrefs.edit();
-
+        mAuth = FirebaseAuth.getInstance();
         Button loginBtn = this.<Button>findViewById(R.id.loginBtn);
         loginBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -52,6 +56,21 @@ public class MainActivity extends AppCompatActivity {
 
         });
 
+    }
+
+    private void updateUI(FirebaseUser user){
+        if(user != null){
+            DataBaseManager.getInstance().openDataBase(this);
+//            Intent intent = new Intent(this, activity.class);
+//            startActivity(intent);
+            finish();
+        }
+    }
+    @Override
+    public void onStart() {
+        super.onStart();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        updateUI(currentUser);
     }
 
 }
