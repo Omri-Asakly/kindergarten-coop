@@ -26,22 +26,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="264dp">
 
-                    <ImageView
-                        android:id="@+id/btnBackSettings"
-                        android:layout_width="40dp"
-                        android:layout_height="68dp"
-                        android:layout_marginStart="5dp"
-                        android:layout_marginLeft="5dp"
-                        android:layout_weight="1"
-                        app:srcCompat="@drawable/ic_back"
-                        tools:ignore="VectorDrawableCompat" />
-
                     <TextView
                         android:id="@+id/textView19"
-                        android:layout_width="312dp"
+                        android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:fontFamily="sans-serif-medium"
-                        android:gravity="center|left"
+                        android:gravity="center|center"
                         android:text="Settings"
                         android:textColor="@color/colorPrimary"
                         android:textSize="60sp" />

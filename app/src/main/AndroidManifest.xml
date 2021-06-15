@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.uni.haifa.kgco_op">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -11,7 +12,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.KGCoop">
-        <activity android:name=".Settings"></activity>
+        <activity android:name=".Settings"
+            tools:ignore="ExtraText"
+            android:parentActivityName="com.uni.haifa.kgco_op.MainPage"/>
         <activity android:name=".EditParent" />
         <activity android:name=".Delete" />
         <activity android:name=".AddChildrenToTrip" />

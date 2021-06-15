@@ -1,14 +1,20 @@
 package com.uni.haifa.kgco_op;
 
 import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
@@ -168,5 +174,39 @@ public class MainPage extends AppCompatActivity {
         });
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater= getMenuInflater();
+        inflater.inflate(R.menu.main_menu,menu);
+        return true;
+    }
 
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.btnLogout:
+                new AlertDialog.Builder(this)
+                        .setTitle("Logout?")
+                        .setMessage("Are you sure you want to logout?")
+                        .setNegativeButton(android.R.string.no, null)
+                        .setPositiveButton(android.R.string.yes,
+                                new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        Intent intent = new Intent(MainPage.this, MainActivity.class);
+                                        MainPage.this.startActivity(intent);
+                                    }
+                                }).create().show();
+                return true;
+            case R.id.btnSetting :
+                Intent intent2 = new Intent(MainPage.this, Settings.class);
+                startActivity(intent2);
+                return true;
+            case R.id.btnHome:
+                Intent intent3 = new Intent(MainPage.this, MainPage.class);
+                startActivity(intent3);
+                return true;
+        }
+        return false;
+    }
 }
