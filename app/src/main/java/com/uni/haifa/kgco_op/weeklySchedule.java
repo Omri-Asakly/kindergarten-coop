@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
@@ -41,70 +42,14 @@ public class weeklySchedule extends AppCompatActivity {
         castDate = dateFormat.format(selectedDate);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_weekly_schedule);
-
-        Button btnDM = findViewById(R.id.btnDM);
-        final SharedPreferences appSettingPrefs = getSharedPreferences("AppSettingPrefs", 0);
-        final SharedPreferences.Editor sharedPrefsEdit = appSettingPrefs.edit();
-        final Boolean isNightModeOn = appSettingPrefs.getBoolean("NightMode", false);
-        if (isNightModeOn) {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-            btnDM.setBackground(ContextCompat.getDrawable(this, R.drawable.ic_day));
-        } else {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-            btnDM.setBackground(ContextCompat.getDrawable(this, R.drawable.ic_night));
-
-        }
-        btnDM.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (isNightModeOn) {
-                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-                    sharedPrefsEdit.putBoolean("NightMode", false);
-                } else {
-                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-                    sharedPrefsEdit.putBoolean("NightMode", true);
-                }
-                sharedPrefsEdit.apply();
-            }
-        });
-
-        ImageView btnNav = findViewById(R.id.btnNav2);
-        btnNav.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                NavigationView nav = findViewById(R.id.Navigation);
-                nav.setVisibility(View.VISIBLE);
-            }
-        });
+        ActionBar ab=getSupportActionBar();
+        ab.setTitle("Weekly Schedule");
+        ab.setDisplayHomeAsUpEnabled(true);
 
 
         morningTxt = findViewById(R.id.editTextTextPersonName);
         eveningTxt = findViewById(R.id.editTextTextPersonName3);
         editNames();
-        ImageView btnHideNav = findViewById(R.id.btnHideNav);
-        btnHideNav.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                NavigationView nav = findViewById(R.id.Navigation);
-                nav.setVisibility(View.INVISIBLE);
-            }
-        });
-        Button navBtnHome = findViewById(R.id.navBtnHome);
-        navBtnHome.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(weeklySchedule.this, MainPage.class);
-                startActivity(intent);
-            }
-        });
-        Button btnSchedule1 = findViewById(R.id.navBtnFullSchedule);
-        btnSchedule1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                NavigationView nav = findViewById(R.id.Navigation);
-                nav.setVisibility(View.INVISIBLE);
-            }
-        });
         ImageView btnInfo = findViewById(R.id.infoMorning);
         btnInfo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -150,49 +95,6 @@ public class weeklySchedule extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-        Button addUser = findViewById(R.id.userBtn);
-        addUser.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent2 = new Intent(weeklySchedule.this, AddUser.class);
-                startActivity(intent2);
-            }
-        });
-        Button delete = findViewById(R.id.deleteBtn);
-        delete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent2 = new Intent(weeklySchedule.this, Delete.class);
-                startActivity(intent2);
-            }
-        });
-        Button edit = findViewById(R.id.editBtn);
-        edit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent2 = new Intent(weeklySchedule.this, EditParent.class);
-                startActivity(intent2);
-            }
-        });
-        Button userList = findViewById(R.id.userListBtn);
-        userList.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(weeklySchedule.this, UserList.class);
-                startActivity(intent);
-            }
-        });
-        Button settings = findViewById(R.id.navBtnSettings);
-        settings.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent2 = new Intent(weeklySchedule.this, Settings.class);
-                startActivity(intent2);
-            }
-        });
-
-
     }
 
     private void editNames(){

@@ -9,6 +9,8 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.snackbar.BaseTransientBottomBar;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.List;
@@ -29,8 +31,28 @@ public class AddChildrenToNewParent extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 collectNames(value);
-                Intent intent = new Intent(AddChildrenToNewParent.this, MainPage.class);
-                startActivity(intent);
+                Snackbar snackbar = Snackbar
+                        .make(v, "Children Inserted", Snackbar.LENGTH_SHORT).setAction("Show", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+//                                Snackbar snackbar1 = Snackbar.make(v, "Message is restored!", Snackbar.LENGTH_SHORT);
+//                                snackbar1.show();
+                                Intent intent=new Intent(AddChildrenToNewParent.this, UserList.class);
+                                startActivity(intent);
+                            }
+                        });
+
+                snackbar.show();
+                snackbar.addCallback(new Snackbar.Callback() {
+
+                    @Override
+                    public void onDismissed(Snackbar snackbar, int event) {
+                        if (event == BaseTransientBottomBar.BaseCallback.DISMISS_EVENT_TIMEOUT) {
+                            Intent intent = new Intent(AddChildrenToNewParent.this, AddUser.class);
+                            startActivity(intent);
+                        }
+                    }
+                });
             }
         });
         Parent parent = null;
@@ -64,6 +86,7 @@ public class AddChildrenToNewParent extends AppCompatActivity {
             Child child = new Child(value, s);
             DataBaseManager.getInstance().createChild(child);
         }
+
     }
 
 }

@@ -169,18 +169,6 @@
         android:textSize="20sp"
         tools:ignore="MissingConstraints" />
 
-    <ImageView
-        android:id="@+id/btnBack"
-        android:layout_width="43dp"
-        android:layout_height="45dp"
-        android:layout_marginBottom="8dp"
-
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_back"
-        tools:ignore="VectorDrawableCompat" />
-
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/Navigation"
         android:layout_width="241dp"

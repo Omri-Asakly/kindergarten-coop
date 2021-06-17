@@ -7,6 +7,7 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
@@ -21,6 +22,9 @@ public class UserList extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_list);
+        ActionBar ab=getSupportActionBar();
+        ab.setTitle("Users");
+        ab.setDisplayHomeAsUpEnabled(true);
         List<Parent> dataList = new ArrayList<>();
         userListView = (ListView) findViewById(R.id.userListView);
         info = (ListView) findViewById(R.id.parentInfo);
@@ -31,14 +35,6 @@ public class UserList extends AppCompatActivity {
         listAdapter = new UserListAdapter(this, dataList);
         userListView.setAdapter(listAdapter);
 
-        ImageView btnBack = findViewById(R.id.btnBack);
-        btnBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(UserList.this, MainPage.class);
-                startActivity(intent);
-            }
-        });
 
         userListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

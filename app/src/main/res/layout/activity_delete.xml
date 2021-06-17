@@ -13,21 +13,11 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="85dp">
+            android:layout_height="57dp">
 
             <LinearLayout
                 android:layout_width="73dp"
-                android:layout_height="95dp">
-
-                <ImageView
-                    android:id="@+id/backBtnDel"
-                    android:layout_width="40dp"
-                    android:layout_height="80dp"
-                    android:layout_marginLeft="5dp"
-                    android:layout_weight="1"
-                    app:srcCompat="@drawable/ic_back"
-                    tools:ignore="VectorDrawableCompat" />
-            </LinearLayout>
+                android:layout_height="95dp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -38,7 +28,6 @@
                     android:layout_width="242dp"
                     android:layout_height="83dp"
                     android:gravity="center"
-                    android:text="Delete"
                     android:textColor="@color/mainText"
                     android:textSize="24sp" />
             </LinearLayout>
@@ -57,7 +46,7 @@
                 android:layout_marginLeft="15dp"
 
                 android:gravity="left|center_vertical"
-                android:text="Delete User"
+                android:text="Remove Parent"
                 android:textColor="@color/mainText" />
 
             <LinearLayout
@@ -93,17 +82,27 @@
                     android:layout_marginTop="-3dp"
                     android:visibility="visible"
                     app:srcCompat="@drawable/custom_search_icon" />
+
             </LinearLayout>
 
+
+            <TextView
+                android:id="@+id/textView21"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:foregroundGravity="center_vertical|center"
+                android:gravity="center"
+                android:layout_marginBottom="5dp"
+                android:text="you can press the search button to show all parents" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/deleteUserBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="#FFFF"
-                android:background="@drawable/custom_button_danger"
                 android:layout_marginLeft="150dp"
-                android:text="Delete" />
+                android:background="@drawable/custom_button_danger"
+                android:text="Remove"
+                android:textColor="#FFFF" />
 
         </LinearLayout>
 
@@ -158,14 +157,24 @@
             </LinearLayout>
 
 
+            <TextView
+                android:id="@+id/textView22"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:foregroundGravity="center_vertical|center"
+                android:gravity="center"
+                android:layout_marginBottom="5dp"
+
+                android:text="you can press the search button to show all Children" />
+
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/deleteChildBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="#FFFF"
                 android:layout_marginLeft="150dp"
                 android:background="@drawable/custom_button_danger"
-                android:text="Remove" />
+                android:text="Remove"
+                android:textColor="#FFFF" />
         </LinearLayout>
 
     </LinearLayout>

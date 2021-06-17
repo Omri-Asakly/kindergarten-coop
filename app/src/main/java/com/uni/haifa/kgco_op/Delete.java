@@ -1,6 +1,8 @@
 package com.uni.haifa.kgco_op;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -13,8 +15,11 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.HashMap;
 import java.util.List;
@@ -44,42 +49,69 @@ public class Delete extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_delete);
-
+        ActionBar ab=getSupportActionBar();
+        ab.setTitle("Remove Parent/Child");
+        ab.setDisplayHomeAsUpEnabled(true);
         userDelete = (AutoCompleteTextView) findViewById(R.id.userDelete);
         childDelete = (AutoCompleteTextView) findViewById(R.id.childDelete);
         firstImgM = findViewById(R.id.firstImgM);
         childImgM = findViewById(R.id.childImgM);
-
-        ImageView back = findViewById(R.id.backBtnDel);
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Delete.this, MainPage.class);
-                startActivity(intent);
-
-            }
-        });
-
+        Context mc=this;
         Button del = findViewById(R.id.deleteUserBtn);
         del.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                for(Child c : DataBaseManager.getInstance().getAllChildren()){
-                    if(c.getParentId() == selectedParent.getId())
-                        DataBaseManager.getInstance().deleteChild(c);
-                }
-                DataBaseManager.getInstance().deleteParent(selectedParent);
-                userDelete.setText("");
-                Toast.makeText(Delete.this, "User Deleted", Toast.LENGTH_LONG).show();
+
+                new AlertDialog.Builder(mc)
+                        .setTitle("Delete")
+                        .setMessage("Are you sure you want to delete "+ selectedParent.getUserName()+"?")
+                        .setNegativeButton(android.R.string.no, null)
+                        .setPositiveButton(android.R.string.yes,
+                                new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                       // do something
+                                        for(Child c : DataBaseManager.getInstance().getAllChildren()){
+                                            if(c.getParentId() == selectedParent.getId())
+                                                DataBaseManager.getInstance().deleteChild(c);
+                                        }
+                                        DataBaseManager.getInstance().deleteParent(selectedParent);
+                                        userDelete.setText("");
+                                        Snackbar snackbar = Snackbar
+                                                .make(v, "User Deleted", Snackbar.LENGTH_LONG).setAction("Show", new View.OnClickListener() {
+                                                    @Override
+                                                    public void onClick(View view) {
+                                                        Intent intent=new Intent(Delete.this, UserList.class);
+                                                        startActivity(intent);
+                                                    }
+                                                });
+
+                                        snackbar.show();
+                                    }
+                                }).create().show();
+
+
+
             }
         });
         Button delChild = findViewById(R.id.deleteChildBtn);
         delChild.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DataBaseManager.getInstance().deleteChild(selectedChild);
-                Toast.makeText(Delete.this, "Child Deleted", Toast.LENGTH_LONG).show();
-                childDelete.setText("");
+                new AlertDialog.Builder(mc)
+                        .setTitle("Delete")
+                        .setMessage("Are you sure you want to delete "+selectedChild.getName()+ "?")
+                        .setNegativeButton(android.R.string.no, null)
+                        .setPositiveButton(android.R.string.yes,
+                                new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        // do something
+                                    DataBaseManager.getInstance().deleteChild(selectedChild);
+                                    Toast.makeText(Delete.this, "Child Deleted", Toast.LENGTH_LONG).show();
+                                    childDelete.setText("");
+                                    }
+                                }).create().show();
             }
         });
         firstImgM.setOnClickListener(new View.OnClickListener() {

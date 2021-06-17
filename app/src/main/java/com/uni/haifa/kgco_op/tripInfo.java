@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.text.ParseException;
@@ -24,7 +25,9 @@ public class tripInfo extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trip_info);
-
+        ActionBar ab=getSupportActionBar();
+        ab.setTitle("Trip Info");
+        ab.setDisplayHomeAsUpEnabled(true);
         child1 = findViewById(R.id.child1);
         child2 = findViewById(R.id.child2);
         child3 = findViewById(R.id.child3);
@@ -57,15 +60,6 @@ public class tripInfo extends AppCompatActivity {
             e.printStackTrace();
         }
 
-
-        ImageView btnBack = findViewById(R.id.btnBack);
-        btnBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(tripInfo.this, weeklySchedule.class);
-                startActivity(intent);
-            }
-        });
 
 
 

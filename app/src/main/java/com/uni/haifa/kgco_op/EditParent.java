@@ -2,6 +2,7 @@ package com.uni.haifa.kgco_op;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -12,7 +13,12 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.material.snackbar.BaseTransientBottomBar;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -30,10 +36,13 @@ public class EditParent extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_parent);
+        ActionBar ab=getSupportActionBar();
+        ab.setTitle("Edit/Update");
+        ab.setDisplayHomeAsUpEnabled(true);
         List<Parent> dataList = new ArrayList<>();
         userListView = (ListView) findViewById(R.id.userListView);
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
-
+        Context mc=this;
         List<Parent> parents = DataBaseManager.getInstance().getAllParents();
         for (Parent p : parents)
             dataList.add(p);
@@ -41,15 +50,6 @@ public class EditParent extends AppCompatActivity {
         listAdapter = new UserListAdapter(this, dataList);
         userListView.setAdapter(listAdapter);
 
-
-        ImageView btnBack = findViewById(R.id.btnBack);
-        btnBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(EditParent.this, MainPage.class);
-                startActivity(intent);
-            }
-        });
 
         userListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -70,14 +70,44 @@ public class EditParent extends AppCompatActivity {
                 deleteUser.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        DataBaseManager.getInstance().deleteParent(selectedParent);
-                        Toast.makeText(EditParent.this, "User Deleted", Toast.LENGTH_LONG).show();
-                        List<Parent> parents = DataBaseManager.getInstance().getAllParents();
-                        for (Parent p : parents)
-                            dataList.add(p);
+                        new AlertDialog.Builder(mc)
+                                .setTitle("Delete")
+                                .setMessage("Are you sure you want to Delete "+ selectedParent.getUserName()+"?")
+                                .setNegativeButton(android.R.string.no, null)
+                                .setPositiveButton(android.R.string.yes,
+                                        new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                // do something
+                        Snackbar snackbar = Snackbar
+                                .make(v, "Deleting Parent", Snackbar.LENGTH_SHORT).setAction("Undo", new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+                                        Snackbar snackbar1 = Snackbar.make(v, "Delete Canceled", Snackbar.LENGTH_SHORT);
+                                        snackbar1.show();
 
-                        listAdapter = new UserListAdapter(c, dataList);
-                        userListView.setAdapter(listAdapter);
+                                    }
+                                });
+
+                        snackbar.show();
+                        snackbar.addCallback(new Snackbar.Callback() {
+
+                            @Override
+                            public void onDismissed(Snackbar snackbar, int event) {
+                                if (event == BaseTransientBottomBar.BaseCallback.DISMISS_EVENT_TIMEOUT) {
+                                    DataBaseManager.getInstance().deleteParent(selectedParent);
+//                        Toast.makeText(EditParent.this, "User Deleted", Toast.LENGTH_LONG).show();
+                                    List<Parent> parents = DataBaseManager.getInstance().getAllParents();
+                                    for (Parent p : parents)
+                                        dataList.add(p);
+
+                                    listAdapter = new UserListAdapter(c, dataList);
+                                    userListView.setAdapter(listAdapter);
+                                }
+                            }
+                        });
+                                            }
+                                        }).create().show();
                     }
                 });
 
@@ -96,15 +126,46 @@ public class EditParent extends AppCompatActivity {
                             error.printStackTrace();
                         }
                         Parent parent = new Parent(selectedParent.getId(), n, e, p, d);
-                        DataBaseManager.getInstance().updateParent(parent);
-                        Toast.makeText(EditParent.this, "User Updated", Toast.LENGTH_LONG).show();
-                        userListView.setAdapter(null);
-                        List<Parent> parents = DataBaseManager.getInstance().getAllParents();
-                        for (Parent parent1 : parents)
-                            dataList.add(parent1);
+                        new AlertDialog.Builder(mc)
+                                .setTitle("Update")
+                                .setMessage("Are you sure you want to Update "+ selectedParent.getUserName()+"?")
+                                .setNegativeButton(android.R.string.no, null)
+                                .setPositiveButton(android.R.string.yes,
+                                        new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                // do something
+                                                Snackbar snackbar = Snackbar
+                                                        .make(v, "Updating Parent", Snackbar.LENGTH_SHORT).setAction("Undo", new View.OnClickListener() {
+                                                            @Override
+                                                            public void onClick(View view) {
+                                                                Snackbar snackbar1 = Snackbar.make(v, "Update Canceled", Snackbar.LENGTH_SHORT);
+                                                                snackbar1.show();
 
-                        listAdapter = new UserListAdapter(c, dataList);
-                        userListView.setAdapter(listAdapter);
+                                                            }
+                                                        });
+
+                                                snackbar.show();
+                                                snackbar.addCallback(new Snackbar.Callback() {
+
+                                                    @Override
+                                                    public void onDismissed(Snackbar snackbar, int event) {
+                                                        if (event == BaseTransientBottomBar.BaseCallback.DISMISS_EVENT_TIMEOUT) {
+                                                            DataBaseManager.getInstance().updateParent(parent);
+                                                            Toast.makeText(EditParent.this, "User Updated", Toast.LENGTH_LONG).show();
+                                                            userListView.setAdapter(null);
+                                                            List<Parent> parents = DataBaseManager.getInstance().getAllParents();
+                                                            for (Parent parent1 : parents)
+                                                                dataList.add(parent1);
+
+                                                            listAdapter = new UserListAdapter(c, dataList);
+                                                            userListView.setAdapter(listAdapter);
+                                                        }
+
+                                                        }
+                                                    });
+                    }
+                }).create().show();
                     }
                 });
 //                List<Child> selectedChildren = new ArrayList<>();

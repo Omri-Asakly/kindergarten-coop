@@ -13,6 +13,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -43,6 +44,9 @@ public class FixSchedule extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fix_schedule);
+        ActionBar ab=getSupportActionBar();
+        ab.setTitle("Add Shift");
+        ab.setDisplayHomeAsUpEnabled(true);
         Bundle b = getIntent().getExtras();
         morningImg = (ImageButton) findViewById(R.id.morningImg);
         eveningImg = (ImageButton) findViewById(R.id.eveningImg);
@@ -82,15 +86,7 @@ public class FixSchedule extends AppCompatActivity {
                 }
             }
         });
-
-        ImageView btnBack = findViewById(R.id.btnBack);
-        btnBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(FixSchedule.this, weeklySchedule.class);
-                startActivity(intent);
-            }
-        });
+        
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_dropdown_item_1line, names.toArray(new String[names.size()]));
         adapter.notifyDataSetChanged();

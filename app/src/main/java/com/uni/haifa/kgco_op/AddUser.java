@@ -8,7 +8,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.material.snackbar.Snackbar;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -27,6 +30,10 @@ public class AddUser extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         DataBaseManager.getInstance().openDataBase(this);
         super.onCreate(savedInstanceState);
+        ActionBar ab=getSupportActionBar();
+        ab.setTitle("Insert Parent");
+        ab.setDisplayHomeAsUpEnabled(true);
+
         setContentView(R.layout.activity_add_user);
         name = findViewById(R.id.userTxt);
         email = findViewById(R.id.mailTxt);
@@ -53,21 +60,15 @@ public class AddUser extends AppCompatActivity {
                     }
                     Parent parent = new Parent(name.getText().toString(), email.getText().toString(), password.getText().toString(), dateF);
                     DataBaseManager.getInstance().createParent(parent);
+                    Snackbar snackbar = Snackbar
+                            .make(v, "Parent Added", Snackbar.LENGTH_LONG);
+                    snackbar.show();
                     parents = DataBaseManager.getInstance().getAllParents();
                     Intent intent = new Intent(AddUser.this, AddChildrenToNewParent.class);
                     intent.putExtra("userID", parents.get(parents.size()-1).getId());
                     startActivity(intent);
 
                 }
-            }
-        });
-
-        ImageView btnBack = findViewById(R.id.btnBack);
-        btnBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(AddUser.this, MainPage.class);
-                startActivity(intent);
             }
         });
 
