@@ -16,6 +16,9 @@ import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -27,6 +30,7 @@ public class AddChildrenToTrip extends AppCompatActivity {
     private AutoCompleteTextView secondTxtM;
     private AutoCompleteTextView thirdTxtM;
     private Button addScheduleBtn;
+    private FirebaseAuth mAuth;
     private ImageButton firstImgM;
     private ImageButton secondImgM;
     private ImageButton thirdImgM;
@@ -52,6 +56,7 @@ public class AddChildrenToTrip extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        DataBaseManager.getInstance().openDataBase(this);
         setContentView(R.layout.activity_add_children_to_trip);
 
         Bundle b = getIntent().getExtras();
@@ -66,7 +71,7 @@ public class AddChildrenToTrip extends AppCompatActivity {
 
         addScheduleBtn = findViewById(R.id.addScheduleBtn);
         firstImgM = findViewById(R.id.firstImgM);
-        secondImgM = findViewById(R.id.firstImgM);
+        secondImgM = findViewById(R.id.secondImgM);
         thirdImgM = findViewById(R.id.thirdImgM);
 
         firstTxtE = (AutoCompleteTextView) findViewById(R.id.firstTxtE);
@@ -85,6 +90,7 @@ public class AddChildrenToTrip extends AppCompatActivity {
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                FirebaseUser user = mAuth.getCurrentUser();
                 Intent intent=new Intent(AddChildrenToTrip.this,FixSchedule.class);
                 startActivity(intent);
             }
@@ -238,5 +244,17 @@ public class AddChildrenToTrip extends AppCompatActivity {
         }
         Toast.makeText(this, child + " doesn't exist", Toast.LENGTH_LONG);
         return false;
+    }
+
+    @Override
+    protected void onResume() {
+        DataBaseManager.getInstance().openDataBase(this);
+        super.onResume();
+    }
+
+    @Override
+    protected void onPause() {
+        DataBaseManager.getInstance().closeDataBase();
+        super.onPause();
     }
 }

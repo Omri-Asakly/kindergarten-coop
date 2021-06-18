@@ -19,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
     private List<Parent> parents;
     private FirebaseAuth mAuth;
     private boolean flag = true;
+    private Button registerBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,22 +56,41 @@ public class MainActivity extends AppCompatActivity {
             }
 
         });
+        registerBtn = findViewById(R.id.registerBtn);
+        registerBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, AddUser.class);
+                startActivity(intent);
+            }
+        });
 
     }
 
-    private void updateUI(FirebaseUser user){
+    public void updateUI(FirebaseUser user){
         if(user != null){
             DataBaseManager.getInstance().openDataBase(this);
-//            Intent intent = new Intent(this, activity.class);
-//            startActivity(intent);
+            Intent intent = new Intent(this, MainPage.class);
+            startActivity(intent);
             finish();
         }
     }
     @Override
     public void onStart() {
         super.onStart();
-        FirebaseUser currentUser = mAuth.getCurrentUser();
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
         updateUI(currentUser);
     }
 
+    @Override
+    protected void onResume() {
+        DataBaseManager.getInstance().openDataBase(this);
+        super.onResume();
+    }
+
+    @Override
+    protected void onPause() {
+        DataBaseManager.getInstance().closeDataBase();
+        super.onPause();
+    }
 }

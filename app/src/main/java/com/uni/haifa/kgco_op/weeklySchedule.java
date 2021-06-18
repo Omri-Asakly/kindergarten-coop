@@ -36,6 +36,7 @@ public class weeklySchedule extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        DataBaseManager.getInstance().openDataBase(this);
         scheduleList = DataBaseManager.getInstance().getAllSchedules();
         DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         selectedDate = new Date();
@@ -143,5 +144,17 @@ public class weeklySchedule extends AppCompatActivity {
                 return true;
         }
         return false;
+    }
+
+    @Override
+    protected void onResume() {
+        DataBaseManager.getInstance().openDataBase(this);
+        super.onResume();
+    }
+
+    @Override
+    protected void onPause() {
+        DataBaseManager.getInstance().closeDataBase();
+        super.onPause();
     }
 }

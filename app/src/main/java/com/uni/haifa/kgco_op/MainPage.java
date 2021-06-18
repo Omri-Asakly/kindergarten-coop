@@ -17,14 +17,13 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
-import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.Date;
 import java.util.List;
-import java.util.Set;
 
 public class MainPage extends AppCompatActivity {
     TextView todayMorningTxt;
@@ -36,11 +35,11 @@ public class MainPage extends AppCompatActivity {
     @SuppressLint("ResourceType")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        DataBaseManager.getInstance().openDataBase(this);
         final int[] flag = {0};
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_page);
         Button btnDM = findViewById(R.id.btnDM);
-        DataBaseManager.getInstance().openDataBase(this);
 
 
         todayMorningTxt = findViewById(R.id.etMorningPerson);
@@ -193,6 +192,7 @@ public class MainPage extends AppCompatActivity {
                                 new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
+                                        FirebaseAuth.getInstance().signOut();
                                         Intent intent = new Intent(MainPage.this, MainActivity.class);
                                         MainPage.this.startActivity(intent);
                                     }
@@ -208,5 +208,16 @@ public class MainPage extends AppCompatActivity {
                 return true;
         }
         return false;
+    }
+    @Override
+    protected void onResume() {
+        DataBaseManager.getInstance().openDataBase(this);
+        super.onResume();
+    }
+
+    @Override
+    protected void onPause() {
+        DataBaseManager.getInstance().closeDataBase();
+        super.onPause();
     }
 }

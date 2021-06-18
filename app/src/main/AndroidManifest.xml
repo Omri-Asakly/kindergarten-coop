@@ -12,9 +12,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.KGCoop">
-        <activity android:name=".Settings"
-            tools:ignore="ExtraText"
-            android:parentActivityName="com.uni.haifa.kgco_op.MainPage"/>
+        <activity
+            android:name=".Settings"
+            android:parentActivityName=".MainPage"
+            tools:ignore="ExtraText" />
         <activity android:name=".EditParent"
             tools:ignore="ExtraText"
             android:parentActivityName="com.uni.haifa.kgco_op.MainPage"/>

@@ -1,8 +1,6 @@
 package com.uni.haifa.kgco_op;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 
@@ -21,11 +19,13 @@ public class tripInfo extends AppCompatActivity {
     List<Schedule> scheduleList;
     Date date;
     Schedule schedule;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        DataBaseManager.getInstance().openDataBase(this);
         setContentView(R.layout.activity_trip_info);
-        ActionBar ab=getSupportActionBar();
+        ActionBar ab = getSupportActionBar();
         ab.setTitle("Trip Info");
         ab.setDisplayHomeAsUpEnabled(true);
         child1 = findViewById(R.id.child1);
@@ -39,30 +39,52 @@ public class tripInfo extends AppCompatActivity {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        for(Schedule s : scheduleList){
-            if(s.compare(date)){
+        for (Schedule s : scheduleList) {
+            if (s.compare(date)) {
                 schedule = s;
                 break;
             }
         }
-        try {
-            if (value.equals("morning")) {
+
+        if (value.equals("morning")) {
+            try {
                 child1.setText(schedule.getMorningKids()[0]);
                 child2.setText(schedule.getMorningKids()[1]);
                 child3.setText(schedule.getMorningKids()[2]);
+            } catch (NullPointerException e) {
+                e.printStackTrace();
             }
-            else if (value.equals("evening")) {
+        } else if (value.equals("evening")) {
+            try {
                 child1.setText(schedule.getEveningKids()[0]);
                 child2.setText(schedule.getEveningKids()[1]);
                 child3.setText(schedule.getEveningKids()[2]);
+            } catch (NullPointerException e) {
+                e.printStackTrace();
             }
-        } catch (NullPointerException e) {
-            e.printStackTrace();
         }
 
 
+        ImageView btnBack = findViewById(R.id.btnBack);
+//        btnBack.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(tripInfo.this, weeklySchedule.class);
+//                startActivity(intent);
+//            }
+//        });
+    }
 
+    @Override
+    protected void onResume() {
+        DataBaseManager.getInstance().openDataBase(this);
+        super.onResume();
+    }
 
+    @Override
+    protected void onPause() {
+        DataBaseManager.getInstance().closeDataBase();
+        super.onPause();
     }
 
 }

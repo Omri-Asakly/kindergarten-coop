@@ -43,6 +43,7 @@ public class FixSchedule extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        DataBaseManager.getInstance().openDataBase(this);
         setContentView(R.layout.activity_fix_schedule);
         ActionBar ab=getSupportActionBar();
         ab.setTitle("Add Shift");
@@ -148,6 +149,18 @@ public class FixSchedule extends AppCompatActivity {
         }
         Toast.makeText(this, parent + " doesn't exist", Toast.LENGTH_LONG);
         return false;
+    }
+
+    @Override
+    protected void onResume() {
+        DataBaseManager.getInstance().openDataBase(this);
+        super.onResume();
+    }
+
+    @Override
+    protected void onPause() {
+        DataBaseManager.getInstance().closeDataBase();
+        super.onPause();
     }
 
 }
