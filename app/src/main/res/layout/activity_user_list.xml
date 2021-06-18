@@ -51,8 +51,8 @@
         <ListView
             android:id="@+id/parentInfo"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:textColor="@color/textAlt"/>
+            android:layout_height="349dp"
+            android:textColor="@color/textAlt" />
 
     </LinearLayout>
 

@@ -9,6 +9,7 @@ import android.widget.ListView;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,6 +32,7 @@ public class UserList extends AppCompatActivity {
         List<Parent> parents = DataBaseManager.getInstance().getAllParents();
         for(Parent p : parents)
             dataList.add(p);
+
 
         listAdapter = new UserListAdapter(this, dataList);
         userListView.setAdapter(listAdapter);

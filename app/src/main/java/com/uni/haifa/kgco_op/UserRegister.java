@@ -37,7 +37,7 @@ public class UserRegister extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ActionBar ab = getSupportActionBar();
-        ab.setTitle("Insert Parent");
+        ab.setTitle("Register");
         ab.setDisplayHomeAsUpEnabled(true);
 
         mAuth = FirebaseAuth.getInstance();
