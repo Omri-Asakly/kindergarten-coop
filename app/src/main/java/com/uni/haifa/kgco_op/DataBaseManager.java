@@ -54,6 +54,7 @@ public class DataBaseManager {
     public void createParent(Parent p) {
         if (db != null) {
             db.createParent(p);
+            FireBase.getInstance().createParent(p);
         }
     }
 
