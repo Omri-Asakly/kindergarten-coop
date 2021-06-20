@@ -167,7 +167,7 @@ public class MainPage extends AppCompatActivity {
         settings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent2 = new Intent(MainPage.this, Settings.class);
+                Intent intent2 = new Intent(MainPage.this, SettingsActivity.class);
                 startActivity(intent2);
             }
         });
@@ -199,7 +199,7 @@ public class MainPage extends AppCompatActivity {
                                 }).create().show();
                 return true;
             case R.id.btnSetting :
-                Intent intent2 = new Intent(MainPage.this, Settings.class);
+                Intent intent2 = new Intent(MainPage.this, SettingsActivity.class);
                 startActivity(intent2);
                 return true;
             case R.id.btnHome:
