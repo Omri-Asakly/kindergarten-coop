@@ -19,6 +19,8 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
@@ -138,6 +140,13 @@ public class weeklySchedule extends AppCompatActivity {
                 }
             }
         });
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+        if(currentUser!=null) {
+            if (currentUser.getEmail() != null) {
+
+                addToScheduleBtn.setVisibility(View.INVISIBLE);
+            }
+        }
     }
 
     private void editNames() {

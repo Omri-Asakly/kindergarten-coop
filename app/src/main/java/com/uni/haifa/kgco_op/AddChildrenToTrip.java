@@ -13,6 +13,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -58,7 +59,9 @@ public class AddChildrenToTrip extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         DataBaseManager.getInstance().openDataBase(this);
         setContentView(R.layout.activity_add_children_to_trip);
-
+        ActionBar ab=getSupportActionBar();
+        ab.setTitle("Add Children To Shift");
+        ab.setDisplayHomeAsUpEnabled(true);
         Bundle b = getIntent().getExtras();
         String value = b.getString("date");
         System.out.println(value);
@@ -86,15 +89,6 @@ public class AddChildrenToTrip extends AppCompatActivity {
         children = DataBaseManager.getInstance().getAllChildren();
         autoFill();
 
-        ImageView btnBack=findViewById(R.id.btnBack);
-        btnBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FirebaseUser user = mAuth.getCurrentUser();
-                Intent intent=new Intent(AddChildrenToTrip.this,FixSchedule.class);
-                startActivity(intent);
-            }
-        });
         //adapter to display the children's names in autofill/sleect
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_dropdown_item_1line, names.toArray(new String[names.size()]));

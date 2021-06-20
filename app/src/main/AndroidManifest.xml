@@ -35,7 +35,10 @@
             android:name=".Delete"
             android:parentActivityName=".MainPage"
             tools:ignore="ExtraText" />
-        <activity android:name=".AddChildrenToTrip" />
+        <activity android:name=".AddChildrenToTrip"
+            android:parentActivityName=".FixSchedule"
+            tools:ignore="ExtraText"
+            />
         <activity
             android:name=".FixSchedule"
             android:parentActivityName=".weeklySchedule"

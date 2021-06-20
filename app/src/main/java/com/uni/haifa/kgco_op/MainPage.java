@@ -174,11 +174,12 @@ public class MainPage extends AppCompatActivity {
         });
 
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
-
-        if(currentUser.getEmail()!=null){
-            edit.setVisibility(View.INVISIBLE);
-            delete.setVisibility(View.INVISIBLE);
-            addUser.setVisibility(View.INVISIBLE);
+        if(currentUser!=null) {
+            if (currentUser.getEmail() != null) {
+                edit.setVisibility(View.INVISIBLE);
+                delete.setVisibility(View.INVISIBLE);
+                addUser.setVisibility(View.INVISIBLE);
+            }
         }
     }
 
