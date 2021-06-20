@@ -35,9 +35,16 @@
         <EditText
             android:id="@+id/accountName"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="3dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="3dp"
+            android:background="@drawable/custom_input"
+            android:editable="false"
             android:foregroundGravity="center"
             android:gravity="center"
+            android:textColor="@color/mainText"
             app:layout_column="0"
             app:layout_row="1" />
 
@@ -56,9 +63,15 @@
         <EditText
             android:id="@+id/accountEmail"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:foregroundGravity="center"
+            android:layout_height="40dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="3dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="3dp"
+            android:background="@drawable/custom_input"
+            android:editable="false"            android:foregroundGravity="center"
             android:gravity="center"
+            android:textColor="@color/mainText"
             app:layout_column="0"
             app:layout_row="3" />
 
@@ -77,9 +90,15 @@
         <EditText
             android:id="@+id/accountLicense"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:foregroundGravity="center"
+            android:layout_height="40dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="3dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="3dp"
+            android:background="@drawable/custom_input"
+            android:editable="false"            android:foregroundGravity="center"
             android:gravity="center"
+            android:textColor="@color/mainText"
             app:layout_column="0"
             app:layout_row="5" />
 
