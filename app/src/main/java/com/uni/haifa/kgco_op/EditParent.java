@@ -3,13 +3,11 @@ package com.uni.haifa.kgco_op;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -37,6 +35,7 @@ public class EditParent extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_parent);
         ActionBar ab=getSupportActionBar();
+        DataBaseManager.getInstance().openDataBase(this);
         ab.setTitle("Edit/Update");
         ab.setDisplayHomeAsUpEnabled(true);
         List<Parent> dataList = new ArrayList<>();
@@ -179,5 +178,16 @@ public class EditParent extends AppCompatActivity {
 //                info.setAdapter(childrenAdapter);
             }
         });
+    }
+    @Override
+    protected void onResume() {
+        DataBaseManager.getInstance().openDataBase(this);
+        super.onResume();
+    }
+
+    @Override
+    protected void onPause() {
+        DataBaseManager.getInstance().closeDataBase();
+        super.onPause();
     }
 }

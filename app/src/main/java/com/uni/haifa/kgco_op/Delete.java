@@ -10,7 +10,6 @@ import android.widget.AdapterView;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -50,6 +49,7 @@ public class Delete extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_delete);
         ActionBar ab=getSupportActionBar();
+        DataBaseManager.getInstance().openDataBase(this);
         ab.setTitle("Remove Parent/Child");
         ab.setDisplayHomeAsUpEnabled(true);
         userDelete = (AutoCompleteTextView) findViewById(R.id.userDelete);
@@ -181,5 +181,16 @@ public class Delete extends AppCompatActivity {
         }
         Toast.makeText(this, parent + " doesn't exist", Toast.LENGTH_LONG);
         return false;
+    }
+    @Override
+    protected void onResume() {
+        DataBaseManager.getInstance().openDataBase(this);
+        super.onResume();
+    }
+
+    @Override
+    protected void onPause() {
+        DataBaseManager.getInstance().closeDataBase();
+        super.onPause();
     }
 }
