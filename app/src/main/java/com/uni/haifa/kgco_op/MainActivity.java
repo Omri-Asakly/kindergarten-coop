@@ -22,7 +22,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
     private List<Parent> parents;
     private FirebaseAuth mAuth;
-    private boolean flag = true;
+    private boolean flag = false;
     private Button registerBtn;
 
     @Override
@@ -53,8 +53,11 @@ public class MainActivity extends AppCompatActivity {
                             if (task.isSuccessful()) {
                                 FirebaseUser user = mAuth.getCurrentUser();
                                 updateUI(user);
+                                Toast.makeText(MainActivity.this, "Hello, "+user.getEmail(),
+                                        Toast.LENGTH_SHORT).show();
+                                flag=true;
                             } else {
-                                Toast.makeText(MainActivity.this, task.getException().toString(),
+                                Toast.makeText(MainActivity.this, "Sorry, your password was incorrect.",
                                         Toast.LENGTH_SHORT).show();
 
                             }

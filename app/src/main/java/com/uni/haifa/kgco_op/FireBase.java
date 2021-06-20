@@ -37,8 +37,8 @@ public class FireBase {
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-//                        Toast.makeText(context, "DocumentSnapshot successfully written!",
-//                                Toast.LENGTH_LONG).show();
+                        Toast.makeText(context, "DocumentSnapshot successfully written!",
+                                Toast.LENGTH_LONG).show();
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
