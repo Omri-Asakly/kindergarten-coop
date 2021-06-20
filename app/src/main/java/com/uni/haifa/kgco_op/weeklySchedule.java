@@ -117,8 +117,7 @@ public class weeklySchedule extends AppCompatActivity {
                 }
 
                 if (snapshot != null && !snapshot.isEmpty()) {
-                    Toast.makeText(weeklySchedule.this, "New data available",
-                            Toast.LENGTH_LONG).show();
+
 
                     DataBaseManager.getInstance().removeAllSchedules();
                     for (DocumentSnapshot document : snapshot.getDocuments()) {

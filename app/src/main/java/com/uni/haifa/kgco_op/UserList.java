@@ -81,8 +81,7 @@ public class UserList extends AppCompatActivity {
                 }
 
                 if (snapshot != null && !snapshot.isEmpty()) {
-                    Toast.makeText(context, "New data available",
-                            Toast.LENGTH_LONG).show();
+
 
                     DataBaseManager.getInstance().removeAllParents();
                     for (DocumentSnapshot document : snapshot.getDocuments() ){
