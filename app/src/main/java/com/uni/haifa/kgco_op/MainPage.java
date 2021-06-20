@@ -21,6 +21,7 @@ import androidx.core.content.ContextCompat;
 
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.util.Date;
 import java.util.List;
@@ -171,6 +172,14 @@ public class MainPage extends AppCompatActivity {
                 startActivity(intent2);
             }
         });
+
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+
+        if(currentUser.getEmail()!=null){
+            edit.setVisibility(View.INVISIBLE);
+            delete.setVisibility(View.INVISIBLE);
+            addUser.setVisibility(View.INVISIBLE);
+        }
     }
 
     @Override

@@ -345,13 +345,34 @@
                         android:orientation="horizontal">
 
                         <Button
-                            android:id="@+id/userBtn"
+                            android:id="@+id/userListBtn"
                             style="?android:attr/borderlessButtonStyle"
                             android:layout_width="237dp"
                             android:layout_height="60dp"
                             android:fontFamily="casual"
                             android:gravity="start"
-                            android:text="Add User"
+                            android:text="View Users"
+                            android:textColor="@color/mainText"
+                            android:textStyle="bold"
+                            app:backgroundTint="#00FFFFFF" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/navBtnSettings"
+                            style="?android:attr/borderlessButtonStyle"
+                            android:layout_width="match_parent"
+                            android:layout_height="58dp"
+                            android:layout_marginTop="0dp"
+                            android:layout_marginBottom="0dp"
+                            android:fontFamily="casual"
+                            android:gravity="start"
+                            android:text="Settings"
                             android:textColor="@color/mainText"
                             android:textStyle="bold"
                             app:backgroundTint="#00FFFFFF" />
@@ -363,13 +384,13 @@
                         android:orientation="horizontal">
 
                         <Button
-                            android:id="@+id/userListBtn"
+                            android:id="@+id/userBtn"
                             style="?android:attr/borderlessButtonStyle"
                             android:layout_width="237dp"
                             android:layout_height="60dp"
                             android:fontFamily="casual"
                             android:gravity="start"
-                            android:text="View Users"
+                            android:text="Add User"
                             android:textColor="@color/mainText"
                             android:textStyle="bold"
                             app:backgroundTint="#00FFFFFF" />
@@ -413,26 +434,6 @@
                             android:fontFamily="casual"
                             android:gravity="start"
                             android:text="Edit Data"
-                            android:textColor="@color/mainText"
-                            android:textStyle="bold"
-                            app:backgroundTint="#00FFFFFF" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="60dp"
-                        android:orientation="horizontal">
-
-                        <Button
-                            android:id="@+id/navBtnSettings"
-                            style="?android:attr/borderlessButtonStyle"
-                            android:layout_width="match_parent"
-                            android:layout_height="58dp"
-                            android:layout_marginTop="0dp"
-                            android:layout_marginBottom="0dp"
-                            android:fontFamily="casual"
-                            android:gravity="start"
-                            android:text="Settings"
                             android:textColor="@color/mainText"
                             android:textStyle="bold"
                             app:backgroundTint="#00FFFFFF" />
