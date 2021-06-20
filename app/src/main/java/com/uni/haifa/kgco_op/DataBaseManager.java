@@ -173,6 +173,24 @@ public class DataBaseManager {
         return result;
     }
 
+    public void removeAllParents() {
+        if(db!=null){
+            db.deleteAllParents();
+        }
+    }
+
+    public void removeAllChildren() {
+        if(db!=null){
+            db.deleteAllChildren();
+        }
+    }
+
+    public void removeAllSchedules() {
+        if(db!=null){
+            db.deleteAllSchedules();
+        }
+    }
+
     public Schedule getSelectedSchedule() {
         return selectedSchedule;
     }

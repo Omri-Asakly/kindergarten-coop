@@ -1,5 +1,6 @@
 package com.uni.haifa.kgco_op;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -8,7 +9,6 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,6 +23,7 @@ import java.util.List;
 
 public class FixSchedule extends AppCompatActivity {
     private List<Parent> parents;
+    private Context context;
     private HashMap<Integer, String> namesMap;
     private List<String> names;
     private ImageButton morningImg;
@@ -45,6 +46,7 @@ public class FixSchedule extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         DataBaseManager.getInstance().openDataBase(this);
         setContentView(R.layout.activity_fix_schedule);
+        context = this;
         ActionBar ab=getSupportActionBar();
         ab.setTitle("Add Shift");
         ab.setDisplayHomeAsUpEnabled(true);
@@ -52,10 +54,13 @@ public class FixSchedule extends AppCompatActivity {
         morningImg = (ImageButton) findViewById(R.id.morningImg);
         eveningImg = (ImageButton) findViewById(R.id.eveningImg);
 
+
+
         String value = b.getString("date");
         TextView dateTxt = findViewById(R.id.dateTxt);
         dateTxt.setText("Drivers for date " + value);
         parents = DataBaseManager.getInstance().getAllParents();
+
         autoFill();
         morningImg.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,6 +82,7 @@ public class FixSchedule extends AppCompatActivity {
         addScheduleBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // validate user before fixing for schedule
                 boolean flag  = (isUser(parents, morningTxt.getText().toString()) && isUser(parents, eveningTxt.getText().toString()));
                 if(flag){
                     Intent intent = new Intent(FixSchedule.this, AddChildrenToTrip.class);
@@ -87,7 +93,7 @@ public class FixSchedule extends AppCompatActivity {
                 }
             }
         });
-        
+        // adapter to display the available users
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_dropdown_item_1line, names.toArray(new String[names.size()]));
         adapter.notifyDataSetChanged();
@@ -98,8 +104,9 @@ public class FixSchedule extends AppCompatActivity {
         eveningTxt = (AutoCompleteTextView)
                 findViewById(R.id.eveningTxt);
         eveningTxt.setAdapter(adapter);
-    }
 
+    }
+    // complete field with input
     private void autoFill() {
         namesMap = new HashMap<>();
         names = new ArrayList<String>();
@@ -109,6 +116,7 @@ public class FixSchedule extends AppCompatActivity {
         }
     }
 
+    // a popup window that gives a list of the users, to select from and autofill the field
     private void selectParentDialog(){
         dialogBuilder = new AlertDialog.Builder(this);
         final View parentPopupView = getLayoutInflater().inflate(R.layout.popup, null);
@@ -142,6 +150,7 @@ public class FixSchedule extends AppCompatActivity {
         dialog.show();;
     }
 
+    // validate if a user
     private boolean isUser(List<Parent> list, String parent){
         for(Parent p : list){
             if(p.getUserName().equals(parent))

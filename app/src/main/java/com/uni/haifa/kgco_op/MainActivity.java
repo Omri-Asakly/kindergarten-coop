@@ -8,8 +8,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -42,14 +46,22 @@ public class MainActivity extends AppCompatActivity {
                     Intent intent = new Intent(MainActivity.this, MainPage.class);
                     startActivity(intent);
                 } else {
-                    for (Parent p : parents) {
-                        if (p.getEmail().equals(email) && p.getPassword().equals(password)) {
-                            flag = false;
-                            Toast.makeText(getApplicationContext(), "Welcome "+p.getUserName(), Toast.LENGTH_LONG).show();
-                            Intent intent = new Intent(MainActivity.this, MainPage.class);
-                            startActivity(intent);
+                    // validate user using firebase
+                    mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+                                FirebaseUser user = mAuth.getCurrentUser();
+                                updateUI(user);
+                            } else {
+                                Toast.makeText(MainActivity.this, task.getException().toString(),
+                                        Toast.LENGTH_SHORT).show();
+
+                            }
+
                         }
-                    }
+                    });
+
                     if(flag)
                         Toast.makeText(getApplicationContext(), "Please check the email and password again", Toast.LENGTH_LONG).show();
                 }

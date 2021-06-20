@@ -37,8 +37,7 @@ public class ChildrenRegister extends AppCompatActivity {
                         .make(v, "Children Inserted", Snackbar.LENGTH_SHORT).setAction("Show", new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
-//                                Snackbar snackbar1 = Snackbar.make(v, "Message is restored!", Snackbar.LENGTH_SHORT);
-//                                snackbar1.show();
+
                                 Intent intent = new Intent(ChildrenRegister.this, MainPage.class);
                                 startActivity(intent);
                             }

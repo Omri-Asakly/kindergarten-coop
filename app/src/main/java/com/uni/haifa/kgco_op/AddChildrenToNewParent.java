@@ -58,6 +58,7 @@ public class AddChildrenToNewParent extends AppCompatActivity {
                 });
             }
         });
+        //get current parent for children
         Parent parent = null;
         List<Parent> parents = DataBaseManager.getInstance().getAllParents();
         for (Parent p : parents) {
@@ -80,7 +81,7 @@ public class AddChildrenToNewParent extends AppCompatActivity {
             }
         });
     }
-
+    //create the children
     private void collectNames(int value) {
         String input = textInputLayout.getEditText().getText().toString();
         input = input.replaceAll("\\s", "");

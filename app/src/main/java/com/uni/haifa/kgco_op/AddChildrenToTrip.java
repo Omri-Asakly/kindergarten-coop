@@ -95,7 +95,7 @@ public class AddChildrenToTrip extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
+        //adapter to display the children's names in autofill/sleect
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_dropdown_item_1line, names.toArray(new String[names.size()]));
         adapter.notifyDataSetChanged();
@@ -167,7 +167,7 @@ public class AddChildrenToTrip extends AppCompatActivity {
                  && isUser(children, firstTxtE.getText().toString())
                  && isUser(children, secondTxtE.getText().toString())
                  && isUser(children, thirdTxtE.getText().toString()));
-
+                //gather data from fields and create the schedule
                 if(flag){
                     morning = firstTxtM.getText().toString() + ", " + secondTxtM.getText().toString() + ", " + thirdTxtM.getText().toString();
                     evening = firstTxtE.getText().toString() + ", " + secondTxtE.getText().toString() + ", " + thirdTxtE.getText().toString();
@@ -188,6 +188,8 @@ public class AddChildrenToTrip extends AppCompatActivity {
     }
 
     private void selectParentDialog() {
+        // choose image for field to get popup window
+        // use it to select/autofill a parent
         dialogBuilder = new AlertDialog.Builder(this);
         final View parentPopupView = getLayoutInflater().inflate(R.layout.popup, null);
         listView = (ListView) parentPopupView.findViewById(R.id.parentsView);
@@ -236,7 +238,7 @@ public class AddChildrenToTrip extends AppCompatActivity {
             names.add(c.getName());
         }
     }
-
+    //validate user
     private boolean isUser(List<Child> list, String child){
         for(Child c : list){
             if(c.getName().equals(child))

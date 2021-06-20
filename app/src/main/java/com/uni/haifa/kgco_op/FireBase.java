@@ -13,6 +13,12 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
+
 public class FireBase {
     private Context context;
     private static FireBase instance = null;
@@ -31,16 +37,14 @@ public class FireBase {
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        Toast.makeText(context, "DocumentSnapshot successfully written!",
-                                Toast.LENGTH_LONG).show();
-                        //todo
+//                        Toast.makeText(context, "DocumentSnapshot successfully written!",
+//                                Toast.LENGTH_LONG).show();
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         Toast.makeText(context, "Error adding document" + e, Toast.LENGTH_LONG).show();
-                        //todo
                     }
                 });
     }
@@ -64,8 +68,12 @@ public class FireBase {
     }
 
     public void createSchedule(Schedule s) {
+        List<String> m = Arrays.asList(s.getMorningKids());
+        List<String> e = Arrays.asList(s.getEveningKids());
+        Schedule schedule = new Schedule(s.getId(), s.getMorning(), s.getEvening(), s.getDate(), m, e);
+        System.out.println("scheduleeeee"    +    schedule);
         db.collection("Schedules")
-                .document(Integer.toString(s.getId())).set(s)
+                .document(Integer.toString(s.getId())).set(schedule)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
@@ -81,54 +89,81 @@ public class FireBase {
         });
     }
 
-    public void getAllParents() {
+    public List<Parent> getAllParents() {
+        List<Parent> parentList = new ArrayList<>();
         Task<QuerySnapshot> parents = db.collection("Parents").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if (task.isSuccessful()) {
                     for (QueryDocumentSnapshot document : task.getResult()) {
                         //return Array
-                        //Map<String, Object> user = document.getData();
-                        //String name = (String) person.get("email);
-                        document.getData();
+                        Map<String, Object> user = document.getData();
+                        int id = (Integer) user.get("id");
+                        String email = (String) user.get("email");
+                        String name = (String) user.get("userName");
+                        String password = (String) user.get("password");
+                        Date date = (Date) user.get("licenseDate");
+                        Parent p = new Parent(id, name, email, password, date);
+                        parentList.add(p);
                     }
                 } else {
                     //todo error message
                 }
             }
         });
+        return parentList;
     }
 
-    public void getAllChildren() {
-        Task<QuerySnapshot> parents = db.collection("Children").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+    public List<Child> getAllChildren() {
+        List<Child> childrenList = new ArrayList<>();
+
+        Task<QuerySnapshot> children = db.collection("Children").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if (task.isSuccessful()) {
                     for (QueryDocumentSnapshot document : task.getResult()) {
-                        //return Array
-                        document.getData();
+                        Map<String, Object> user = document.getData();
+                        int id = (Integer) user.get("id");
+                        int parentID = (Integer) user.get("parentId");
+                        String name = (String) user.get("name");
+                        Child c = new Child(id, parentID, name);
+                        childrenList.add(c);
                     }
                 } else {
                     //todo error message
                 }
             }
         });
+        return childrenList;
     }
 
-    public void getAllSchedules() {
-        Task<QuerySnapshot> parents = db.collection("Schedules").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+    public List<Schedule> getAllSchedules() {
+        List<Schedule> scheduleList = new ArrayList<>();
+
+        Task<QuerySnapshot> schedules = db.collection("Schedules").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if (task.isSuccessful()) {
                     for (QueryDocumentSnapshot document : task.getResult()) {
-                        //return Array
-                        document.getData();
+                        Map<String, Object> user = document.getData();
+                        int id = (Integer) user.get("id");
+                        String morning = (String) user.get("morning");
+                        String evening = (String) user.get("evening");
+                        Date date = (Date) user.get("date");
+                        List<String> morningKidsList = (List<String>) user.get("morningKids");
+                        String[] morningKids = morningKidsList.toArray(new String[morningKidsList.size()]);
+                        List<String> eveningKidsList = (List<String>) user.get("eveningKids");
+                        String[] eveningKids = eveningKidsList.toArray(new String[eveningKidsList.size()]);
+
+                        Schedule s = new Schedule(id, morning, evening, date, morningKids, eveningKids);
+                        scheduleList.add(s);
                     }
                 } else {
                     //todo error message
                 }
             }
         });
+        return scheduleList;
     }
 
 
@@ -170,9 +205,12 @@ public class FireBase {
         });
     }
 
-    public void setSchedule(Schedule s){
+    public void setSchedule(Schedule s) {
+        List<String> m = Arrays.asList(s.getMorningKids());
+        List<String> e = Arrays.asList(s.getEveningKids());
+        Schedule schedule = new Schedule(s.getId(), s.getMorning(), s.getEvening(), s.getDate(), m, e);
         db.collection("Schedules")
-                .document(Integer.toString(s.getId())).set(s)
+                .document(Integer.toString(s.getId())).set(schedule)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {

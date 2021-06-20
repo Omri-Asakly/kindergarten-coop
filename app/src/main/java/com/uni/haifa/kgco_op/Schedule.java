@@ -4,6 +4,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 public class Schedule {
     int id;
@@ -12,6 +13,8 @@ public class Schedule {
     Date date;
     String[] morningKids;
     String[] eveningKids;
+    List<String> morningKidsList;
+    List<String> eveningKidsList;
 
     public Schedule(String morning, String evening, Date date) {
         this.morning = morning;
@@ -23,6 +26,15 @@ public class Schedule {
 
     }
 
+    public Schedule(int id, String morning, String evening, Date date, List<String> morningKidsList, List<String> eveningKidsList) {
+        this.id = id;
+        this.morning = morning;
+        this.evening = evening;
+        this.date = date;
+        this.morningKidsList = morningKidsList;
+        this.eveningKidsList = eveningKidsList;
+    }
+
 
     public Schedule(String morning, String evening, String date, String morningKids, String eveningKids) throws ParseException {
         this.date = stringToDate(date);
@@ -30,6 +42,15 @@ public class Schedule {
         this.evening = evening;
         this.morningKids = stringToArray(morningKids);
         this.eveningKids = stringToArray(eveningKids);
+    }
+
+    public Schedule(int id, String morning, String evening, Date date, String[] morningKids, String[] eveningKids) {
+        this.id = id;
+        this.morning = morning;
+        this.evening = evening;
+        this.date = date;
+        this.morningKids = morningKids;
+        this.eveningKids = eveningKids;
     }
 
     public int getId() {
@@ -70,16 +91,29 @@ public class Schedule {
 
     public String getMorningKidsString() {
         String str = "";
-        for(String s : morningKids){
-            str += s +", ";
+        if (morningKids != null) {
+            for (String s : morningKids) {
+                str += s + ", ";
+            }
+        } else {
+            for (String s : morningKidsList) {
+                str += s + ", ";
+            }
         }
         return str;
     }
 
+
     public String getEveningKidsString() {
         String str = "";
-        for(String s : eveningKids){
-            str += s +", ";
+        if (eveningKids != null) {
+            for (String s : eveningKids) {
+                str += s + ", ";
+            }
+        } else {
+            for (String s : eveningKidsList) {
+                str += s + ", ";
+            }
         }
         return str;
     }
@@ -118,7 +152,7 @@ public class Schedule {
         return date;
     }
 
-    public static Date getTomorrow(){
+    public static Date getTomorrow() {
         Calendar calendar = Calendar.getInstance();
         Date today = calendar.getTime();
         calendar.add(Calendar.DAY_OF_YEAR, 1);
@@ -126,7 +160,7 @@ public class Schedule {
         return tomorrow;
     }
 
-    private String[] stringToArray(String str){
+    private String[] stringToArray(String str) {
         str = str.replaceAll("\\s", "");
         String[] array = str.split(",");
         return array;

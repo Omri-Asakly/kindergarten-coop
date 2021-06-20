@@ -2,7 +2,6 @@ package com.uni.haifa.kgco_op;
 
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -12,15 +11,20 @@ import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.AppCompatDelegate;
-import androidx.core.content.ContextCompat;
 
-import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -47,11 +51,12 @@ public class weeklySchedule extends AppCompatActivity {
         ab.setTitle("Weekly Schedule");
         ab.setDisplayHomeAsUpEnabled(true);
 
-
         morningTxt = findViewById(R.id.editTextTextPersonName);
         eveningTxt = findViewById(R.id.editTextTextPersonName3);
         editNames();
         ImageView btnInfo = findViewById(R.id.infoMorning);
+        //display the schedule by selecting a date
+
         btnInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -94,6 +99,37 @@ public class weeklySchedule extends AppCompatActivity {
                 Intent intent = new Intent(weeklySchedule.this, FixSchedule.class);
                 intent.putExtra("date", castDate);
                 startActivity(intent);
+            }
+        });
+
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        CollectionReference collRef = db.collection("Schedules");
+
+        collRef.addSnapshotListener(new EventListener<QuerySnapshot>() {
+            @Override
+            public void onEvent(@Nullable QuerySnapshot snapshot, @Nullable FirebaseFirestoreException e) {
+                if (e != null) {
+                    Toast.makeText(weeklySchedule.this, "Listen failed."+ e,
+                            Toast.LENGTH_LONG).show();
+                    return;
+                }
+
+                if (snapshot != null && !snapshot.isEmpty()) {
+                    Toast.makeText(weeklySchedule.this, "New data available",
+                            Toast.LENGTH_LONG).show();
+
+                    DataBaseManager.getInstance().removeAllSchedules();
+                    for (DocumentSnapshot document : snapshot.getDocuments() ){
+                        Schedule schedule = document.toObject(Schedule.class);
+                        DataBaseManager.getInstance().createSchedule(schedule);
+
+                    }
+                    scheduleList = DataBaseManager.getInstance().getAllSchedules();
+                } else {
+                    Toast.makeText(weeklySchedule.this, "Current data: null",
+                            Toast.LENGTH_LONG).show();
+
+                }
             }
         });
     }
