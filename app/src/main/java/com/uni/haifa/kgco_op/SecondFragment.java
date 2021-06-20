@@ -49,18 +49,23 @@ public class SecondFragment extends Fragment {
         EditText en = (EditText) view.findViewById(R.id.accountEmail);
         EditText ln = (EditText) view.findViewById(R.id.accountLicense);
         Parent user=null;
-        for(Parent p : parents)
-            if(p.getEmail().equals(currentUser.getEmail())) {
-                user = p;
+        if(currentUser!=null) {
+            for (Parent p : parents)
+                if (p.getEmail().equals(currentUser.getEmail())) {
+                    user = p;
 
+                }
+
+            if (user != null) {
+                un.setText(user.getUserName());
+                en.setText(user.getEmail());
+                ln.setText(user.getLicenseDate().toString());
             }
-
-        if(user!=null) {
-            un.setText(user.getUserName());
-            en.setText(user.getEmail());
-            ln.setText(user.getLicenseDate().toString());
+        }else{
+            un.setText("ADMIN");
+            en.setText("ADMIN@ADMIN.COM");
+            ln.setText("12-12-2100");
         }
-
 
         Button logout=view.findViewById(R.id.btnOut);
         logout.setOnClickListener(new View.OnClickListener() {
