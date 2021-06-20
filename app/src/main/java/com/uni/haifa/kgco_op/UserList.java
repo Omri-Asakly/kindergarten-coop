@@ -105,37 +105,37 @@ public class UserList extends AppCompatActivity {
 
         collRef = db.collection("Children");
 
-        collRef.addSnapshotListener(new EventListener<QuerySnapshot>() {
-            @Override
-            public void onEvent(@Nullable QuerySnapshot snapshot, @Nullable FirebaseFirestoreException e) {
-                if (e != null) {
-                    Toast.makeText(context, "Listen failed."+ e,
-                            Toast.LENGTH_LONG).show();
-                    return;
-                }
-
-                if (snapshot != null && !snapshot.isEmpty()) {
-                    Toast.makeText(context, "New data available",
-                            Toast.LENGTH_LONG).show();
-
-                    DataBaseManager.getInstance().removeAllChildren();
-                    for (DocumentSnapshot document : snapshot.getDocuments() ){
-                        Child child = document.toObject(Child.class);
-                        DataBaseManager.getInstance().createChild(child);
-
-                    }
-
-                    List<Child> parentsList = DataBaseManager.getInstance().getAllChildren();
-                    childrenAdapter = new ChildrenAdapter(UserList.this, parentsList);
-                    info.setAdapter(childrenAdapter);
-
-                } else {
-                    Toast.makeText(context, "Current data: null",
-                            Toast.LENGTH_LONG).show();
-
-                }
-            }
-        });
+//        collRef.addSnapshotListener(new EventListener<QuerySnapshot>() {
+//            @Override
+//            public void onEvent(@Nullable QuerySnapshot snapshot, @Nullable FirebaseFirestoreException e) {
+//                if (e != null) {
+//                    Toast.makeText(context, "Listen failed."+ e,
+//                            Toast.LENGTH_LONG).show();
+//                    return;
+//                }
+//
+//                if (snapshot != null && !snapshot.isEmpty()) {
+//                    Toast.makeText(context, "New data available",
+//                            Toast.LENGTH_LONG).show();
+//
+//                    DataBaseManager.getInstance().removeAllChildren();
+//                    for (DocumentSnapshot document : snapshot.getDocuments() ){
+//                        Child child = document.toObject(Child.class);
+//                        DataBaseManager.getInstance().createChild(child);
+//
+//                    }
+//
+//                    List<Child> childrenList = DataBaseManager.getInstance().getAllChildren();
+//                    childrenAdapter = new ChildrenAdapter(UserList.this, childrenList);
+//                    info.setAdapter(childrenAdapter);
+//
+//                } else {
+//                    Toast.makeText(context, "Current data: null",
+//                            Toast.LENGTH_LONG).show();
+//
+//                }
+//            }
+//        });
     }
     @Override
     protected void onResume() {

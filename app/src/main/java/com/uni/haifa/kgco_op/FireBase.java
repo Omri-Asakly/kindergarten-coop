@@ -1,7 +1,6 @@
 package com.uni.haifa.kgco_op;
 
 import android.content.Context;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
@@ -37,14 +36,13 @@ public class FireBase {
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        Toast.makeText(context, "DocumentSnapshot successfully written!",
-                                Toast.LENGTH_LONG).show();
+
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(context, "Error adding document" + e, Toast.LENGTH_LONG).show();
+
                     }
                 });
     }
@@ -55,8 +53,7 @@ public class FireBase {
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        Toast.makeText(context, "DocumentSnapshot successfully written!",
-                                Toast.LENGTH_LONG).show();
+
                         //TODO
                     }
                 }).addOnFailureListener(new OnFailureListener() {
@@ -77,8 +74,7 @@ public class FireBase {
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        Toast.makeText(context, "DocumentSnapshot successfully written!",
-                                Toast.LENGTH_LONG).show();
+
                         //TODO
                     }
                 }).addOnFailureListener(new OnFailureListener() {
@@ -173,15 +169,13 @@ public class FireBase {
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        Toast.makeText(context, "DocumentSnapshot successfully written!",
-                                Toast.LENGTH_LONG).show();
+
                         //todo
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(context, "Error adding document" + e, Toast.LENGTH_LONG).show();
                         //todo
                     }
                 });
@@ -193,8 +187,7 @@ public class FireBase {
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        Toast.makeText(context, "DocumentSnapshot successfully written!",
-                                Toast.LENGTH_LONG).show();
+
                         //TODO
                     }
                 }).addOnFailureListener(new OnFailureListener() {
@@ -214,8 +207,7 @@ public class FireBase {
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        Toast.makeText(context, "DocumentSnapshot successfully written!",
-                                Toast.LENGTH_LONG).show();
+
                         //TODO
                     }
                 }).addOnFailureListener(new OnFailureListener() {
@@ -233,15 +225,13 @@ public class FireBase {
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        Toast.makeText(context, "DocumentSnapshot successfully deleted!",
-                                Toast.LENGTH_LONG).show();
+
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(context, "Error deleting document" + e,
-                                Toast.LENGTH_LONG).show();
+
                     }
                 });
     }
@@ -253,15 +243,13 @@ public class FireBase {
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        Toast.makeText(context, "DocumentSnapshot successfully deleted!",
-                                Toast.LENGTH_LONG).show();
+
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(context, "Error deleting document" + e,
-                                Toast.LENGTH_LONG).show();
+
                     }
                 });
     }
@@ -273,15 +261,13 @@ public class FireBase {
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        Toast.makeText(context, "DocumentSnapshot successfully deleted!",
-                                Toast.LENGTH_LONG).show();
+
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(context, "Error deleting document" + e,
-                                Toast.LENGTH_LONG).show();
+
                     }
                 });
     }

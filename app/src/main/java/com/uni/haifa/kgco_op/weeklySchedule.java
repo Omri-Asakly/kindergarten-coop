@@ -47,7 +47,7 @@ public class weeklySchedule extends AppCompatActivity {
         castDate = dateFormat.format(selectedDate);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_weekly_schedule);
-        ActionBar ab=getSupportActionBar();
+        ActionBar ab = getSupportActionBar();
         ab.setTitle("Weekly Schedule");
         ab.setDisplayHomeAsUpEnabled(true);
 
@@ -84,7 +84,7 @@ public class weeklySchedule extends AppCompatActivity {
                                             int dayOfMonth) {
                 selectedDate.setMonth(month);
                 selectedDate.setDate(dayOfMonth);
-                selectedDate.setYear(year-1900);
+                selectedDate.setYear(year - 1900);
 
                 castDate = dateFormat.format(selectedDate);
                 editNames();
@@ -109,7 +109,7 @@ public class weeklySchedule extends AppCompatActivity {
             @Override
             public void onEvent(@Nullable QuerySnapshot snapshot, @Nullable FirebaseFirestoreException e) {
                 if (e != null) {
-                    Toast.makeText(weeklySchedule.this, "Listen failed."+ e,
+                    Toast.makeText(weeklySchedule.this, "Listen failed." + e,
                             Toast.LENGTH_LONG).show();
                     return;
                 }
@@ -119,9 +119,15 @@ public class weeklySchedule extends AppCompatActivity {
                             Toast.LENGTH_LONG).show();
 
                     DataBaseManager.getInstance().removeAllSchedules();
-                    for (DocumentSnapshot document : snapshot.getDocuments() ){
-                        Schedule schedule = document.toObject(Schedule.class);
-                        DataBaseManager.getInstance().createSchedule(schedule);
+                    for (DocumentSnapshot document : snapshot.getDocuments()) {
+                        System.out.println(document);
+                        // todo check wtf is wrong here
+                        try {
+                            Schedule schedule = document.toObject(Schedule.class);
+                            DataBaseManager.getInstance().createSchedule(schedule);
+                        } catch (Exception s) {
+                            e.printStackTrace();
+                        }
 
                     }
                     scheduleList = DataBaseManager.getInstance().getAllSchedules();
@@ -134,9 +140,9 @@ public class weeklySchedule extends AppCompatActivity {
         });
     }
 
-    private void editNames(){
-        for(Schedule s : scheduleList){
-            if(s.compare(selectedDate)){
+    private void editNames() {
+        for (Schedule s : scheduleList) {
+            if (s.compare(selectedDate)) {
                 morningTxt.setText(s.getMorning());
                 eveningTxt.setText(s.getEvening());
                 return;
@@ -148,14 +154,14 @@ public class weeklySchedule extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater= getMenuInflater();
-        inflater.inflate(R.menu.main_menu,menu);
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main_menu, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.btnLogout:
                 new AlertDialog.Builder(this)
                         .setTitle("Logout?")
@@ -170,7 +176,7 @@ public class weeklySchedule extends AppCompatActivity {
                                     }
                                 }).create().show();
                 return true;
-            case R.id.btnSetting :
+            case R.id.btnSetting:
                 Intent intent2 = new Intent(weeklySchedule.this, SettingsActivity.class);
                 startActivity(intent2);
                 return true;

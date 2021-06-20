@@ -520,8 +520,6 @@ public class DataBase extends SQLiteOpenHelper {
 
     public void deleteAllParents() {
         try {
-
-            // delete all
             db.delete(TABLE_PARENT_NAME, null, null);
         } catch (Throwable t) {
             t.printStackTrace();
@@ -530,8 +528,6 @@ public class DataBase extends SQLiteOpenHelper {
 
     public void deleteAllChildren() {
         try {
-
-            // delete all
             db.delete(TABLE_CHILD_NAME, null, null);
         } catch (Throwable t) {
             t.printStackTrace();
@@ -540,8 +536,6 @@ public class DataBase extends SQLiteOpenHelper {
 
     public void deleteAllSchedules() {
         try {
-
-            // delete all
             db.delete(TABLE_SCHEDULE_NAME, null, null);
         } catch (Throwable t) {
             t.printStackTrace();

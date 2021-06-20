@@ -2,6 +2,7 @@ package com.uni.haifa.kgco_op;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -26,6 +27,30 @@ public class Schedule {
 
     }
 
+    public void setMorningKids(String[] morningKids) {
+        this.morningKids = morningKids;
+    }
+
+    public void setEveningKids(String[] eveningKids) {
+        this.eveningKids = eveningKids;
+    }
+
+    public List<String> getMorningKidsList() {
+        return morningKidsList;
+    }
+
+    public void setMorningKidsList(List<String> morningKidsList) {
+        this.morningKidsList = morningKidsList;
+    }
+
+    public List<String> getEveningKidsList() {
+        return eveningKidsList;
+    }
+
+    public void setEveningKidsList(List<String> eveningKidsList) {
+        this.eveningKidsList = eveningKidsList;
+    }
+
     public Schedule(int id, String morning, String evening, Date date, List<String> morningKidsList, List<String> eveningKidsList) {
         this.id = id;
         this.morning = morning;
@@ -33,6 +58,8 @@ public class Schedule {
         this.date = date;
         this.morningKidsList = morningKidsList;
         this.eveningKidsList = eveningKidsList;
+        this.eveningKids = new ArrayList<String>().toArray(new String[0]);
+        this.morningKids = new ArrayList<String>().toArray(new String[0]);
     }
 
 
