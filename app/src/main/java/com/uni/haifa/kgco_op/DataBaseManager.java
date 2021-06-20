@@ -11,7 +11,7 @@ public class DataBaseManager {
     private DataBase db = null;
     private Parent selectedParent = null;
     private Child selectedChild = null;
-    private  Schedule selectedSchedule = null;
+    private Schedule selectedSchedule = null;
 
 
     public static DataBaseManager getInstance() {
@@ -54,20 +54,25 @@ public class DataBaseManager {
     public void createParent(Parent p) {
         if (db != null) {
             db.createParent(p);
-            FireBase.getInstance().createParent(p);
+            p.setId(db.getAllParents().size()+1);
         }
+        FireBase.getInstance().createParent(p);
     }
 
     public void createChild(Child c) {
         if (db != null) {
+            c.setId(db.getAllChildren().size()+1);
             db.createChild(c);
         }
+        FireBase.getInstance().createChild(c);
     }
 
     public void createSchedule(Schedule s) {
         if (db != null) {
+            s.setId(db.getAllSchedules().size()+1);
             db.createSchedule(s);
         }
+        FireBase.getInstance().createSchedule(s);
     }
 
     public Parent readParent(int id) {
@@ -122,36 +127,42 @@ public class DataBaseManager {
         if (db != null && p != null) {
             db.updateParent(p);
         }
+        FireBase.getInstance().setParent(p);
     }
 
     public void updateSchedule(Schedule s) {
         if (db != null && s != null) {
             db.updateSchedule(s);
         }
+        FireBase.getInstance().setSchedule(s);
     }
 
     public void updateChild(Child c) {
         if (db != null && c != null) {
             db.updateChild(c);
         }
+        FireBase.getInstance().setChild(c);
     }
 
     public void deleteParent(Parent p) {
         if (db != null) {
             db.deleteParent(p);
         }
+        FireBase.getInstance().deleteParent(p);
     }
 
     public void deleteSchedule(Schedule s) {
         if (db != null) {
             db.deleteSchedule(s);
         }
+        FireBase.getInstance().deleteSchedule(s);
     }
 
     public void deleteChild(Child c) {
         if (db != null) {
             db.deleteChild(c);
         }
+        FireBase.getInstance().deleteChild(c);
     }
 
     public List<Child> getAllChildren(Child c) {

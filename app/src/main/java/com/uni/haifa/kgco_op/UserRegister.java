@@ -78,7 +78,7 @@ public class UserRegister extends AppCompatActivity {
                                 Snackbar snackbar = Snackbar
                                         .make(v, "Parent Added", Snackbar.LENGTH_LONG);
                                 snackbar.show();
-                                Intent intent = new Intent(UserRegister.this, AddChildrenToNewParent.class);
+                                Intent intent = new Intent(UserRegister.this, ChildrenRegister.class);
                                 intent.putExtra("userID", parents.get(parents.size() - 1).getId());
                                 startActivity(intent);
                             } else {

@@ -9,13 +9,9 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-
-import java.util.HashMap;
-import java.util.Map;
 
 public class FireBase {
     private Context context;
@@ -30,35 +26,36 @@ public class FireBase {
     }
 
     public void createParent(Parent p) {
-        Map<String, Object> person = new HashMap<>();
-        person.put("userName", p.getUserName());
-        person.put("email", p.getEmail());
-        person.put("password", p.getPassword());
-        person.put("licenseDate", p.getLicenseDate());
-        Task<DocumentReference> documentReferenceTask = db.collection("Parents").add(person).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-            @Override
-            public void onSuccess(DocumentReference documentReference) {
-                //TODO
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                //TODO
-            }
-        });
+        db.collection("People")
+                .document(p.getEmail()).set(p)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Toast.makeText(context, "DocumentSnapshot successfully written!",
+                                Toast.LENGTH_LONG).show();
+                        //todo
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(context, "Error adding document" + e, Toast.LENGTH_LONG).show();
+                        //todo
+                    }
+                });
     }
 
     public void createChild(Child c) {
-        Map<String, Object> child = new HashMap<>();
-        child.put("Name", c.getName());
-        child.put("parentID", c.getParentId());
-
-        Task<DocumentReference> documentReferenceTask = db.collection("Children").add(child).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-            @Override
-            public void onSuccess(DocumentReference documentReference) {
-                //TODO
-            }
-        }).addOnFailureListener(new OnFailureListener() {
+        db.collection("Children")
+                .document(Integer.toString(c.getId())).set(c)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Toast.makeText(context, "DocumentSnapshot successfully written!",
+                                Toast.LENGTH_LONG).show();
+                        //TODO
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
                 //TODO
@@ -67,18 +64,16 @@ public class FireBase {
     }
 
     public void createSchedule(Schedule s) {
-        Map<String, Object> schedule = new HashMap<>();
-        schedule.put("morning", s.getMorning());
-        schedule.put("evening", s.getEvening());
-        schedule.put("date", s.getDate());
-        schedule.put("morningKids", s.getEveningKids());
-        schedule.put("eveningKids", s.getEveningKids());
-        Task<DocumentReference> documentReferenceTask = db.collection("Schedules").add(schedule).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-            @Override
-            public void onSuccess(DocumentReference documentReference) {
-                //TODO
-            }
-        }).addOnFailureListener(new OnFailureListener() {
+        db.collection("Schedules")
+                .document(Integer.toString(s.getId())).set(s)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Toast.makeText(context, "DocumentSnapshot successfully written!",
+                                Toast.LENGTH_LONG).show();
+                        //TODO
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
                 //TODO
@@ -136,25 +131,119 @@ public class FireBase {
         });
     }
 
-    public void getParent(Parent p) {
-        Task<QuerySnapshot> users = db.collection("Parents")
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+
+    public void setParent(Parent p) {
+        db.collection("People")
+                .document(p.getEmail()).set(p)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                Toast.makeText(context, document.getId() + " => "
-                                        + document.getData(), Toast.LENGTH_LONG).show();
-                                Map<String, Object> user = document.getData();
-                                String name = (String) user.get("first");
-                                Number b = (Number) user.get("born");
-                                System.out.println(b);
-                            }
-                        } else {
-                            Toast.makeText(context, "Error getting documents."
-                                    + task.getException(), Toast.LENGTH_LONG).show();
-                        }
+                    public void onSuccess(Void aVoid) {
+                        Toast.makeText(context, "DocumentSnapshot successfully written!",
+                                Toast.LENGTH_LONG).show();
+                        //todo
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(context, "Error adding document" + e, Toast.LENGTH_LONG).show();
+                        //todo
+                    }
+                });
+    }
+
+    public void setChild(Child c) {
+        db.collection("Children")
+                .document(Integer.toString(c.getId())).set(c)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Toast.makeText(context, "DocumentSnapshot successfully written!",
+                                Toast.LENGTH_LONG).show();
+                        //TODO
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                //TODO
+            }
+        });
+    }
+
+    public void setSchedule(Schedule s){
+        db.collection("Schedules")
+                .document(Integer.toString(s.getId())).set(s)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Toast.makeText(context, "DocumentSnapshot successfully written!",
+                                Toast.LENGTH_LONG).show();
+                        //TODO
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                //TODO
+            }
+        });
+    }
+
+    public void deleteParent(Parent p) {
+        db.collection("Parents")
+                .document(p.getEmail())
+                .delete()
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Toast.makeText(context, "DocumentSnapshot successfully deleted!",
+                                Toast.LENGTH_LONG).show();
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(context, "Error deleting document" + e,
+                                Toast.LENGTH_LONG).show();
+                    }
+                });
+    }
+
+    public void deleteChild(Child c) {
+        db.collection("Parents")
+                .document(Integer.toString(c.getId()))
+                .delete()
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Toast.makeText(context, "DocumentSnapshot successfully deleted!",
+                                Toast.LENGTH_LONG).show();
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(context, "Error deleting document" + e,
+                                Toast.LENGTH_LONG).show();
+                    }
+                });
+    }
+
+    public void deleteSchedule(Schedule s) {
+        db.collection("Parents")
+                .document(Integer.toString(s.getId()))
+                .delete()
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Toast.makeText(context, "DocumentSnapshot successfully deleted!",
+                                Toast.LENGTH_LONG).show();
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(context, "Error deleting document" + e,
+                                Toast.LENGTH_LONG).show();
                     }
                 });
     }
