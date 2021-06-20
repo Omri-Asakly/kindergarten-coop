@@ -12,13 +12,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.KGCoop">
-        <activity android:name=".ChildrenRegister"
+        <activity android:name=".SettingsActivity"
+            android:parentActivityName=".MainPage"
+            tools:ignore="ExtraText" />
+        <activity
+            android:name=".ChildrenRegister"
             android:parentActivityName=".UserRegister"
-            tools:ignore="ExtraText"
-            ></activity>
-        <activity android:name=".UserRegister"
+            tools:ignore="ExtraText" />
+        <activity
+            android:name=".UserRegister"
             android:parentActivityName=".MainActivity"
-            tools:ignore="ExtraText"  />
+            tools:ignore="ExtraText" />
         <activity
             android:name=".Settings"
             android:parentActivityName=".MainPage"

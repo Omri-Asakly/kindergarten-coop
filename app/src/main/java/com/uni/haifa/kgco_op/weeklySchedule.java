@@ -171,7 +171,7 @@ public class weeklySchedule extends AppCompatActivity {
                                 }).create().show();
                 return true;
             case R.id.btnSetting :
-                Intent intent2 = new Intent(weeklySchedule.this, Settings.class);
+                Intent intent2 = new Intent(weeklySchedule.this, SettingsActivity.class);
                 startActivity(intent2);
                 return true;
             case R.id.btnHome:
