@@ -8,17 +8,22 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -101,6 +106,64 @@ public class AddChildrenToTrip extends AppCompatActivity {
         thirdTxtE.setAdapter(adapter);
         thirdTxtM.setAdapter(adapter);
 
+        // update/sync data from fireStore
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        CollectionReference collRef = db.collection("People");
+
+        collRef.addSnapshotListener(new EventListener<QuerySnapshot>() {
+            @Override
+            public void onEvent(@Nullable QuerySnapshot snapshot, @Nullable FirebaseFirestoreException e) {
+                if (e != null) {
+                    Toast.makeText(AddChildrenToTrip.this, "Listen failed."+ e,
+                            Toast.LENGTH_LONG).show();
+                    return;
+                }
+
+                if (snapshot != null && !snapshot.isEmpty()) {
+                    DataBaseManager.getInstance().removeAllParents();
+                    for (DocumentSnapshot document : snapshot.getDocuments() ){
+                        Parent parent = document.toObject(Parent.class);
+                        DataBaseManager.getInstance().createParent(parent);
+
+                    }
+
+                } else {
+                    Toast.makeText(AddChildrenToTrip.this, "Current data: null",
+                            Toast.LENGTH_LONG).show();
+
+                }
+            }
+        });
+
+        FirebaseFirestore dbC = FirebaseFirestore.getInstance();
+        CollectionReference collRefC = dbC.collection("child");
+
+        collRefC.addSnapshotListener(new EventListener<QuerySnapshot>() {
+            @Override
+            public void onEvent(@Nullable QuerySnapshot snapshot, @Nullable FirebaseFirestoreException e) {
+                if (e != null) {
+                    Toast.makeText(AddChildrenToTrip.this, "Listen failed."+ e,
+                            Toast.LENGTH_LONG).show();
+                    return;
+                }
+
+                if (snapshot != null && !snapshot.isEmpty()) {
+                    DataBaseManager.getInstance().removeAllChildren();
+                    for (DocumentSnapshot document : snapshot.getDocuments() ){
+                        Child child = document.toObject(Child.class);
+                        DataBaseManager.getInstance().createChild(child);
+
+                    }
+
+
+                } else {
+                    Toast.makeText(AddChildrenToTrip.this, "Current data: null",
+                            Toast.LENGTH_LONG).show();
+
+                }
+            }
+        });
+
 
         firstImgM.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -153,8 +216,8 @@ public class AddChildrenToTrip extends AppCompatActivity {
         addScheduleBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String morning = "";
-                String evening = "";
+                List<String> morning = new ArrayList<>();
+                List<String> evening = new ArrayList<>();
                 boolean flag  = (isUser(children, firstTxtM.getText().toString())
                  && isUser(children, secondTxtM.getText().toString())
                  && isUser(children, thirdTxtM.getText().toString())
@@ -163,8 +226,12 @@ public class AddChildrenToTrip extends AppCompatActivity {
                  && isUser(children, thirdTxtE.getText().toString()));
                 //gather data from fields and create the schedule
                 if(flag){
-                    morning = firstTxtM.getText().toString() + ", " + secondTxtM.getText().toString() + ", " + thirdTxtM.getText().toString();
-                    evening = firstTxtE.getText().toString() + ", " + secondTxtE.getText().toString() + ", " + thirdTxtE.getText().toString();
+                    morning.add(firstTxtM.getText().toString());
+                    morning.add(secondTxtM.getText().toString());
+                    morning.add(thirdTxtM.getText().toString());
+                    evening.add(firstTxtE.getText().toString());
+                    evening.add(secondTxtE.getText().toString());
+                    evening.add(thirdTxtE.getText().toString());
                     try {
                         Schedule schedule = new Schedule(b.getString("morning"), b.getString("evening"), value, morning, evening);
                         DataBaseManager.getInstance().createSchedule(schedule);
@@ -175,7 +242,7 @@ public class AddChildrenToTrip extends AppCompatActivity {
                     Intent intent = new Intent(AddChildrenToTrip.this, weeklySchedule.class);
                     startActivity(intent);
                 } else{
-                    
+                    System.out.println("na");
                 }
             }
         });

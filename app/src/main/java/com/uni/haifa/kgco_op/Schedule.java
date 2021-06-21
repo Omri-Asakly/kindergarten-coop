@@ -2,7 +2,7 @@ package com.uni.haifa.kgco_op;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -12,8 +12,6 @@ public class Schedule {
     String morning;
     String evening;
     Date date;
-    String[] morningKids;
-    String[] eveningKids;
     List<String> morningKidsList;
     List<String> eveningKidsList;
 
@@ -27,13 +25,6 @@ public class Schedule {
 
     }
 
-    public void setMorningKids(String[] morningKids) {
-        this.morningKids = morningKids;
-    }
-
-    public void setEveningKids(String[] eveningKids) {
-        this.eveningKids = eveningKids;
-    }
 
     public List<String> getMorningKidsList() {
         return morningKidsList;
@@ -58,17 +49,15 @@ public class Schedule {
         this.date = date;
         this.morningKidsList = morningKidsList;
         this.eveningKidsList = eveningKidsList;
-        this.eveningKids = new ArrayList<String>().toArray(new String[0]);
-        this.morningKids = new ArrayList<String>().toArray(new String[0]);
     }
 
 
-    public Schedule(String morning, String evening, String date, String morningKids, String eveningKids) throws ParseException {
+    public Schedule(String morning, String evening, String date, List<String> morningKids, List<String> eveningKids) throws ParseException {
         this.date = stringToDate(date);
         this.morning = morning;
         this.evening = evening;
-        this.morningKids = stringToArray(morningKids);
-        this.eveningKids = stringToArray(eveningKids);
+        this.morningKidsList = morningKids;
+        this.eveningKidsList = eveningKids;
     }
 
     public Schedule(int id, String morning, String evening, Date date, String[] morningKids, String[] eveningKids) {
@@ -76,8 +65,8 @@ public class Schedule {
         this.morning = morning;
         this.evening = evening;
         this.date = date;
-        this.morningKids = morningKids;
-        this.eveningKids = eveningKids;
+        this.morningKidsList = Arrays.asList(morningKids);
+        this.eveningKidsList = Arrays.asList(eveningKids);
     }
 
     public int getId() {
@@ -112,14 +101,14 @@ public class Schedule {
         this.date = date;
     }
 
-    public String[] getMorningKids() {
-        return morningKids;
+    public List<String> getMorningKids() {
+        return morningKidsList;
     }
 
     public String getMorningKidsString() {
         String str = "";
-        if (morningKids != null) {
-            for (String s : morningKids) {
+        if (morningKidsList != null) {
+            for (String s : morningKidsList) {
                 str += s + ", ";
             }
         } else {
@@ -133,8 +122,8 @@ public class Schedule {
 
     public String getEveningKidsString() {
         String str = "";
-        if (eveningKids != null) {
-            for (String s : eveningKids) {
+        if (eveningKidsList != null) {
+            for (String s : eveningKidsList) {
                 str += s + ", ";
             }
         } else {
@@ -145,16 +134,16 @@ public class Schedule {
         return str;
     }
 
-    public void setMorningKids(String morningKids) {
-        this.morningKids = stringToArray(morningKids);
+    public void setMorningKids(List<String> morningKids) {
+        this.morningKidsList = morningKids;
     }
 
-    public String[] getEveningKids() {
-        return eveningKids;
+    public List<String> getEveningKids() {
+        return eveningKidsList;
     }
 
-    public void setEveningKids(String eveningKids) {
-        this.eveningKids = stringToArray(eveningKids);
+    public void setEveningKids(List<String> eveningKids) {
+        this.eveningKidsList = eveningKids;
     }
 
     @Override

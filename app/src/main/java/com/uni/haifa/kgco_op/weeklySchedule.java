@@ -121,7 +121,6 @@ public class weeklySchedule extends AppCompatActivity {
 
                     DataBaseManager.getInstance().removeAllSchedules();
                     for (DocumentSnapshot document : snapshot.getDocuments()) {
-                        System.out.println(document);
                         // todo check wtf is wrong here
                         try {
                             Schedule schedule = document.toObject(Schedule.class);

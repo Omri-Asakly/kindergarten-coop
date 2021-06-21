@@ -33,7 +33,6 @@ public class UserListAdapter extends ArrayAdapter<Parent> {
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = LayoutInflater.from(context);
         View rowView = inflater.inflate(R.layout.simplerow, null, false);
-
         TextView txtTitle = (TextView) rowView.findViewById(R.id.parent);
         TextView mail = (TextView) rowView.findViewById(R.id.textView);
         final Parent p = dataList.get(position);
