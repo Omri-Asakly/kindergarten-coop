@@ -1,20 +1,20 @@
 {
   "project_info": {
-    "project_number": "874256687584",
-    "project_id": "kindergarten-coop-e0c99",
-    "storage_bucket": "kindergarten-coop-e0c99.appspot.com"
+    "project_number": "185256378563",
+    "project_id": "kindergarten-coop",
+    "storage_bucket": "kindergarten-coop.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:874256687584:android:d8fe3a061b5736d8fccb85",
+        "mobilesdk_app_id": "1:185256378563:android:2a52d000a306e11502a276",
         "android_client_info": {
           "package_name": "com.uni.haifa.kgco_op"
         }
       },
       "oauth_client": [
         {
-          "client_id": "874256687584-j5s15k1sk8bpjj6ftu2jcl0sjpbu6ifc.apps.googleusercontent.com",
+          "client_id": "185256378563-3vb4r3cuqd1t8rtrgvhofnooevjaotoh.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.uni.haifa.kgco_op",
@@ -22,20 +22,20 @@
           }
         },
         {
-          "client_id": "874256687584-fjg44m2sk5ad3j5iaqvf4cnvhog0edgb.apps.googleusercontent.com",
+          "client_id": "185256378563-l8gioc0q4s7r33rskcarbu2pv3em6v6c.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCjpbYZplOKSAG-8OtQijHtMUQ0lxAYXHg"
+          "current_key": "AIzaSyCbNF9Nu-r4pSJ8NoXwN92mxcyuHO_pXq4"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "874256687584-fjg44m2sk5ad3j5iaqvf4cnvhog0edgb.apps.googleusercontent.com",
+              "client_id": "185256378563-l8gioc0q4s7r33rskcarbu2pv3em6v6c.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

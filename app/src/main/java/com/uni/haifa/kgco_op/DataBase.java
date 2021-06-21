@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -312,8 +313,8 @@ public class DataBase extends SQLiteOpenHelper {
                     Locale.ENGLISH);
             Date date = originalFormat.parse(cursor.getString(3));
             result.setDate(date);
-            result.setMorningKids(cursor.getString(4));
-            result.setEveningKids(cursor.getString(5));
+            result.setMorningKids(Collections.singletonList(cursor.getString(4)));
+            result.setEveningKids(Collections.singletonList(cursor.getString(5)));
         } catch (Throwable t) {
             t.printStackTrace();
         }

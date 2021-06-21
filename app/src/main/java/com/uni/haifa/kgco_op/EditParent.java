@@ -34,14 +34,14 @@ public class EditParent extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_parent);
-        ActionBar ab=getSupportActionBar();
+        ActionBar ab = getSupportActionBar();
         DataBaseManager.getInstance().openDataBase(this);
         ab.setTitle("Edit/Update");
         ab.setDisplayHomeAsUpEnabled(true);
         List<Parent> dataList = new ArrayList<>();
         userListView = (ListView) findViewById(R.id.userListView);
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
-        Context mc=this;
+        Context mc = this;
         List<Parent> parents = DataBaseManager.getInstance().getAllParents();
         for (Parent p : parents)
             dataList.add(p);
@@ -64,47 +64,46 @@ public class EditParent extends AppCompatActivity {
                 email.setText(selectedParent.getEmail());
                 password.setText(selectedParent.getPassword());
                 date.setText(selectedParent.getLicenseDate().toString());
-
                 Button deleteUser = findViewById(R.id.deleteUser);
                 deleteUser.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         new AlertDialog.Builder(mc)
                                 .setTitle("Delete")
-                                .setMessage("Are you sure you want to Delete "+ selectedParent.getUserName()+"?")
+                                .setMessage("Are you sure you want to Delete " + selectedParent.getUserName() + "?")
                                 .setNegativeButton(android.R.string.no, null)
                                 .setPositiveButton(android.R.string.yes,
                                         new DialogInterface.OnClickListener() {
                                             @Override
                                             public void onClick(DialogInterface dialog, int which) {
                                                 // do something
-                        Snackbar snackbar = Snackbar
-                                .make(v, "Deleting Parent", Snackbar.LENGTH_SHORT).setAction("Undo", new View.OnClickListener() {
-                                    @Override
-                                    public void onClick(View view) {
-                                        Snackbar snackbar1 = Snackbar.make(v, "Delete Canceled", Snackbar.LENGTH_SHORT);
-                                        snackbar1.show();
+                                                Snackbar snackbar = Snackbar
+                                                        .make(v, "Deleting Parent", Snackbar.LENGTH_SHORT).setAction("Undo", new View.OnClickListener() {
+                                                            @Override
+                                                            public void onClick(View view) {
+                                                                Snackbar snackbar1 = Snackbar.make(v, "Delete Canceled", Snackbar.LENGTH_SHORT);
+                                                                snackbar1.show();
 
-                                    }
-                                });
+                                                            }
+                                                        });
 
-                        snackbar.show();
-                        snackbar.addCallback(new Snackbar.Callback() {
+                                                snackbar.show();
+                                                snackbar.addCallback(new Snackbar.Callback() {
 
-                            @Override
-                            public void onDismissed(Snackbar snackbar, int event) {
-                                if (event == BaseTransientBottomBar.BaseCallback.DISMISS_EVENT_TIMEOUT) {
-                                    DataBaseManager.getInstance().deleteParent(selectedParent);
-//                        Toast.makeText(EditParent.this, "User Deleted", Toast.LENGTH_LONG).show();
-                                    List<Parent> parents = DataBaseManager.getInstance().getAllParents();
-                                    for (Parent p : parents)
-                                        dataList.add(p);
+                                                    @Override
+                                                    public void onDismissed(Snackbar snackbar, int event) {
+                                                        if (event == BaseTransientBottomBar.BaseCallback.DISMISS_EVENT_TIMEOUT) {
+                                                            DataBaseManager.getInstance().deleteParent(selectedParent);
+                                                            List<Parent> parents = DataBaseManager.getInstance().getAllParents();
+                                                            dataList.removeAll(dataList);
+                                                            for (Parent p : parents)
+                                                                dataList.add(p);
 
-                                    listAdapter = new UserListAdapter(c, dataList);
-                                    userListView.setAdapter(listAdapter);
-                                }
-                            }
-                        });
+                                                            listAdapter = new UserListAdapter(c, dataList);
+                                                            userListView.setAdapter(listAdapter);
+                                                        }
+                                                    }
+                                                });
                                             }
                                         }).create().show();
                     }
@@ -127,7 +126,7 @@ public class EditParent extends AppCompatActivity {
                         Parent parent = new Parent(selectedParent.getId(), n, e, p, d);
                         new AlertDialog.Builder(mc)
                                 .setTitle("Update")
-                                .setMessage("Are you sure you want to Update "+ selectedParent.getUserName()+"?")
+                                .setMessage("Are you sure you want to Update " + selectedParent.getUserName() + "?")
                                 .setNegativeButton(android.R.string.no, null)
                                 .setPositiveButton(android.R.string.yes,
                                         new DialogInterface.OnClickListener() {
@@ -161,10 +160,10 @@ public class EditParent extends AppCompatActivity {
                                                             userListView.setAdapter(listAdapter);
                                                         }
 
-                                                        }
-                                                    });
-                    }
-                }).create().show();
+                                                    }
+                                                });
+                                            }
+                                        }).create().show();
                     }
                 });
 //                List<Child> selectedChildren = new ArrayList<>();
@@ -179,6 +178,7 @@ public class EditParent extends AppCompatActivity {
             }
         });
     }
+
     @Override
     protected void onResume() {
         DataBaseManager.getInstance().openDataBase(this);

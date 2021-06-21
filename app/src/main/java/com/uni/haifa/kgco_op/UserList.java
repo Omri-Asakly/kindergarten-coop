@@ -67,7 +67,7 @@ public class UserList extends AppCompatActivity {
         });
 
 
-        // update/sync data from firestore
+        // update/sync data from fireStore
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         CollectionReference collRef = db.collection("People");
 
@@ -81,8 +81,6 @@ public class UserList extends AppCompatActivity {
                 }
 
                 if (snapshot != null && !snapshot.isEmpty()) {
-
-
                     DataBaseManager.getInstance().removeAllParents();
                     for (DocumentSnapshot document : snapshot.getDocuments() ){
                         Parent parent = document.toObject(Parent.class);
@@ -102,39 +100,37 @@ public class UserList extends AppCompatActivity {
             }
         });
 
-        collRef = db.collection("Children");
+        FirebaseFirestore dbC = FirebaseFirestore.getInstance();
+        CollectionReference collRefC = dbC.collection("child");
 
-//        collRef.addSnapshotListener(new EventListener<QuerySnapshot>() {
-//            @Override
-//            public void onEvent(@Nullable QuerySnapshot snapshot, @Nullable FirebaseFirestoreException e) {
-//                if (e != null) {
-//                    Toast.makeText(context, "Listen failed."+ e,
-//                            Toast.LENGTH_LONG).show();
-//                    return;
-//                }
-//
-//                if (snapshot != null && !snapshot.isEmpty()) {
-//                    Toast.makeText(context, "New data available",
-//                            Toast.LENGTH_LONG).show();
-//
-//                    DataBaseManager.getInstance().removeAllChildren();
-//                    for (DocumentSnapshot document : snapshot.getDocuments() ){
-//                        Child child = document.toObject(Child.class);
-//                        DataBaseManager.getInstance().createChild(child);
-//
-//                    }
-//
-//                    List<Child> childrenList = DataBaseManager.getInstance().getAllChildren();
-//                    childrenAdapter = new ChildrenAdapter(UserList.this, childrenList);
-//                    info.setAdapter(childrenAdapter);
-//
-//                } else {
-//                    Toast.makeText(context, "Current data: null",
-//                            Toast.LENGTH_LONG).show();
-//
-//                }
-//            }
-//        });
+        collRefC.addSnapshotListener(new EventListener<QuerySnapshot>() {
+            @Override
+            public void onEvent(@Nullable QuerySnapshot snapshot, @Nullable FirebaseFirestoreException e) {
+                if (e != null) {
+                    Toast.makeText(context, "Listen failed."+ e,
+                            Toast.LENGTH_LONG).show();
+                    return;
+                }
+
+                if (snapshot != null && !snapshot.isEmpty()) {
+                    DataBaseManager.getInstance().removeAllChildren();
+                    for (DocumentSnapshot document : snapshot.getDocuments() ){
+                        Child child = document.toObject(Child.class);
+                        DataBaseManager.getInstance().createChild(child);
+
+                    }
+
+                    List<Child> childrenList = DataBaseManager.getInstance().getAllChildren();
+                    childrenAdapter = new ChildrenAdapter(UserList.this, childrenList);
+                    info.setAdapter(childrenAdapter);
+
+                } else {
+                    Toast.makeText(context, "Current data: null",
+                            Toast.LENGTH_LONG).show();
+
+                }
+            }
+        });
     }
     @Override
     protected void onResume() {

@@ -48,7 +48,7 @@ public class UserRegister extends AppCompatActivity {
         email = findViewById(R.id.mailTxt);
         password = findViewById(R.id.passTxt);
         date = findViewById(R.id.textDate);
-        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
         Button save = findViewById(R.id.saveBtn);
         save.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -113,4 +113,5 @@ public class UserRegister extends AppCompatActivity {
         DataBaseManager.getInstance().closeDataBase();
         super.onPause();
     }
+
 }

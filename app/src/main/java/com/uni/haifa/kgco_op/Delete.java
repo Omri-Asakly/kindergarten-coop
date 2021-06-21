@@ -20,7 +20,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.snackbar.Snackbar;
 
-import java.util.HashMap;
 import java.util.List;
 
 public class Delete extends AppCompatActivity {
@@ -39,9 +38,6 @@ public class Delete extends AppCompatActivity {
     private Child selectedChild;
     private Button selectBtn;
     private boolean selectedImg;
-    private HashMap<Integer, String> namesMap;
-    private List<String> names;
-    private List<Child> children;
 
     @SuppressLint("WrongViewCast")
     @Override

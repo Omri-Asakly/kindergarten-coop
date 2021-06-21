@@ -29,6 +29,8 @@ public class Parent {
     }
 
 
+
+
     public int getId() {
         return id;
     }
@@ -62,7 +64,11 @@ public class Parent {
     }
 
     public Date getLicenseDate() {
-        return licenseDate;
+        Date selectedDate = new Date();
+        selectedDate.setDate(licenseDate.getDay());
+        selectedDate.setMonth(licenseDate.getMonth());
+        selectedDate.setYear(licenseDate.getYear());
+        return selectedDate;
     }
 
     public void setLicenseDate(Date licenseDate) {
