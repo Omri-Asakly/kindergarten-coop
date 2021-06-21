@@ -117,8 +117,6 @@ public class weeklySchedule extends AppCompatActivity {
                 }
 
                 if (snapshot != null && !snapshot.isEmpty()) {
-
-
                     DataBaseManager.getInstance().removeAllSchedules();
                     for (DocumentSnapshot document : snapshot.getDocuments()) {
                         System.out.println(document);

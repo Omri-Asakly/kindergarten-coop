@@ -75,18 +75,23 @@ public class Delete extends AppCompatActivity {
                                             if(c.getParentId() == selectedParent.getId())
                                                 DataBaseManager.getInstance().deleteChild(c);
                                         }
-                                        DataBaseManager.getInstance().deleteParent(selectedParent);
-                                        userDelete.setText("");
-                                        Snackbar snackbar = Snackbar
-                                                .make(v, "User Deleted", Snackbar.LENGTH_LONG).setAction("Show", new View.OnClickListener() {
-                                                    @Override
-                                                    public void onClick(View view) {
-                                                        Intent intent=new Intent(Delete.this, UserList.class);
-                                                        startActivity(intent);
-                                                    }
-                                                });
+                                        if(DataBaseManager.getInstance().deleteParent(selectedParent)){
+                                            userDelete.setText("");
+                                            Snackbar snackbar = Snackbar
+                                                    .make(v, "User Deleted", Snackbar.LENGTH_LONG).setAction("Show", new View.OnClickListener() {
+                                                        @Override
+                                                        public void onClick(View view) {
+                                                            Intent intent=new Intent(Delete.this, UserList.class);
+                                                            startActivity(intent);
+                                                        }
+                                                    });
 
-                                        snackbar.show();
+                                            snackbar.show();
+                                        }else{
+                                            Snackbar snackbar = Snackbar
+                                                    .make(v, "Something Went Wrong' Could Not Delete This User", Snackbar.LENGTH_LONG);
+                                        }
+
                                     }
                                 }).create().show();
 
@@ -107,9 +112,13 @@ public class Delete extends AppCompatActivity {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
                                         // do something
-                                    DataBaseManager.getInstance().deleteChild(selectedChild);
-                                    Toast.makeText(Delete.this, "Child Deleted", Toast.LENGTH_LONG).show();
-                                    childDelete.setText("");
+                                    if(DataBaseManager.getInstance().deleteChild(selectedChild)){
+                                        Snackbar snackbar = Snackbar
+                                                .make(v, "Child Deleted", Snackbar.LENGTH_LONG);                                        childDelete.setText("");
+                                    }else{
+                                        Snackbar snackbar = Snackbar
+                                                .make(v, "Could Not Delete Child", Snackbar.LENGTH_LONG);
+                                    }
                                     }
                                 }).create().show();
             }

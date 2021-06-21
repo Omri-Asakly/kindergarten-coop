@@ -51,28 +51,34 @@ public class DataBaseManager {
         }
     }
 
-    public void createParent(Parent p) {
+    public boolean createParent(Parent p) {
         if (db != null) {
             db.createParent(p);
             p.setId(db.getAllParents().size()+1);
         }
-        FireBase.getInstance().createParent(p);
+        if(FireBase.getInstance().createParent(p))
+            return true;
+        return false;
     }
 
-    public void createChild(Child c) {
+    public boolean createChild(Child c) {
         if (db != null) {
             c.setId(db.getAllChildren().size()+1);
             db.createChild(c);
         }
-        FireBase.getInstance().createChild(c);
+        if(FireBase.getInstance().createChild(c))
+            return true;
+        return false;
     }
 
-    public void createSchedule(Schedule s) {
+    public boolean createSchedule(Schedule s) {
         if (db != null) {
             s.setId(db.getAllSchedules().size()+1);
             db.createSchedule(s);
         }
-        FireBase.getInstance().createSchedule(s);
+        if(FireBase.getInstance().createSchedule(s))
+            return true;
+        return false;
     }
 
     public Parent readParent(int id) {
@@ -144,25 +150,31 @@ public class DataBaseManager {
         FireBase.getInstance().setChild(c);
     }
 
-    public void deleteParent(Parent p) {
+    public boolean deleteParent(Parent p) {
         if (db != null) {
             db.deleteParent(p);
         }
-        FireBase.getInstance().deleteParent(p);
+        if(FireBase.getInstance().deleteParent(p))
+            return true;
+        return false;
     }
 
-    public void deleteSchedule(Schedule s) {
+    public boolean deleteSchedule(Schedule s) {
         if (db != null) {
             db.deleteSchedule(s);
         }
-        FireBase.getInstance().deleteSchedule(s);
+        if(FireBase.getInstance().deleteSchedule(s))
+            return true;
+        return false;
     }
 
-    public void deleteChild(Child c) {
+    public boolean deleteChild(Child c) {
         if (db != null) {
             db.deleteChild(c);
         }
-        FireBase.getInstance().deleteChild(c);
+        if(FireBase.getInstance().deleteChild(c))
+            return true;
+        return false;
     }
 
     public List<Child> getAllChildren(Child c) {

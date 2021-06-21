@@ -33,29 +33,33 @@ public class AddChildrenToNewParent extends AppCompatActivity {
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                collectNames(value);
-                Snackbar snackbar = Snackbar
-                        .make(v, "Children Inserted", Snackbar.LENGTH_SHORT).setAction("Show", new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
+                if(collectNames(value)) {
+                    Snackbar snackbar = Snackbar
+                            .make(v, "Children Inserted", Snackbar.LENGTH_SHORT).setAction("Show", new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
 //                                Snackbar snackbar1 = Snackbar.make(v, "Message is restored!", Snackbar.LENGTH_SHORT);
 //                                snackbar1.show();
-                                Intent intent = new Intent(AddChildrenToNewParent.this, UserList.class);
+                                    Intent intent = new Intent(AddChildrenToNewParent.this, UserList.class);
+                                    startActivity(intent);
+                                }
+                            });
+
+                    snackbar.show();
+                    snackbar.addCallback(new Snackbar.Callback() {
+
+                        @Override
+                        public void onDismissed(Snackbar snackbar, int event) {
+                            if (event == BaseTransientBottomBar.BaseCallback.DISMISS_EVENT_TIMEOUT) {
+                                Intent intent = new Intent(AddChildrenToNewParent.this, AddUser.class);
                                 startActivity(intent);
                             }
-                        });
-
-                snackbar.show();
-                snackbar.addCallback(new Snackbar.Callback() {
-
-                    @Override
-                    public void onDismissed(Snackbar snackbar, int event) {
-                        if (event == BaseTransientBottomBar.BaseCallback.DISMISS_EVENT_TIMEOUT) {
-                            Intent intent = new Intent(AddChildrenToNewParent.this, AddUser.class);
-                            startActivity(intent);
                         }
-                    }
-                });
+                    });
+                }else{
+                    Snackbar snackbar = Snackbar
+                            .make(v, "Could Not Add Children", Snackbar.LENGTH_SHORT);
+                }
             }
         });
         //get current parent for children
@@ -82,14 +86,19 @@ public class AddChildrenToNewParent extends AppCompatActivity {
         });
     }
     //create the children
-    private void collectNames(int value) {
+    private boolean collectNames(int value) {
+        boolean flag=true;
         String input = textInputLayout.getEditText().getText().toString();
         input = input.replaceAll("\\s", "");
         String[] names = input.split(",");
         for (String s : names) {
             Child child = new Child(value, s);
-            DataBaseManager.getInstance().createChild(child);
+            if(!DataBaseManager.getInstance().createChild(child))
+                flag=false;
         }
+        if(flag)
+            return true;
+        return false;
 
     }
 

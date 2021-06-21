@@ -58,14 +58,20 @@ public class AddUser extends AppCompatActivity {
                         e.printStackTrace();
                     }
                     Parent parent = new Parent(name.getText().toString(), email.getText().toString(), password.getText().toString(), dateF);
-                    DataBaseManager.getInstance().createParent(parent);
-                    Snackbar snackbar = Snackbar
-                            .make(v, "Parent Added", Snackbar.LENGTH_LONG);
-                    snackbar.show();
-                    parents = DataBaseManager.getInstance().getAllParents();
-                    Intent intent = new Intent(AddUser.this, AddChildrenToNewParent.class);
-                    intent.putExtra("userID", parents.get(parents.size()-1).getId());
-                    startActivity(intent);
+                    if(DataBaseManager.getInstance().createParent(parent)) {
+
+                        Snackbar snackbar = Snackbar
+                                .make(v, "Parent Added", Snackbar.LENGTH_LONG);
+                        snackbar.show();
+                        parents = DataBaseManager.getInstance().getAllParents();
+                        Intent intent = new Intent(AddUser.this, AddChildrenToNewParent.class);
+                        intent.putExtra("userID", parents.get(parents.size() - 1).getId());
+                        startActivity(intent);
+                    }else{
+                        Snackbar snackbar = Snackbar
+                                .make(v, "Could Not Added", Snackbar.LENGTH_LONG);
+                        snackbar.show();
+                    }
 
                 }
             }

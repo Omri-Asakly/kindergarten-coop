@@ -17,6 +17,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -167,13 +168,22 @@ public class AddChildrenToTrip extends AppCompatActivity {
                     evening = firstTxtE.getText().toString() + ", " + secondTxtE.getText().toString() + ", " + thirdTxtE.getText().toString();
                     try {
                         Schedule schedule = new Schedule(b.getString("morning"), b.getString("evening"), value, morning, evening);
-                        DataBaseManager.getInstance().createSchedule(schedule);
-                    } catch (ParseException e) {
+                        if(DataBaseManager.getInstance().createSchedule(schedule)){
+                            Snackbar snackbar=Snackbar.make(v,"Shift Added",Snackbar.LENGTH_SHORT);
+                            snackbar.show();
+                            wait(Snackbar.LENGTH_LONG);
+                            Intent intent = new Intent(AddChildrenToTrip.this, weeklySchedule.class);
+                            startActivity(intent);
+                        }
+                        else{
+                            Snackbar snackbar=Snackbar.make(v,"Could Not Shift",Snackbar.LENGTH_SHORT);
+                            snackbar.show();
+                        }
+                    } catch (ParseException | InterruptedException e) {
                         e.printStackTrace();
                     }
 
-                    Intent intent = new Intent(AddChildrenToTrip.this, weeklySchedule.class);
-                    startActivity(intent);
+
                 } else{
                     
                 }
