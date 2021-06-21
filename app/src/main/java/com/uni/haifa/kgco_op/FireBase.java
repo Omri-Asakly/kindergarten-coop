@@ -31,51 +31,51 @@ public class FireBase {
     }
 
     public boolean createParent(Parent p) {
-        final int[] flag = {0};
+        final boolean[] flag = {true};
         db.collection("People")
                 .document(p.getEmail()).set(p)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        flag[0]=1;
+                        flag[0] =true;
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        flag[0]=0;
+                        flag[0]=false;
 
                     }
                 });
-        if(flag[0] ==1){
+        if(flag[0]){
             return true;
         }
         return false;
     }
 
     public boolean createChild(Child c) {
-        final int[] flag = {0};
+        final boolean[] flag = {true};
         db.collection("child")
                 .document(Integer.toString(c.getId())).set(c)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        flag[0]=1;
+                        flag[0]=true;
                     }
                 }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                flag[0]=0;
+                flag[0]=false;
             }
         });
-        if(flag[0] ==1){
+        if(flag[0]){
             return true;
         }
         return false;
     }
 
     public boolean createSchedule(Schedule s) {
-        final int[] flag = {0};
+        final boolean[] flag = {true};
         List<String> m = s.getMorningKids();
         List<String> e = s.getEveningKids();
         Schedule schedule = new Schedule(s.getId(), s.getMorning(), s.getEvening(), s.getDate(), m, e);
@@ -84,16 +84,16 @@ public class FireBase {
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        flag[0]=1;
+                        flag[0]=true;
 
                     }
                 }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                flag[0]=0;
+                flag[0]=false;
             }
         });
-        if(flag[0] ==1){
+        if(flag[0]){
             return true;
         }
         return false;
@@ -233,71 +233,71 @@ public class FireBase {
     }
 
     public boolean deleteParent(Parent p) {
-        final int[] flag = {0};
+        final boolean[] flag = {true};
         db.collection("Parents")
                 .document(p.getEmail())
                 .delete()
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        flag[0]=1;
+                        flag[0]=true;
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        flag[0]=0;
+                        flag[0]=false;
                     }
                 });
-        if(flag[0] ==1){
+        if(flag[0]){
             return true;
         }
         return false;
     }
 
     public boolean deleteChild(Child c) {
-        final int[] flag = {0};
+        final boolean[] flag = {true};
         db.collection("child")
                 .document(Integer.toString(c.getId()))
                 .delete()
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        flag[0]=1;
+                        flag[0]=true;
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        flag[0]=0;
+                        flag[0]=false;
                     }
                 });
-        if(flag[0] ==1){
+        if(flag[0]){
             return true;
         }
         return false;
     }
 
     public boolean deleteSchedule(Schedule s) {
-        final int[] flag = {0};
+        final boolean[] flag = {true};
         db.collection("Schedule")
                 .document(Integer.toString(s.getId()))
                 .delete()
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        flag[0]=1;
+                        flag[0]=true;
 
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        flag[0]=0;
+                        flag[0]=false;
 
                     }
                 });
-        if(flag[0] ==1){
+        if(flag[0]){
             return true;
         }
         return false;
