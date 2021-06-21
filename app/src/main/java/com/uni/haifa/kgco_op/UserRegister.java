@@ -48,7 +48,7 @@ public class UserRegister extends AppCompatActivity {
         email = findViewById(R.id.mailTxt);
         password = findViewById(R.id.passTxt);
         date = findViewById(R.id.textDate);
-        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
         Button save = findViewById(R.id.saveBtn);
         save.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,7 +67,6 @@ public class UserRegister extends AppCompatActivity {
                     } catch (ParseException e) {
                         e.printStackTrace();
                     }
-
                     mAuth.createUserWithEmailAndPassword(email.getText().toString(), password.getText().toString()).addOnCompleteListener(UserRegister.this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
@@ -79,7 +78,7 @@ public class UserRegister extends AppCompatActivity {
                                         .make(v, "Parent Added", Snackbar.LENGTH_LONG);
                                 snackbar.show();
                                 Intent intent = new Intent(UserRegister.this, ChildrenRegister.class);
-                                intent.putExtra("userID", parents.get(parents.size() - 1).getId());
+                                intent.putExtra("userID", parents.get(parents.size()-1).getId());
                                 startActivity(intent);
                             } else {
                                 Toast.makeText(UserRegister.this, task.getException().toString(), Toast.LENGTH_LONG);
@@ -87,7 +86,6 @@ public class UserRegister extends AppCompatActivity {
                         }
                     });
                 }
-
             }
         });
 

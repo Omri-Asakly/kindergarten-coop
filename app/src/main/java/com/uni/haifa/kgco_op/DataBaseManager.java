@@ -45,38 +45,39 @@ public class DataBaseManager {
             db.open();
         }
     }
+
     public void closeDataBase() {
-        if(db!=null){
+        if (db != null) {
             db.close();
         }
     }
 
     public boolean createParent(Parent p) {
+        p.setId(db.getAllParents().size() + 1);
         if (db != null) {
             db.createParent(p);
-            p.setId(db.getAllParents().size()+1);
-        }
-        if(FireBase.getInstance().createParent(p))
+            FireBase.getInstance().createParent(p);
             return true;
+        }
         return false;
     }
 
     public boolean createChild(Child c) {
         if (db != null) {
-            c.setId(db.getAllChildren().size()+1);
+            c.setId(db.getAllChildren().size() + 1);
             db.createChild(c);
         }
-        if(FireBase.getInstance().createChild(c))
+        if (FireBase.getInstance().createChild(c))
             return true;
         return false;
     }
 
     public boolean createSchedule(Schedule s) {
         if (db != null) {
-            s.setId(db.getAllSchedules().size()+1);
+            s.setId(db.getAllSchedules().size() + 1);
             db.createSchedule(s);
         }
-        if(FireBase.getInstance().createSchedule(s))
+        if (FireBase.getInstance().createSchedule(s))
             return true;
         return false;
     }
@@ -133,7 +134,7 @@ public class DataBaseManager {
         if (db != null && p != null) {
             db.updateParent(p);
         }
-        if(FireBase.getInstance().setParent(p))
+        if (FireBase.getInstance().setParent(p))
             return true;
         return false;
     }
@@ -156,7 +157,7 @@ public class DataBaseManager {
         if (db != null) {
             db.deleteParent(p);
         }
-        if(FireBase.getInstance().deleteParent(p))
+        if (FireBase.getInstance().deleteParent(p))
             return true;
         return false;
     }
@@ -165,7 +166,7 @@ public class DataBaseManager {
         if (db != null) {
             db.deleteSchedule(s);
         }
-        if(FireBase.getInstance().deleteSchedule(s))
+        if (FireBase.getInstance().deleteSchedule(s))
             return true;
         return false;
     }
@@ -174,7 +175,7 @@ public class DataBaseManager {
         if (db != null) {
             db.deleteChild(c);
         }
-        if(FireBase.getInstance().deleteChild(c))
+        if (FireBase.getInstance().deleteChild(c))
             return true;
         return false;
     }
@@ -188,19 +189,19 @@ public class DataBaseManager {
     }
 
     public void removeAllParents() {
-        if(db!=null){
+        if (db != null) {
             db.deleteAllParents();
         }
     }
 
     public void removeAllChildren() {
-        if(db!=null){
+        if (db != null) {
             db.deleteAllChildren();
         }
     }
 
     public void removeAllSchedules() {
-        if(db!=null){
+        if (db != null) {
             db.deleteAllSchedules();
         }
     }
@@ -229,7 +230,7 @@ public class DataBaseManager {
         this.selectedParent = selectedParent;
     }
 
-    public void deleteSelectedChild(){
+    public void deleteSelectedChild() {
         deleteChild(selectedChild);
     }
 }

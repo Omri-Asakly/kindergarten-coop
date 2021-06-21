@@ -64,11 +64,7 @@ public class Parent {
     }
 
     public Date getLicenseDate() {
-        Date selectedDate = new Date();
-        selectedDate.setDate(licenseDate.getDay());
-        selectedDate.setMonth(licenseDate.getMonth());
-        selectedDate.setYear(licenseDate.getYear());
-        return selectedDate;
+        return licenseDate;
     }
 
     public void setLicenseDate(Date licenseDate) {

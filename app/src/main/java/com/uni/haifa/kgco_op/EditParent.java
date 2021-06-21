@@ -9,7 +9,6 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
@@ -153,6 +152,7 @@ public class EditParent extends AppCompatActivity {
                                                                 snackbar.make(v, "User Updated", Snackbar.LENGTH_LONG).show();
                                                                 userListView.setAdapter(null);
                                                                 List<Parent> parents = DataBaseManager.getInstance().getAllParents();
+                                                                dataList.removeAll(dataList);
                                                                 for (Parent parent1 : parents)
                                                                     dataList.add(parent1);
 

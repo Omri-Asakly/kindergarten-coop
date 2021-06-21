@@ -33,7 +33,7 @@ public class UserList extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_list);
         context = this;
-        ActionBar ab=getSupportActionBar();
+        ActionBar ab = getSupportActionBar();
         ab.setTitle("Users");
         ab.setDisplayHomeAsUpEnabled(true);
         DataBaseManager.getInstance().openDataBase(this);
@@ -41,7 +41,7 @@ public class UserList extends AppCompatActivity {
         userListView = (ListView) findViewById(R.id.userListView);
         info = (ListView) findViewById(R.id.parentInfo);
         List<Parent> parents = DataBaseManager.getInstance().getAllParents();
-        for(Parent p : parents)
+        for (Parent p : parents)
             dataList.add(p);
 
 
@@ -56,8 +56,8 @@ public class UserList extends AppCompatActivity {
 
                 List<Child> selectedChildren = new ArrayList<>();
                 List<Child> children = DataBaseManager.getInstance().getAllChildren();
-                for(Child c : children){
-                    if(c.getParentId() == selectedParent.getId()){
+                for (Child c : children) {
+                    if (c.getParentId() == selectedParent.getId()) {
                         selectedChildren.add(c);
                     }
                 }
@@ -75,14 +75,14 @@ public class UserList extends AppCompatActivity {
             @Override
             public void onEvent(@Nullable QuerySnapshot snapshot, @Nullable FirebaseFirestoreException e) {
                 if (e != null) {
-                    Toast.makeText(context, "Listen failed."+ e,
+                    Toast.makeText(context, "Listen failed." + e,
                             Toast.LENGTH_LONG).show();
                     return;
                 }
 
                 if (snapshot != null && !snapshot.isEmpty()) {
                     DataBaseManager.getInstance().removeAllParents();
-                    for (DocumentSnapshot document : snapshot.getDocuments() ){
+                    for (DocumentSnapshot document : snapshot.getDocuments()) {
                         Parent parent = document.toObject(Parent.class);
                         DataBaseManager.getInstance().createParent(parent);
 
@@ -97,7 +97,21 @@ public class UserList extends AppCompatActivity {
                             Toast.LENGTH_LONG).show();
 
                 }
+
+                if (snapshot != null && !snapshot.isEmpty()) {
+                    DataBaseManager.getInstance().removeAllChildren();
+                    for (DocumentSnapshot document : snapshot.getDocuments()) {
+                        Child child = document.toObject(Child.class);
+                        DataBaseManager.getInstance().createChild(child);
+
+                    }
+
+                    List<Child> childrenList = DataBaseManager.getInstance().getAllChildren();
+                    childrenAdapter = new ChildrenAdapter(UserList.this, childrenList);
+                    info.setAdapter(childrenAdapter);
+                }
             }
+
         });
 
         FirebaseFirestore dbC = FirebaseFirestore.getInstance();
@@ -105,16 +119,17 @@ public class UserList extends AppCompatActivity {
 
         collRefC.addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
-            public void onEvent(@Nullable QuerySnapshot snapshot, @Nullable FirebaseFirestoreException e) {
+            public void onEvent(@Nullable QuerySnapshot
+                                        snapshot, @Nullable FirebaseFirestoreException e) {
                 if (e != null) {
-                    Toast.makeText(context, "Listen failed."+ e,
+                    Toast.makeText(context, "Listen failed." + e,
                             Toast.LENGTH_LONG).show();
                     return;
                 }
 
                 if (snapshot != null && !snapshot.isEmpty()) {
                     DataBaseManager.getInstance().removeAllChildren();
-                    for (DocumentSnapshot document : snapshot.getDocuments() ){
+                    for (DocumentSnapshot document : snapshot.getDocuments()) {
                         Child child = document.toObject(Child.class);
                         DataBaseManager.getInstance().createChild(child);
 
@@ -131,11 +146,16 @@ public class UserList extends AppCompatActivity {
                 }
             }
         });
+
+
     }
+
+
     @Override
     protected void onResume() {
-        DataBaseManager.getInstance().openDataBase(this);
         super.onResume();
+        DataBaseManager.getInstance().openDataBase(this);
+
     }
 
     @Override

@@ -8,12 +8,14 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -22,7 +24,6 @@ public class FireBase {
     private static FireBase instance = null;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-
     public static FireBase getInstance() {
         if (instance == null) {
             instance = new FireBase();
@@ -30,27 +31,19 @@ public class FireBase {
         return instance;
     }
 
-    public boolean createParent(Parent p) {
-        final boolean[] flag = {true};
-        db.collection("People")
+    public void createParent(Parent p) {
+        db.collection("parents")
                 .document(p.getEmail()).set(p)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        flag[0] =true;
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        flag[0]=false;
-
                     }
                 });
-        if(flag[0]){
-            return true;
-        }
-        return false;
     }
 
     public boolean createChild(Child c) {
@@ -60,15 +53,15 @@ public class FireBase {
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        flag[0]=true;
+                        flag[0] = true;
                     }
                 }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                flag[0]=false;
+                flag[0] = false;
             }
         });
-        if(flag[0]){
+        if (flag[0]) {
             return true;
         }
         return false;
@@ -84,16 +77,17 @@ public class FireBase {
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        flag[0]=true;
+                        flag[0] = true;
 
+                        //TODO
                     }
                 }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                flag[0]=false;
+                flag[0] = false;
             }
         });
-        if(flag[0]){
+        if (flag[0]) {
             return true;
         }
         return false;
@@ -101,7 +95,7 @@ public class FireBase {
 
     public List<Parent> getAllParents() {
         List<Parent> parentList = new ArrayList<>();
-        Task<QuerySnapshot> parents = db.collection("Parents").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+        Task<QuerySnapshot> parents = db.collection("parents").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if (task.isSuccessful()) {
@@ -179,22 +173,29 @@ public class FireBase {
 
     public boolean setParent(Parent p) {
         final boolean[] flag = {true};
-        db.collection("People")
-                .document(p.getEmail()).set(p)
+        Map<String, Object> user = new HashMap<>();
+        user.put("email", p.getEmail());
+        user.put("id", p.getId());
+        Date date = new Date(p.getLicenseDate().getYear(), p.getLicenseDate().getMonth(), p.getLicenseDate().getDay());
+        user.put("licenseDate", new Timestamp(date));
+        user.put("password", p.getPassword());
+        user.put("userName", p.getUserName());
+        db.collection("parents")
+                .document(p.getEmail()).set(user)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        flag[0]=true;
-
+                        flag[0] = true;
+                        //todo
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        flag[0]=false;
+                        flag[0] = false;
                     }
                 });
-        if(flag[0]){
+        if (flag[0]) {
             return true;
         }
         return false;
@@ -226,6 +227,7 @@ public class FireBase {
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
+
                         //TODO
                     }
                 }).addOnFailureListener(new OnFailureListener() {
@@ -238,22 +240,22 @@ public class FireBase {
 
     public boolean deleteParent(Parent p) {
         final boolean[] flag = {true};
-        db.collection("Parents")
+        db.collection("parents")
                 .document(p.getEmail())
                 .delete()
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        flag[0]=true;
+                        flag[0] = true;
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        flag[0]=false;
+                        flag[0] = false;
                     }
                 });
-        if(flag[0]){
+        if (flag[0]) {
             return true;
         }
         return false;
@@ -267,16 +269,16 @@ public class FireBase {
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        flag[0]=true;
+                        flag[0] = true;
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        flag[0]=false;
+                        flag[0] = false;
                     }
                 });
-        if(flag[0]){
+        if (flag[0]) {
             return true;
         }
         return false;
@@ -290,18 +292,18 @@ public class FireBase {
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        flag[0]=true;
+                        flag[0] = true;
 
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        flag[0]=false;
+                        flag[0] = false;
 
                     }
                 });
-        if(flag[0]){
+        if (flag[0]) {
             return true;
         }
         return false;
