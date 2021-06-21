@@ -129,11 +129,13 @@ public class DataBaseManager {
         return result;
     }
 
-    public void updateParent(Parent p) {
+    public boolean updateParent(Parent p) {
         if (db != null && p != null) {
             db.updateParent(p);
         }
-        FireBase.getInstance().setParent(p);
+        if(FireBase.getInstance().setParent(p))
+            return true;
+        return false;
     }
 
     public void updateSchedule(Schedule s) {

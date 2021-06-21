@@ -177,23 +177,27 @@ public class FireBase {
     }
 
 
-    public void setParent(Parent p) {
-
+    public boolean setParent(Parent p) {
+        final boolean[] flag = {true};
         db.collection("People")
                 .document(p.getEmail()).set(p)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
+                        flag[0]=true;
 
-                        //todo
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        //todo
+                        flag[0]=false;
                     }
                 });
+        if(flag[0]){
+            return true;
+        }
+        return false;
     }
 
     public void setChild(Child c) {

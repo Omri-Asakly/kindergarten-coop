@@ -149,15 +149,20 @@ public class EditParent extends AppCompatActivity {
                                                     @Override
                                                     public void onDismissed(Snackbar snackbar, int event) {
                                                         if (event == BaseTransientBottomBar.BaseCallback.DISMISS_EVENT_TIMEOUT) {
-                                                            DataBaseManager.getInstance().updateParent(parent);
-                                                            Toast.makeText(EditParent.this, "User Updated", Toast.LENGTH_LONG).show();
-                                                            userListView.setAdapter(null);
-                                                            List<Parent> parents = DataBaseManager.getInstance().getAllParents();
-                                                            for (Parent parent1 : parents)
-                                                                dataList.add(parent1);
+                                                            if(DataBaseManager.getInstance().updateParent(parent)){
+                                                                snackbar.make(v, "User Updated", Snackbar.LENGTH_LONG).show();
+                                                                userListView.setAdapter(null);
+                                                                List<Parent> parents = DataBaseManager.getInstance().getAllParents();
+                                                                for (Parent parent1 : parents)
+                                                                    dataList.add(parent1);
 
-                                                            listAdapter = new UserListAdapter(c, dataList);
-                                                            userListView.setAdapter(listAdapter);
+                                                                listAdapter = new UserListAdapter(c, dataList);
+                                                                userListView.setAdapter(listAdapter);
+                                                            }else{
+                                                                Snackbar snackbarfail=Snackbar.make(v,"Could Not Update User", Snackbar.LENGTH_LONG);
+                                                                snackbarfail.show();
+                                                            }
+
                                                         }
 
                                                     }
