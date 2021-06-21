@@ -13,7 +13,6 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -22,6 +21,7 @@ public class FireBase {
     private Context context;
     private static FireBase instance = null;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
+
 
     public static FireBase getInstance() {
         if (instance == null) {
@@ -37,16 +37,16 @@ public class FireBase {
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        flag[0] =1;
+                        flag[0]=1;
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         flag[0]=0;
+
                     }
                 });
-
         if(flag[0] ==1){
             return true;
         }
@@ -55,21 +55,17 @@ public class FireBase {
 
     public boolean createChild(Child c) {
         final int[] flag = {0};
-        db.collection("Children")
+        db.collection("child")
                 .document(Integer.toString(c.getId())).set(c)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        flag[0] =1;
-
-                        //TODO
+                        flag[0]=1;
                     }
                 }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                //TODO
-                flag[0] =0;
-
+                flag[0]=0;
             }
         });
         if(flag[0] ==1){
@@ -80,23 +76,21 @@ public class FireBase {
 
     public boolean createSchedule(Schedule s) {
         final int[] flag = {0};
-        List<String> m = Arrays.asList(s.getMorningKids());
-        List<String> e = Arrays.asList(s.getEveningKids());
+        List<String> m = s.getMorningKids();
+        List<String> e = s.getEveningKids();
         Schedule schedule = new Schedule(s.getId(), s.getMorning(), s.getEvening(), s.getDate(), m, e);
-        System.out.println("scheduleeeee"    +    schedule);
         db.collection("Schedules")
                 .document(Integer.toString(s.getId())).set(schedule)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        flag[0] =1;
-                        //TODO
+                        flag[0]=1;
+
                     }
                 }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                //TODO
-                flag[0] =0;
+                flag[0]=0;
             }
         });
         if(flag[0] ==1){
@@ -133,7 +127,7 @@ public class FireBase {
     public List<Child> getAllChildren() {
         List<Child> childrenList = new ArrayList<>();
 
-        Task<QuerySnapshot> children = db.collection("Children").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+        Task<QuerySnapshot> children = db.collection("child").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if (task.isSuccessful()) {
@@ -184,6 +178,7 @@ public class FireBase {
 
 
     public void setParent(Parent p) {
+
         db.collection("People")
                 .document(p.getEmail()).set(p)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -202,7 +197,7 @@ public class FireBase {
     }
 
     public void setChild(Child c) {
-        db.collection("Children")
+        db.collection("child")
                 .document(Integer.toString(c.getId())).set(c)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
@@ -219,15 +214,14 @@ public class FireBase {
     }
 
     public void setSchedule(Schedule s) {
-        List<String> m = Arrays.asList(s.getMorningKids());
-        List<String> e = Arrays.asList(s.getEveningKids());
+        List<String> m = s.getMorningKids();
+        List<String> e = s.getEveningKids();
         Schedule schedule = new Schedule(s.getId(), s.getMorning(), s.getEvening(), s.getDate(), m, e);
         db.collection("Schedules")
                 .document(Integer.toString(s.getId())).set(schedule)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-
                         //TODO
                     }
                 }).addOnFailureListener(new OnFailureListener() {
@@ -263,8 +257,7 @@ public class FireBase {
 
     public boolean deleteChild(Child c) {
         final int[] flag = {0};
-
-        db.collection("Parents")
+        db.collection("child")
                 .document(Integer.toString(c.getId()))
                 .delete()
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -287,20 +280,21 @@ public class FireBase {
 
     public boolean deleteSchedule(Schedule s) {
         final int[] flag = {0};
-
-        db.collection("Parents")
+        db.collection("Schedule")
                 .document(Integer.toString(s.getId()))
                 .delete()
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
                         flag[0]=1;
+
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         flag[0]=0;
+
                     }
                 });
         if(flag[0] ==1){
